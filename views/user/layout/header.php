@@ -25,7 +25,7 @@
 <body class="bg-secondary bg-opacity-10">
     <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-3">
         <div class="container p-lg-0">
-            <a class="navbar-brand text-light" href="">
+            <a class="navbar-brand text-light fw-bold fst-italic text-decoration-underline" href="<?= URL ?>">
                 <?= WEB_NAME ?>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
