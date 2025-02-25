@@ -41,35 +41,74 @@
                             <span class="fw-semibold">Danh mục</span>
                         </button>
                     </li>  -->
-                    <li class="nav-item mx-lg-3 position-relative">
-                        <button type="button" class="btn btn-outline-light d-flex align-items-center text-nowrap py-1 rounded-5">
+                    <li class="nav-item mx-lg-3">
+                        <button type="button" class="btn btn-outline-light py-1 rounded-5 d-none d-lg-flex align-items-center text-nowrap ">
                             <i class="bi bi-list fs-4 me-2"></i>
                             <span class="fw-semibold">Danh mục</span>
                         </button>
-                        <div class="dropdown-menu">
-                            <div class="dropdown-item position-relative" data-bs-toggle="tab" data-bs-target="#tab1">Laptop
+                        <div class="dropdown-menu py-3">
+                            <div class="dropdown-item position-relative">Laptop
                                 <div class="submenu">
-                                    <a class="dropdown-item" href="#">Sản phẩm Apple</a>
-                                    <a class="dropdown-item" href="#">MacBook</a>
-                                    <a class="dropdown-item" href="#">Mac PC</a>
+                                    <div class="d-flex m-2">
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">Sản phẩm Apple</a>
+                                            <a class="dropdown-item" href="#">MacBook</a>
+                                            <a class="dropdown-item" href="#">Mac PC</a>
+                                        </div>
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">Gaming</a>
+                                            <a class="dropdown-item" href="#">Học tập</a>
+                                            <a class="dropdown-item" href="#">Macbook</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="dropdown-item position-relative" data-bs-toggle="tab" data-bs-target="#tab2">Điện thoại
+                            <div class="dropdown-item position-relative">Điện thoại
                                 <div class="submenu">
-                                    <a class="dropdown-item" href="#">iPhone</a>
-                                    <a class="dropdown-item" href="#">Samsung</a>
+                                    <div class="d-flex m-2">
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">iPhone</a>
+                                            <a class="dropdown-item" href="#">Samsung</a>
+                                            <a class="dropdown-item" href="#">OPPO</a>
+                                        </div>
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">Gaming</a>
+                                            <a class="dropdown-item" href="#">Hiện đại</a>
+                                            <a class="dropdown-item" href="#">Máy cũ (2hand)</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="dropdown-item position-relative" data-bs-toggle="tab" data-bs-target="#tab3">Máy tính bảng
+                            <div class="dropdown-item position-relative">Màn hình máy tính
                                 <div class="submenu">
-                                    <a class="dropdown-item" href="#">iPad</a>
-                                    <a class="dropdown-item" href="#">Galaxy Tab</a>
+                                    <div class="d-flex m-2">
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">Màn hình cong</a>
+                                            <a class="dropdown-item" href="#">Gaming</a>
+                                            <a class="dropdown-item" href="#">Đồ hoạ</a>
+                                        </div>
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">60Hz</a>
+                                            <a class="dropdown-item" href="#">144Hz</a>
+                                            <a class="dropdown-item" href="#">240Hz</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="dropdown-item position-relative" data-bs-toggle="tab" data-bs-target="#tab4">Phụ kiện
+                            <div class="dropdown-item position-relative">Phụ kiện
                                 <div class="submenu">
-                                    <a class="dropdown-item" href="#">Phụ kiện Apple</a>
-                                    <a class="dropdown-item" href="#">Phụ kiện Samsung</a>
+                                    <div class="d-flex m-2">
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">Tai nghe bluetooh</a>
+                                            <a class="dropdown-item" href="#">Tai nghe Gaming</a>
+                                            <a class="dropdown-item" href="#">Chuột Corsair</a>
+                                        </div>
+                                        <div class="m-1">
+                                            <a class="dropdown-item" href="#">Keyboard Gaming</a>
+                                            <a class="dropdown-item" href="#">LED Custom</a>
+                                            <a class="dropdown-item" href="#">Main</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

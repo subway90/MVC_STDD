@@ -5,14 +5,14 @@
     --danger-color: #dc3545 !important; /* Màu nguy hiểm */
     --warning-color: #ffc107 !important; /* Màu cảnh báo */
     --info-color: #17a2b8 !important; /* Màu thông tin */
-    --light-color: #f8f9fa !important; /* Màu sáng */
+    --light-color: #ffffff !important; /* Màu sáng */
     --dark-color: #343a40 !important; /* Màu tối */
 }
 
 .dropdown-menu {
     display: none; /* Ẩn dropdown mặc định */
     position: absolute; 
-    z-index: 1000; 
+    z-index: 1000;
 }
 
 .nav-item:hover .dropdown-menu {
