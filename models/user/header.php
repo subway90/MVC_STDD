@@ -70,3 +70,33 @@ function total_cart() {
 
     return $total;
 }
+
+/**
+ * Lấy danh sách danh mục cho menu
+ * 
+ * @return array{category_v1: array, category_v2: array[]} Mảng gồm 2 phần tử category_v1[name,slug] và category_v2[name,slug]
+ */
+function list_category_for_menu() {
+    // mảng return
+    $result = [];
+    // lấy danh sách v1
+    $list_v1 = pdo_query(
+        'SELECT id_category_v1,name_category_v1, slug_category_v1 FROM category_v1 WHERE deleted_at IS NULL'
+    );
+    // nếu danh sách v1 rỗng
+    if(!$list_v1) return $result;
+    foreach ($list_v1 as $item => $v1) {
+        // lấy danh sáhch v2
+        $list_v2 = pdo_query(
+            'SELECT name_category_v2 name, slug_category_v2 slug FROM category_v2 WHERE deleted_at IS NULL AND id_category_v1 ='.$v1['id_category_v1']
+        );
+        $result[$item] = [
+            'category_v1' => [
+                'name' => $v1['name_category_v1'],
+                'slug' => $v1['slug_category_v1'],
+            ],
+            'category_v2' => $list_v2
+        ];
+    }
+    return $result;
+}
