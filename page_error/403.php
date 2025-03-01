@@ -11,17 +11,17 @@
     <title><?= WEB_NAME ?> | 403 Forbidden</title>
     <style>
         body {
+            background-color :rgba(0, 0, 0, 0.95);
+            color : white;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: color #f9f9f9;
         }
         .box{
             font-family : monospace;
-            color: #333;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -36,14 +36,7 @@
             margin: 12px;
         }
         p {
-            color: gray;
             font-size: 14px;
-        }
-        a {
-            color: gray;
-        }
-        a:hover {
-            color: #007bff;
         }
     </style>
 </head>
