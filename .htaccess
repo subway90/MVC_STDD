@@ -9,6 +9,7 @@ RewriteRule ^example.config\.php$ - [F,L]
 RewriteCond %{REQUEST_URI} ^/(controllers|models|views|phpmailer|stringee)/ [NC]
 RewriteRule ^ - [F,L]
 
+# Đảm bảo rằng các tệp và thư mục tồn tại sẽ không bị chuyển hướng
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
