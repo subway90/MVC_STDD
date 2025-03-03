@@ -52,9 +52,11 @@
                                 extract($item);
                         ?>
                             <div class="dropdown-item position-relative">
-                                <div class="my-1">
-                                    <?= $category_v1['name'] ?>
-                                </div>
+                                <a class="link-dropdown" href="<?= URL.$category_v1['slug'] ?>">
+                                    <div class="my-1">
+                                        <?= $category_v1['name'] ?>
+                                    </div>
+                                </a>
                                 <div class="submenu p-1">
                                     <?php if(empty($category_v2)) { ?>
                                     <a class="me-5 dropdown-item d-flex align-items-center disabled fst-italic" href="#">

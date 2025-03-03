@@ -9,6 +9,15 @@
     --dark-color: #343a40 !important; /* Màu tối */
 }
 
+.link-dropdown {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.link-dropdown:hover, .dropdown-item:hover .link-dropdown {
+    color: var(--light-color);
+}
+
 .dropdown-menu {
     display: none; /* Ẩn dropdown mặc định */
     position: absolute; 
