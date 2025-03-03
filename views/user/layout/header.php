@@ -47,70 +47,30 @@
                             <span class="fw-semibold">Danh mục</span>
                         </button>
                         <div class="dropdown-menu py-3">
-                            <div class="dropdown-item position-relative">Laptop
-                                <div class="submenu">
-                                    <div class="d-flex m-2">
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">Sản phẩm Apple</a>
-                                            <a class="dropdown-item" href="#">MacBook</a>
-                                            <a class="dropdown-item" href="#">Mac PC</a>
-                                        </div>
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">Gaming</a>
-                                            <a class="dropdown-item" href="#">Học tập</a>
-                                            <a class="dropdown-item" href="#">Macbook</a>
-                                        </div>
-                                    </div>
+                        <?php
+                            foreach (list_category_for_menu() as $item) {
+                                extract($item);
+                        ?>
+                            <div class="dropdown-item position-relative">
+                                <div class="my-1">
+                                    <?= $category_v1['name'] ?>
+                                </div>
+                                <div class="submenu p-1">
+                                    <?php if(empty($category_v2)) { ?>
+                                    <a class="me-5 dropdown-item d-flex align-items-center disabled fst-italic" href="#">
+                                        (Chưa có danh mục)
+                                    </a>
+                                    <?php }else{
+                                        foreach ($category_v2 as $item) { extract($item);
+                                    ?>
+                                    <a class="me-5 dropdown-item d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
+                                        <img width="20" class="me-2" src="<?= DEFAULT_IMAGE ?>" alt="<?= $logo ?>">
+                                        <?= $name ?>
+                                    </a>
+                                    <?php }} ?>
                                 </div>
                             </div>
-                            <div class="dropdown-item position-relative">Điện thoại
-                                <div class="submenu">
-                                    <div class="d-flex m-2">
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">iPhone</a>
-                                            <a class="dropdown-item" href="#">Samsung</a>
-                                            <a class="dropdown-item" href="#">OPPO</a>
-                                        </div>
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">Gaming</a>
-                                            <a class="dropdown-item" href="#">Hiện đại</a>
-                                            <a class="dropdown-item" href="#">Máy cũ (2hand)</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown-item position-relative">Màn hình máy tính
-                                <div class="submenu">
-                                    <div class="d-flex m-2">
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">Màn hình cong</a>
-                                            <a class="dropdown-item" href="#">Gaming</a>
-                                            <a class="dropdown-item" href="#">Đồ hoạ</a>
-                                        </div>
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">60Hz</a>
-                                            <a class="dropdown-item" href="#">144Hz</a>
-                                            <a class="dropdown-item" href="#">240Hz</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown-item position-relative">Phụ kiện
-                                <div class="submenu">
-                                    <div class="d-flex m-2">
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">Tai nghe bluetooh</a>
-                                            <a class="dropdown-item" href="#">Tai nghe Gaming</a>
-                                            <a class="dropdown-item" href="#">Chuột Corsair</a>
-                                        </div>
-                                        <div class="m-1">
-                                            <a class="dropdown-item" href="#">Keyboard Gaming</a>
-                                            <a class="dropdown-item" href="#">LED Custom</a>
-                                            <a class="dropdown-item" href="#">Main</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php } ?>
                         </div>
                     </li>
                     <li class="nav-item input-group">

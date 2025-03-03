@@ -81,19 +81,20 @@ function list_category_for_menu() {
     $result = [];
     // lấy danh sách v1
     $list_v1 = pdo_query(
-        'SELECT id_category_v1,name_category_v1, slug_category_v1 FROM category_v1 WHERE deleted_at IS NULL'
+        'SELECT id_category_v1,name_category_v1, slug_category_v1, logo_category_v1 FROM category_v1 WHERE deleted_at IS NULL'
     );
     // nếu danh sách v1 rỗng
     if(!$list_v1) return $result;
     foreach ($list_v1 as $item => $v1) {
         // lấy danh sáhch v2
         $list_v2 = pdo_query(
-            'SELECT name_category_v2 name, slug_category_v2 slug FROM category_v2 WHERE deleted_at IS NULL AND id_category_v1 ='.$v1['id_category_v1']
+            'SELECT name_category_v2 name, slug_category_v2 slug, logo_category_v2 logo, description_category_v2 description FROM category_v2 WHERE deleted_at IS NULL AND id_category_v1 ='.$v1['id_category_v1']
         );
         $result[$item] = [
             'category_v1' => [
                 'name' => $v1['name_category_v1'],
                 'slug' => $v1['slug_category_v1'],
+                'logo' => $v1['logo_category_v1'],
             ],
             'category_v2' => $list_v2
         ];
