@@ -52,7 +52,7 @@
                                 extract($item);
                         ?>
                             <div class="dropdown-item position-relative">
-                                <a class="link-dropdown" href="<?= URL.$category_v1['slug'] ?>">
+                                <a class="link-dropdown" href="<?= URL.'danh-muc/'.$category_v1['slug'] ?>">
                                     <div class="my-1">
                                         <?= $category_v1['name'] ?>
                                     </div>

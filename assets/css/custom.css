@@ -7,6 +7,11 @@
     --info-color: #17a2b8 !important; /* Màu thông tin */
     --light-color: #ffffff !important; /* Màu sáng */
     --dark-color: #343a40 !important; /* Màu tối */
+    --orange-color: #fc521d !important; /* Màu tối */
+}
+
+.bg-orange {
+    background-color: var(--orange-color);
 }
 
 .link-dropdown {
@@ -112,7 +117,7 @@
 }
 
 .text-flashsale {
-    color: #fc521d;
+    color: var(--orange-color)
 }
 
 /* custom scrollbar */
