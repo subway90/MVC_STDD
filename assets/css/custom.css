@@ -10,6 +10,28 @@
     --orange-color: #fc521d !important; /* Màu tối */
 }
 
+.box-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    border: 1px solid #d1d1d1;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.card-product {
+    width: 50%; /* Mặc định là 100% cho các kích thước nhỏ hơn */
+}
+
+@media (min-width: 992px) { /* Kích thước lg bắt đầu từ 992px */
+    .card-product {
+        width: 20%; /* Thiết lập width là 20% cho màn hình lớn */
+    }
+}
+
 .bg-orange {
     background-color: var(--orange-color);
 }
