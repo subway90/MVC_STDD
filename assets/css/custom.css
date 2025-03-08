@@ -13,8 +13,8 @@
 .box-color {
     width: 16px;
     height: 16px;
-    border-radius: 16px;
-    border: 1px solid #d1d1d1;
+    border-radius: 50%;
+    box-shadow: inset 2px -2px 4px rgba(0, 0, 0, 0.6), 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-check-input:checked {
