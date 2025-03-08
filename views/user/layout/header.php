@@ -11,9 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <!-- CDN CSS Bootstrap 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-    <!-- JS Custom -->
-    <script src="<?= URL ?>assets/js/countdown-time.js"></script>
-    <script src="<?= URL ?>assets/js/ajax.js"></script>
+    <!-- CDN JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- CSS Custom -->
     <link rel="stylesheet" href="<?= URL ?>assets/css/custom.css">
     <!-- Favicon -->

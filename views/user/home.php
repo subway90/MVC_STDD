@@ -1,3 +1,6 @@
+<!-- JS Custom -->
+<script src="<?= URL ?>assets/js/countdown-time.js"></script>
+
 <div class="container p-0 mt-3">
     <!-- Courasel Start -->
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
