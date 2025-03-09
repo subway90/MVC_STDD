@@ -81,6 +81,7 @@
                         </button>
                     </li>
                 </ul>
+                <?php if(is_login()) : // Nếu đã đăng nhập?>
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-bs-toggle="dropdown">
@@ -94,6 +95,12 @@
                         <li><a class="dropdown-item text-danger" href="#">Đăng xuất</a></li>
                     </ul>
                 </div>
+                <?php else : // Nếu chưa đăng nhập?>
+                    <a href="<?= URL ?>dang-nhap" class="btn btn-sm btn-outline-light border rounded-5 d-flex align-items-center px-3">
+                        <i class="bi bi-person-fill fs-4 me-2"></i>
+                        <span class="fw-semibold">Đăng nhập</span>
+                    </a>
+                <?php endif ?>
             </div>
         </div>
     </nav>
