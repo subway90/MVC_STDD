@@ -91,10 +91,10 @@
                         <span class="text-light">User Default</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item text-success" href="history.html">Lịch sử mua hàng</a></li>
-                        <li><a class="dropdown-item text-warning" href="infomation.html">Cập nhật thông tin</a></li>
+                        <li><a class="dropdown-item" href="history.html">Lịch sử mua hàng</a></li>
+                        <li><a class="dropdown-item" href="infomation.html">Cập nhật thông tin</a></li>
                         <hr class="border-2 btn-dark my-2">
-                        <li><a class="dropdown-item text-danger" href="#">Đăng xuất</a></li>
+                        <li><a class="dropdown-item text-danger" href="<?= URL ?>dang-xuat">Đăng xuất</a></li>
                     </ul>
                 </div>
                 <?php else : // Nếu chưa đăng nhập?>
