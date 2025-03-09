@@ -2,7 +2,7 @@
 
 # [AUTHOR]
 // Kiểm tra đã đăng nhập chưa
-if(!empty($_SESSION['user'])) route('trang-chu');
+if(is_login()) route('trang-chu');
 
 # [MODEL]
 model('user','user');
