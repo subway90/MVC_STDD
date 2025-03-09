@@ -21,6 +21,8 @@
     <title><?= isset($title) ? $title : WEB_NAME ?></title>
 </head>
 
+<?= toast_show() ?>
+
 <body class="bg-secondary bg-opacity-10">
     <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-3">
         <div class="container p-lg-0">
