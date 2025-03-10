@@ -26,22 +26,14 @@
 <body class="bg-secondary bg-opacity-10">
     <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-3">
         <div class="container p-lg-0">
+            <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu"><i class="bi bi-list fs-5"></i></button>
             <a class="navbar-brand text-light fw-bold fst-italic text-decoration-underline" href="<?= URL ?>">
                 <?= WEB_NAME ?>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasSearch" aria-controls="offCanvasSearch"><i class="bi bi-search fs-5"></i></button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
-                    <!-- <li class="nav-item mx-lg-3">
-                        <button type="button" class="btn btn-outline-light d-flex align-items-center text-nowrap py-1 rounded-5">
-                            <i class="bi bi-list fs-4 me-2"></i>
-                            <span class="fw-semibold">Danh mục</span>
-                        </button>
-                    </li>  -->
                     <li class="nav-item mx-lg-3">
                         <button type="button" class="btn btn-outline-light py-1 rounded-5 d-none d-lg-flex align-items-center text-nowrap ">
                             <i class="bi bi-list fs-4 me-2"></i>
@@ -83,26 +75,55 @@
                         </button>
                     </li>
                 </ul>
-                <?php if(is_login()) : // Nếu đã đăng nhập?>
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                        data-bs-toggle="dropdown">
-                        <img width="30" class="" src="<?= DEFAULT_AVATAR ?>" alt="image user">
-                        <span class="text-light">User Default</span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="history.html">Lịch sử mua hàng</a></li>
-                        <li><a class="dropdown-item" href="infomation.html">Cập nhật thông tin</a></li>
-                        <hr class="border-2 btn-dark my-2">
-                        <li><a class="dropdown-item text-danger" href="<?= URL ?>dang-xuat">Đăng xuất</a></li>
-                    </ul>
-                </div>
-                <?php else : // Nếu chưa đăng nhập?>
-                    <a href="<?= URL ?>dang-nhap" class="btn btn-sm btn-outline-light border rounded-5 d-flex align-items-center px-3">
-                        <i class="bi bi-person-fill fs-4 me-2"></i>
-                        <span class="fw-semibold">Đăng nhập</span>
-                    </a>
-                <?php endif ?>
+                <?= layout('user','acccount-dropdown') ?>
             </div>
         </div>
     </nav>
+
+<div class="offcanvas offcanvas-top" tabindex="-1" id="offCanvasSearch" aria-labelledby="offCanvasSearchLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offCanvasSearchLabel">Tìm kiếm sản phẩm</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="input-group border border-success">
+            <input type="text" name="search_product" id="" class="form-control search-input ps-3" placeholder="Bạn muốn tìm gì ?">
+            <button class="btn btn-small btn-light pe-3 text-success search-btn">
+                <i class="bi fs-5 bi-search"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offCanvasMenuLabel">
+    <div class="offcanvas-header bg-success">
+        <?= layout('user','acccount-dropdown') ?>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <h5 class="offcanvas-title mb-3" id="offCanvasSearchLabel">Danh mục sản phẩm</h5>
+        <div class="row p-0">
+            <?php foreach (list_category_for_menu() as $item) : extract($item);?>
+            <div class="col-6 my-3">
+                <a class="nav-link link-success fw-bold" href="<?= URL.'danh-muc/'.$category_v1['slug'] ?>">
+                    <?= $category_v1['name'] ?>
+                </a>
+                <div class="mt-2">
+                    <?php if(empty($category_v2)) { ?>
+                    <a class="dropdown-item d-flex align-items-center disabled fst-italic" href="#">
+                        (Chưa có danh mục)
+                    </a>
+                    <?php }else{
+                        foreach ($category_v2 as $item) { extract($item);
+                    ?>
+                    <a class="dropdown-item d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
+                        <img width="32" class="me-2" src="<?= DEFAULT_IMAGE ?>" alt="<?= $logo ?>">
+                        <?= $name ?>
+                    </a>
+                    <?php }} ?>
+                </div>
+            </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+</div>

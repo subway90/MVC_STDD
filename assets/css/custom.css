@@ -45,11 +45,6 @@
     color: var(--light-color);
 }
 
-.dropdown-menu {
-    display: none; /* Ẩn dropdown mặc định */
-    position: absolute; 
-    z-index: 1000;
-}
 
 .nav-item:hover .dropdown-menu {
     display: block; /* Hiện dropdown khi hover */
