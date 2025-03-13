@@ -1,21 +1,52 @@
 $(document).ready(function () {
+    function loadProduct(price, brand, color) {
+        // Thay thế nội dung box-result bằng loading indicator
+        $(".box-result").html(`
+            <div class="loading" style="text-align: center; margin: 20px 0;">
+                <p>Đang tải sản phẩm, vui lòng chờ...</p>
+                <div class="spinner-grow text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        `);
 
-    // Lấy danh sách
-    function loadProduct() {
         $.ajax({
-            url: 'danh-muc?filter', // Thay đổi URL nếu cần thiết
+            url: `?filter&price=${price}&brand=${brand}&color=${color}`,
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                $(".box-result").html(response.data);
+                // Cập nhật nội dung mới
+                if (response.data) {
+                    $(".box-result").html(response.data); // Cập nhật nội dung mới
+                } else {
+                    $(".box-result").html("<p>Không có sản phẩm nào phù hợp.</p>"); // Thông báo nếu không có sản phẩm
+                }
             },
             error: function () {
                 console.log("Đã có lỗi xảy ra.");
+                $(".box-result").html("<p>Đã có lỗi khi tải dữ liệu.</p>"); // Thông báo lỗi
             }
         });
     }
 
-    // Chạy hàm lấy tất cả sản phẩm
-    loadProduct();
-    
+    let selectedPrice = 0;
+    let selectedBrand = 0;
+    let selectedColor = 0;
+
+    loadProduct(selectedPrice, selectedBrand, selectedColor);
+
+    $('input[name="filterPrice"]').change(function () {
+        selectedPrice = $(this).val();
+        loadProduct(selectedPrice, selectedBrand, selectedColor);
+    });
+
+    $('input[name="filterBrand"]').change(function () {
+        selectedBrand = $(this).val();
+        loadProduct(selectedPrice, selectedBrand, selectedColor);
+    });
+
+    $('input[name="filterColor"]').change(function () {
+        selectedColor = $(this).val();
+        loadProduct(selectedPrice, selectedBrand, selectedColor);
+    });
 });
