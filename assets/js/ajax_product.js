@@ -18,8 +18,6 @@ $(document).ready(function () {
                 // Cập nhật nội dung mới
                 if (response.data) {
                     $(".box-result").html(response.data); // Cập nhật nội dung mới
-                } else {
-                    $(".box-result").html("<p>Không có sản phẩm nào phù hợp.</p>"); // Thông báo nếu không có sản phẩm
                 }
             },
             error: function () {
