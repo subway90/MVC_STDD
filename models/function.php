@@ -450,3 +450,15 @@ function toast($type,$message) {
             setTimeout(closeAlert,'.TOAST_TIME.')
         </script>';
 }
+
+/**
+ * Lấy action của request uri
+ * 
+ * @param mixed $order Thứ tự phần tử cần lấy, hoặc để string('test') để lấy toàn bộ
+ */
+function get_action_uri($order) {
+    $array_uri = explode('/',$_GET['act']); // tạo mảng bởi dấu phân cách "/"
+    if($order === 'test') return $array_uri;
+    else if(!empty($array_uri[$order])) return $array_uri[$order];
+    return false;
+}
