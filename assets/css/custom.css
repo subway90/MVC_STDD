@@ -26,17 +26,18 @@
     width: 50%; /* Mặc định là 100% cho các kích thước nhỏ hơn */
 }
 
+@media (min-width: 768px) { /* Kích thước lg bắt đầu từ 992px */
+    .card-product {
+        width: 33.3%; /* Thiết lập width là 20% cho màn hình lớn */
+    }
+}
+
 @media (min-width: 992px) { /* Kích thước lg bắt đầu từ 992px */
     .card-product {
         width: 20%; /* Thiết lập width là 20% cho màn hình lớn */
     }
 }
 
-@media (min-width: 768px) { /* Kích thước lg bắt đầu từ 992px */
-    .card-product {
-        width: 33.3%; /* Thiết lập width là 20% cho màn hình lớn */
-    }
-}
 
 .bg-orange {
     background-color: var(--orange-color);
