@@ -15,6 +15,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- CSS Custom -->
     <link rel="stylesheet" href="<?= URL ?>assets/css/custom.css">
+    <!-- JS Custom -->
+    <script src="<?= URL ?>assets/js/custom.js"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= WEB_FAVICON ?>" type="image/x-icon">
     <!-- Title -->
@@ -24,6 +26,20 @@
 <?= toast_show() ?>
 
 <body class="bg-secondary bg-opacity-10">
+
+    <div id="spinner">
+        <div  style="width: 8px; height: 8px;" class="spinner-grow text-danger" role="status">
+        </div>
+        <div  style="width: 12px; height: 12px;" class="spinner-grow text-warning mx-2" role="status">
+        </div>
+        <div  style="width: 16px; height: 16px;" class="spinner-grow text-success" role="status">
+        </div>
+        <div  style="width: 20px; height: 20px;" class="spinner-grow text-danger mx-2" role="status">
+        </div>
+        <div  style="width: 24px; height: 24px;" class="spinner-grow text-warning" role="status">
+        </div>
+    </div>
+
     <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-3">
         <div class="container p-lg-0">
             <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu"><i class="bi bi-list fs-5"></i></button>

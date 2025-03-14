@@ -10,6 +10,21 @@
     --orange-color: #fc521d !important; /* Màu tối */
 }
 
+/* Spinner hiển thị khi tải trang */
+#spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* Nền trắng */
+    z-index: 9999; /* Đảm bảo spinner nằm trên cùng */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible; /* Hiển thị spinner ban đầu */
+}
+
 .box-color {
     width: 16px;
     height: 16px;
