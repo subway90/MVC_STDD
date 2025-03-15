@@ -9,7 +9,8 @@
                 <a href="product.html" class="text-decoration-none text-success">Điện thoại</a>
             </li>
             <li class="breadcrumb-item fw-bold">
-                <a href="#" class="text-decoration-none text-dark">iPhone 12 chính hãng VNA
+                <a href="#" class="text-decoration-none text-dark">
+                    Chi tiết sản phẩm
                 </a>
             </li>
 
@@ -77,69 +78,37 @@
         <div class="col-12 col-md-12 col-lg-5">
             <form action="@" method="post">
                 <div class="row">
-                    <div class="col-12 fw-bold fs-4 p-0">
-                        iPhone 12 chính hãng VNA
+                    <div class="col-12 fw-semibold fs-4 p-0 mb-lg-4 mb-2">
+                        <?= $detail_product['name_product'] ?>
                     </div>
                     <!-- [MODEL] -->
                     <div class="col-12 p-0">
-                        <div class="text-start fw-bolder mb-2">Lựa chọn loại</div>
-                        <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
-                            <li class="nav-item me-2">
-                                <a href="#" class="active btn btn-sm btn-outline-success">
-                                    64GB
-                                </a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a href="#" class="btn btn-sm btn-outline-success">
-                                    128GB
-                                </a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a href="#" class="btn btn-sm btn-outline-success">
-                                    256GB
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="text-start small mb-1 fw-semibold">Lựa chọn loại</div>
+                        <div class="mb-3">
+                            <?php foreach ($detail_product['array_model'] as $model) : extract($model) ?>
+                            <a href="<?= URL.'chi-tiet/'.$slug_product ?>" class="<?= $detail_product['id_model'] == $id_model ? 'active' : '' ?> btn btn-sm btn-outline-success">
+                                <small><?= $name_model ?></small>
+                            </a>
+                            <?php endforeach ?>
+                        </div>
                     </div>
                     <!-- [COLOR] -->
                     <div class="col-12 p-0">
-                        <div class="text-start fw-bolder mb-2">Lựa chọn màu</div>
-                        <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
-                            <li class="nav-item me-2">
-                                <a href="#" class="active btn btn-sm btn-outline-success">
-                                    Đen
-                                </a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a href="#" class="btn btn-sm btn-outline-success">
-                                    Xanh biển
-                                </a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a href="#" class="btn btn-sm btn-outline-success">
-                                    Xanh lá
-                                </a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a href="#" class="btn btn-sm btn-outline-success">
-                                    Tím
-                                </a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a href="#" class="btn btn-sm btn-outline-success">
-                                    Đỏ
-                                </a>
-                            </li>
-                            <li class="nav-item me-2">
-                                <a href="#" class="btn btn-sm btn-outline-success">
-                                    Trắng
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="text-start small mb-1 fw-semibold">Lựa chọn màu</div>
+                        <div class="mb-3">
+                            <?php foreach ($detail_product['array_color'] as $color) : extract($color) ?>
+                            <a href="<?= URL.'chi-tiet/'.$slug_product ?>" class="<?= $detail_product['id_color'] == $id_color ? 'active' : '' ?> btn btn-sm btn-outline-success">
+                                <div class="d-flex align-items-center">
+                                    <div style="background-color: <?= $code_color ?>" class="box-color me-2"></div>
+                                    <small><?= $name_color ?></small>
+                                </div>
+                            </a>
+                            <?php endforeach ?>
+                        </div>
                     </div>
                     <div class="col-12 p-0 d-flex align-items-center">
                         <div class="me-2 fs-5">Giá :</div>
-                        <div class="fw-bold text-danger fs-5">25.999.999 vnđ</div>
+                        <div class="fw-bold text-danger fs-5"><?=number_format($detail_product['price_product'],0,',','.') ?> vnđ</div>
                     </div>
                     <!-- [MUA - TRẢ GÓP - GIỎ HÀNG] -->
                     <div class="col-12 mt-3">
@@ -162,8 +131,8 @@
                         </div>
                     </div>
                     <!-- [THÔNG TIN KM] -->
-                    <div class="col-12 mt-3">
-                        <p class="text-success">KHUYẾN MÃI</p>
+                    <div class="col-12 mt-3 mt-lg-5">
+                        <p class="text-success text-uppercase fw-semibold">chương trình khuyến mãi</p>
                         <div class="my-2">
                             <div class="btn btn-warning bg-gradient text-light p-0 px-1 small">
                                 <span class="small">KM1</span>
