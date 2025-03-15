@@ -10,6 +10,40 @@
     --orange-color: #fc521d !important; /* Màu tối */
 }
 
+.carousel-item img {
+    cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
+}
+.thumbnail {
+    width: 100px;
+    height: auto;
+    cursor: pointer;
+    opacity: 0.6;
+}
+.thumbnail.active {
+    opacity: 1;
+}
+#fullscreenModal .modal-dialog {
+    max-width: 90%;
+}
+
+#fullscreenImage {
+    max-width: 100%;
+    max-height: 90vh; /* Giới hạn chiều cao tối đa là chiều cao của màn hình */
+    object-fit: contain; /* Giữ tỷ lệ khung hình của ảnh */
+}
+.modal {
+    background-color: #00000040;
+}
+
+.modal-content {
+    background-color: transparent; /* Không có nền cho modal */
+    border: none; /* Loại bỏ viền modal */
+}
+.sm-img-modal {
+    width: 80px;
+    cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
+}
+
 /* Spinner hiển thị khi tải trang */
 #spinner {
     position: fixed;

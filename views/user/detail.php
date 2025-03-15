@@ -17,65 +17,20 @@
     </nav>
 </div>
 
-<style>
-    .carousel-item img {
-        cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
-    }
-    .thumbnail {
-        width: 100px;
-        height: auto;
-        cursor: pointer;
-        opacity: 0.6;
-    }
-    .thumbnail.active {
-        opacity: 1;
-    }
-    #fullscreenModal .modal-dialog {
-        max-width: 90%;
-    }
-    .modal-body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #fullscreenImage {
-        max-width: 100%;
-        max-height: 90vh; /* Giới hạn chiều cao tối đa là chiều cao của màn hình */
-        object-fit: contain; /* Giữ tỷ lệ khung hình của ảnh */
-    }
-    .modal {
-        background-color: #00000020;
-    }
-
-    .modal-content {
-        background-color: transparent; /* Không có nền cho modal */
-        border: none; /* Loại bỏ viền modal */
-    }
-    .sm-img-modal {
-        width: 80px;
-    }
-</style>
-<script>
-    function openFullscreen(src) {
-        const img = document.getElementById('fullscreenImage');
-        img.src = src;
-        const modal = new bootstrap.Modal(document.getElementById('fullscreenModal'));
-        modal.show();
-    }
-</script>
-
 <!-- Modal cho ảnh phóng to -->
 <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
+    <button type="button" class="position-fixed end-0 btn btn-outline-light rounded-circle m-2 m-lg-5" data-bs-dismiss="modal">
+        <i class="bi bi-x-lg fs-4"></i>
+    </button>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-body d-flex flex-column align-items-center">
+            <div class="modal-body d-flex flex-column align-items-center mt-5 mt-lg-0">
                 <img id="fullscreenImage" src="" alt="">
                 <!-- [ẢNH NHỎ] -->
                 <div class="position-fixed fixed-bottom">
-                    <div class="d-flex justify-content-center w-100 top-50 mb-2">
+                    <div class="d-flex justify-content-center flex-wrap w-100 top-50 mb-2">
                         <?php foreach($detail_product['array_image'] as $image): extract($image)?>
-                        <img class="sm-img-modal mx-2" src="<?= URL_STORAGE.$path_product_image ?>" onclick="openFullscreen(this.src)">
+                        <img class="sm-img-modal m-2 shadow" src="<?= URL_STORAGE.$path_product_image ?>" onclick="openFullscreen(this.src)">
                         <?php endforeach ?>
                     </div>
                 </div>
