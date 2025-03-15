@@ -19,8 +19,8 @@
 </div>
 
 <!-- Modal cho ảnh phóng to -->
-<div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
-    <button type="button" class="position-fixed end-0 btn btn-outline-light rounded-circle m-2 m-lg-5" data-bs-dismiss="modal">
+<div class="modal fade bg-dark bg-opacity-50" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
+    <button style="z-index:9999" type="button" class="shadow position-fixed end-0 btn btn-light rounded-circle m-3 m-lg-5" data-bs-dismiss="modal">
         <i class="bi bi-x-lg fs-4"></i>
     </button>
     <div class="modal-dialog modal-lg">
@@ -162,197 +162,58 @@
             </form>
         </div>
 
-        <div class="col-12 col-md-12 col-lg-3 mt-5 mt-md-4 mt-lg-3">
-            <p class="text-center text-uppercase">thông số kỹ thuật</p>
+        <div class="col-12 col-md-12 col-lg-3 mt-2 mt-lg-0">
             <table class="table table-hover table-bordered small">
                 <thead>
                     <th class="bg-success bg-opacity-75 text-light text-center" scope="col" colspan="2">
-                        iPhone 12 chính hãng VNA
+                    Thông số kỹ thuật
                     </th>
                 </thead>
                 <tbody>
+                <?php if($detail_product['array_attribute']) : // nếu có attribute ?>
+                    <?php (count($detail_product['array_attribute']) > 10 ? $limit_row = LIMIT_ROW_ATTRIBUTE : $limit_row = count($detail_product['array_attribute'])) // lấy limit số dòng ?>
+                    <?php for ($i=0; $i < $limit_row; $i++) : extract($detail_product['array_attribute'][$i]) // vòng lặp in attribute ?>
                     <tr>
-                        <th class="">Màn hình</th>
-                        <td class="small align-middle" colspan="1">Super Retina XDR, tần số 120Hz, Haptic Touch</td>
+                        <th class="small"><?= $name_attribute ?></th>
+                        <td class="small align-middle" colspan="1"><?= $value_attribute ?></td>
                     </tr>
-                    <tr>
-                        <th class="">Độ phân giải</th>
-                        <td class="small align-middle" colspan="1">1290 x 2796, chính 48MP, khẩu độ f/1.78</td>
-                    </tr>
-                    <tr>
-                        <th class="">Kích thước màn hình</th>
-                        <td class="small align-middle" colspan="1">6.7 inch</td>
-                    </tr>
-                    <tr>
-                        <th class="">Hệ điều hành</th>
-                        <td class="small align-middle" colspan="1">IOS 17</td>
-                    </tr>
-                    <tr>
-                        <th class="">Vi xử lý</th>
-                        <td class="small align-middle" colspan="1">A17 Pro</td>
-                    </tr>
-                    <tr>
-                        <th class="">Bộ nhớ trong</th>
-                        <td class="small align-middle" colspan="1">256 GB</td>
-                    </tr>
-                    <tr>
-                        <th class="">RAM</th>
-                        <td class="small align-middle" colspan="1">8 GB</td>
-                    </tr>
-                    <tr>
-                        <th class="">Mạng di động</th>
-                        <td class="small align-middle" colspan="1">2G 3G 4G 5G</td>
-                    </tr>
-                    <tr>
-                        <th class="">Khe sim</th>
-                        <td class="small align-middle" colspan="1">2 (nano SIM và eSIM)</td>
-                    </tr>
-                </tbody>
-                <tfoot>
+                    <?php endfor ?>
+                    <?php if($limit_row == LIMIT_ROW_ATTRIBUTE) : // nếu số dòng bằng limit quy định ?>
                     <tr>
                         <td class="bg-success bg-opacity-75 text-light small text-center" colspan="2"
                             data-bs-toggle="modal" data-bs-target="#detailProduct">
-                            Xem chi tiết
+                            Xem tất cả thông số
                         </td>
                     </tr>
-                </tfoot>
+                    <?php endif ?>
+                <?php else : // chưa có thông số ?>
+                    <tr>
+                        <td conspan="2" class="small text-center align-middle" colspan="1">Chưa có thông số</td>
+                    </tr>
+                <?php endif ?>
+                </tbody>
             </table>
         </div>
+
+        <?php if($limit_row = LIMIT_ROW_ATTRIBUTE ) : // nếu số dòng bằng limit quy định ?>
         <!-- [Modal] Chi tiết thông số kỹ thuật -->
         <div class="col-12">
             <div class="modal fade" id="detailProduct" tabindex="-1" aria-labelledby="labelDP" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="labelDP">Thông tin chi tiết Điện thoại iPhone 15 Pro Max
-                            </h1>
+                            <h1 class="modal-title fs-5 text-success" id="labelDP">Tất cả thông số kĩ thuật</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Table Detail 1 -->
                             <table class="table table-hover table-bordered small">
                                 <tbody>
+                                    <?php foreach ($detail_product['array_attribute'] as $attribute) : extract($attribute) // vòng lặp in attribute ?>
                                     <tr>
-                                        <th class="bg-success bg-opacity-75 text-light text-center" scope="col"
-                                            colspan="2">Màn hình</th>
+                                        <th class="small"><?= $name_attribute ?></th>
+                                        <td class="small align-middle" colspan="1"><?= $value_attribute ?></td>
                                     </tr>
-                                    <tr>
-                                        <th class="align-middle small">Công nghệ màn hình</th>
-                                        <td class="small align-middle" colspan="1">
-                                            <ul>
-                                                <li>Màn hình Super Retina XDR</li>
-                                                <li>Tấm nền OLED</li>
-                                                <li>Dynamic Island</li>
-                                                <li>Công nghệ ProMotion với tốc độ làm mới thích ứng lên đến 120Hz</li>
-                                                <li>Màn hình Luôn Bật</li>
-                                                <li>Màn hình HDR</li>
-                                                <li>Tỷ lệ tương phản 2.000.000:1 (tiêu chuẩn)</li>
-                                                <li>Màn hình True Tone</li>
-                                                <li>Màn hình có dải màu rộng (P3)</li>
-                                                <li>Haptic Touch</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Độ phân giải</th>
-                                        <td class="small align-middle" colspan="1">
-                                            1290 x 2796
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Kích thước màn hình</th>
-                                        <td class="small align-middle" colspan="1">
-                                            6.7 inch
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Độ sáng màn hình</th>
-                                        <td class="small align-middle" colspan="1">
-                                            <ul>
-                                                <li>Độ sáng tối đa 1000 nit (tiêu chuẩn)</li>
-                                                <li>Độ sáng đỉnh 1600 nit (HDR)</li>
-                                                <li>Độ sáng cao nhất 2000 nit (ngoài trời)</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Mặt nạ cảm ứng</th>
-                                        <td class="small align-middle" colspan="1">
-                                            Ceramic Shield
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <!-- Table Detail 2 -->
-                            <table class="table table-hover table-bordered small">
-                                <tbody>
-                                    <tr>
-                                        <th class="bg-success bg-opacity-75 text-light text-center" scope="col"
-                                            colspan="2">Camera Sau</th>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Độ phân giải</th>
-                                        <td class="small align-middle" colspan="1">
-                                            <ul>
-                                                <li>Chính: 48MP, khẩu độ ƒ/1.78</li>
-                                                <li>Ultra Wide: 12MP, khẩu độ ƒ/2.2</li>
-                                                <li>Telephoto: 12MP, khẩu độ ƒ/2.8</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Quay phim</th>
-                                        <td class="small align-middle" colspan="1">
-                                            <ul>
-                                                <li>Quay video 4K ở tốc độ 24 fps, 25 fps, 30 fps, hoặc 60 fps</li>
-                                                <li>Quay video HD 1080p ở tốc độ 25 fps, 30 fps, hoặc 60 fps</li>
-                                                <li>Chế độ Điện Ảnh để quay video với độ sâu trường ảnh nông (lên đến 4K
-                                                    HDR ở tốc độ 30 fps)</li>
-                                                <li>Chế độ Hành Động</li>
-                                                <li>Quay video HDR với công nghệ Dolby Vision lên đến 4K ở tốc độ 60 fps
-                                                </li>
-                                                <li>Quay video ProRes lên đến 4K ở 60 fps với khả năng ghi vào ổ đĩa gắn
-                                                    ngoài</li>
-                                                <li>Quay video định dạng Log</li>
-                                                <li>Academy Color Encoding System (Hệ Thống Màu Của Viện Hàn Lâm, ACES)
-                                                </li>
-                                                <li>Quay video macro, bao gồm chế độ quay chậm và tua nhanh</li>
-                                                <li>Hỗ trợ quay video chậm 1080p ở tốc độ 120 fps hoặc 240 fps</li>
-                                                <li>Video tua nhanh có chống rung</li>
-                                                <li>Tua nhanh ở chế độ Ban Đêm</li>
-                                                <li>Chế độ quay video QuickTake</li>
-                                                <li>Chống rung quang học dịch chuyển cảm biến thế hệ thứ hai cho video
-                                                </li>
-                                                <li>Phóng đại âm thanh</li>
-                                                <li>Thu âm stereo</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Đèn flash</th>
-                                        <td class="small align-middle" colspan="1">
-                                            Flash True Tone Thích Ứng
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="align-middle small">Tính năng</th>
-                                        <td class="small align-middle" colspan="1">
-                                            <ul>
-                                                <li>Chống rung quang học dịch chuyển cảm biến thế hệ thứ hai</li>
-                                                <li>Các lựa chọn thu phóng quang học 0,5x, 1x, 2x, 5x</li>
-                                                <li>Photonic Engine</li>
-                                                <li>Deep Fusion</li>
-                                                <li>HDR thông minh thế hệ 5 cho ảnh</li>
-                                                <li>Ảnh chân dung thế hệ mới với Focus và Depth Control</li>
-                                                <li>Hiệu ứng Chiếu Sáng Chân Dung với sáu chế độ</li>
-                                                <li>Chế độ Ban Đêm</li>
-                                                <li>Chụp ảnh chân dung ở chế độ Ban Đêm</li>
-                                                <li>Phong Cách Nhiếp Ảnh</li>
-                                                <li>Chụp ảnh macro</li>
-                                                <li>Apple ProRAW</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -360,6 +221,7 @@
                 </div>
             </div>
         </div>
+        <?php endif ?>
 
         <div class="col-12 col-md-6 col-lg-4 mt-5">
             <span class="text-uppercase text-success h6">

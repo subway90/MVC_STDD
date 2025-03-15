@@ -22,25 +22,15 @@
 .thumbnail.active {
     opacity: 1;
 }
-#fullscreenModal .modal-dialog {
-    max-width: 90%;
-}
 
 #fullscreenImage {
-    max-width: 100%;
-    max-height: 90vh; /* Giới hạn chiều cao tối đa là chiều cao của màn hình */
+    width: 100%;
+    max-height:100vh; /* Giới hạn chiều cao tối đa là chiều cao của màn hình */
     object-fit: contain; /* Giữ tỷ lệ khung hình của ảnh */
 }
-.modal {
-    background-color: #00000040;
-}
 
-.modal-content {
-    background-color: transparent; /* Không có nền cho modal */
-    border: none; /* Loại bỏ viền modal */
-}
 .sm-img-modal {
-    width: 80px;
+    width: 52px;
     cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
 }
 
@@ -84,6 +74,9 @@
 @media (min-width: 992px) { /* Kích thước lg bắt đầu từ 992px */
     .card-product {
         width: 20%; /* Thiết lập width là 20% cho màn hình lớn */
+    }
+    #fullscreenImage {
+        width: 600px;
     }
 }
 
