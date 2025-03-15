@@ -17,72 +17,104 @@
     </nav>
 </div>
 
-<div class="container">
-    <div class="row">
+<style>
+    .carousel-item img {
+        cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
+    }
+    .thumbnail {
+        width: 100px;
+        height: auto;
+        cursor: pointer;
+        opacity: 0.6;
+    }
+    .thumbnail.active {
+        opacity: 1;
+    }
+    #fullscreenModal .modal-dialog {
+        max-width: 90%;
+    }
+    .modal-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        <div class="col-12 fw-bold fs-4 py-2">
-            iPhone 12 chính hãng VNA
+    #fullscreenImage {
+        max-width: 100%;
+        max-height: 90vh; /* Giới hạn chiều cao tối đa là chiều cao của màn hình */
+        object-fit: contain; /* Giữ tỷ lệ khung hình của ảnh */
+    }
+    .modal {
+        background-color: #00000020;
+    }
+
+    .modal-content {
+        background-color: transparent; /* Không có nền cho modal */
+        border: none; /* Loại bỏ viền modal */
+    }
+    .sm-img-modal {
+        width: 80px;
+    }
+</style>
+<script>
+    function openFullscreen(src) {
+        const img = document.getElementById('fullscreenImage');
+        img.src = src;
+        const modal = new bootstrap.Modal(document.getElementById('fullscreenModal'));
+        modal.show();
+    }
+</script>
+
+<!-- Modal cho ảnh phóng to -->
+<div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body d-flex flex-column align-items-center">
+                <img id="fullscreenImage" src="" alt="">
+                <!-- [ẢNH NHỎ] -->
+                <div class="position-fixed fixed-bottom">
+                    <div class="d-flex justify-content-center w-100 top-50 mb-2">
+                        <?php foreach($detail_product['array_image'] as $image): extract($image)?>
+                        <img class="sm-img-modal mx-2" src="<?= URL_STORAGE.$path_product_image ?>" onclick="openFullscreen(this.src)">
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row mt-3">
         <div class="col-12 col-md-12 col-lg-4">
             <div id="galery-product" class="carousel slide">
                 <!-- [ẢNH LỚN] -->
                 <div class="carousel-inner position-relative">
-                    <div class="active carousel-item">
-                        <img class="w-100" src="uploads/product/ip12-64gb-black.jpg" alt="">
+                <?php foreach($detail_product['array_image'] as $i => $image): extract($image)?>
+                    <div class="<?= $i == 0 ? 'active' : '' ?> carousel-item">
+                        <img class="w-100" src="<?= URL_STORAGE.$path_product_image?>" alt="" onclick="openFullscreen(this.src)">
                     </div>
-                    <div class="carousel-item">
-                        <img class="w-100" src="uploads/product/ip12-64gb-blue.jpg" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="w-100" src="uploads/product/ip12-64gb-green.jpg" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="w-100" src="uploads/product/ip12-64gb-purple.jpg" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="w-100" src="uploads/product/ip12-64gb-red.jpg" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="w-100" src="uploads/product/ip12-64gb-white.jpg" alt="">
-                    </div>
+                <?php endforeach ?>
                 </div>
-                <span class="position-absolute top-50 w-100 d-flex justify-content-between">
-                    <button class="btn btn-success rounded-pill" data-bs-target="#galery-product" data-bs-slide="prev">
-                        <i class="fa fa-lg fa-angle-left text-center pe-1" aria-hidden="true"></i>
+                <span class="position-absolute top-50 w-100 d-flex justify-content-between px-2">
+                    <button class="btn bg-success text-light bg-opacity-50 rounded-pill" data-bs-target="#galery-product" data-bs-slide="prev">
+                        <i class="fa fa-lg fa-angle-left" aria-hidden="true"></i>
                     </button>
-                    <button class="btn btn-success rounded-pill " data-bs-target="#galery-product" data-bs-slide="next">
-                        <i class="fa fa-lg fa-angle-right text-center ps-1" aria-hidden="true"></i>
+                    <button class="btn bg-success text-light bg-opacity-50 rounded-pill " data-bs-target="#galery-product" data-bs-slide="next">
+                        <i class="fa fa-lg fa-angle-right" aria-hidden="true"></i>
                     </button>
                 </span>
             </div>
             <div class="container mt-3 d-flex justify-content-center">
                 <!-- [ẢNH NHỎ] -->
                 <div class="row d-flex justify-content-center">
-                    <button class="col-2 border-0 hover-btn-galery-product" data-bs-target="#galery-product"
-                        data-bs-slide-to="0" aria-label="Slide 1">
-                        <img class="w-100" src="uploads/product/ip12-64gb-black.jpg" alt="">
+                <?php foreach($detail_product['array_image'] as $i => $image): extract($image)?>
+                    <button class="col-2 p-0 m-1 border-0 hover-btn-galery-product" data-bs-target="#galery-product"
+                    data-bs-slide-to="<?= $i ?>" aria-label="Slide <?= $i+1 ?>">
+                    <img class="w-100" src="<?= URL_STORAGE.$path_product_image ?>">
                     </button>
-                    <button class="col-2 border-0 hover-btn-galery-product" data-bs-target="#galery-product"
-                        data-bs-slide-to="1" aria-label="Slide 2">
-                        <img class="w-100" src="uploads/product/ip12-64gb-blue.jpg" alt="">
-                    </button>
-                    <button class="col-2 border-0 hover-btn-galery-product" data-bs-target="#galery-product"
-                        data-bs-slide-to="2" aria-label="Slide 3">
-                        <img class="w-100" src="uploads/product/ip12-64gb-green.jpg" alt="">
-                    </button>
-                    <button class="col-2 border-0 hover-btn-galery-product" data-bs-target="#galery-product"
-                        data-bs-slide-to="3" aria-label="Slide 4">
-                        <img class="w-100" src="uploads/product/ip12-64gb-purple.jpg" alt="">
-                    </button>
-                    <button class="col-2 border-0 hover-btn-galery-product" data-bs-target="#galery-product"
-                        data-bs-slide-to="4" aria-label="Slide 5">
-                        <img class="w-100" src="uploads/product/ip12-64gb-red.jpg" alt="">
-                    </button>
-
-                    <button class="col-2 border-0 hover-btn-galery-product" data-bs-target="#galery-product"
-                        data-bs-slide-to="5" aria-label="Slide 6">
-                        <img class="w-100" src="uploads/product/ip12-64gb-white.jpg" alt="">
-                    </button>
+                <?php endforeach ?>
                 </div>
             </div>
         </div>
@@ -90,16 +122,9 @@
         <div class="col-12 col-md-12 col-lg-5">
             <form action="@" method="post">
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-6 mt-lg-3 p-0">
-                        <p class="text-center text-lg-start text-secondary fw-bold">(Giá đã bao gồm VAT)</p>
+                    <div class="col-12 fw-bold fs-4 p-0">
+                        iPhone 12 chính hãng VNA
                     </div>
-                    <div class="col-12 p-0">
-                        <div class="w-100 border border-success bg-light text-center text-success fw-bold py-1 rounded">
-                            <i class="fa fa-truck" aria-hidden="true"></i>
-                            Vận chuyển miễn phí toàn quốc
-                        </div>
-                    </div>
-                    <div class="col-12 text-end small">SKU: <span class="fw-bold">AP30520VN</span></div>
                     <!-- [MODEL] -->
                     <div class="col-12 p-0">
                         <div class="text-start fw-bolder mb-2">Lựa chọn loại</div>
@@ -157,17 +182,26 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="col-12 p-0 d-flex align-items-center">
+                        <div class="me-2 fs-5">Giá :</div>
+                        <div class="fw-bold text-danger fs-5">25.999.999 vnđ</div>
+                    </div>
                     <!-- [MUA - TRẢ GÓP - GIỎ HÀNG] -->
                     <div class="col-12 mt-3">
                         <div class="row">
-                            <div class="col-10 px-1">
-                                <button name="addProduct" type="submit" class="w-100 btn btn-danger bg-gradient">
+                            <div class="col-6 col-lg-8 px-1">
+                                <button name="addProduct" type="submit" class="w-100 btn btn-success bg-gradient">
                                     MUA NGAY
                                 </button>
                             </div>
-                            <div class="col-2 px-1">
-                                <button class="w-100 btn btn-outline-warning">
+                            <div class="col-3 col-lg-2 px-1">
+                                <button class="w-100 btn btn-outline-success">
                                     <i class="far fa-heart" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="col-3 col-lg-2 px-1">
+                                <button class="w-100 btn btn-outline-success">
+                                    <i class="fas fa-cart-plus" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
