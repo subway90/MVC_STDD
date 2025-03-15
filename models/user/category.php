@@ -70,9 +70,9 @@ function render_card_product($data) {
                     </span>
                 </div>
                 <div class="mx-2 d-flex">
-                    <a href="#" class="border border-success text-success fw-semibold rounded-5 small px-2 text-decoration-none d-flex align-items-center me-1">
-                            <img width="12" class="me-1" src="{$url_storage}{$logo_brand}" alt="{$logo_brand}">
-                            {$name_brand}
+                    <a href="#" class="border border-success text-success fw-semibold rounded-5 small px-2 text-decoration-none d-flex align-items-center me-1 gap-1">
+                        <img height="14" src="{$url_storage}{$logo_brand}" alt="{$logo_brand}">
+                        {$name_brand}
                     </a>
                 </div>
                 <a href="/chi-tiet/{$slug_product}" class="text-decoration-none flex-grow-1 d-flex">
