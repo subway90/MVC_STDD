@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="<?= URL ?>assets/css/custom.css">
     <!-- JS Custom -->
     <script src="<?= URL ?>assets/js/custom.js"></script>
+    <!-- JS Ajax Product -->
+    <script src="<?= URL ?>assets/js/ajax_product.js"></script>
+    <!-- JS Ajax Cart -->
+    <script src="<?= URL ?>assets/js/ajax_cart.js"></script>
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= WEB_FAVICON ?>" type="image/x-icon">
     <!-- Title -->
@@ -91,6 +95,12 @@
                         </button>
                     </li>
                 </ul>
+                <a href="<?= URL ?>gio-hang" class="btn btn-outline-light position-relative rounded-circle me-2">
+                    <i class="bi bi-cart fs-5"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        1
+                    </span>
+                </a>
                 <?= layout('user','acccount-dropdown') ?>
             </div>
         </div>

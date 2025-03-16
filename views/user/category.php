@@ -1,6 +1,3 @@
-<!-- JS Ajax -->
-<script src="<?= URL ?>assets/js/ajax_product.js"></script>
-
 <!-- Breadcrumb -->
 <div class="container my-3 bg-light rounded pt-3 pb-1">
     <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
