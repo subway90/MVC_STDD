@@ -10,8 +10,9 @@ function get_product_detail($slug) {
     
     // lấy thông tin chung
     $result = pdo_query_one(
-        'SELECT p.*, m.id_series, m.id_model, pc.id_category_v2
+        'SELECT p.*, m.id_series, m.id_model, pc.id_category_v2, b.*
         FROM product p
+        LEFT JOIN brand b ON p.id_brand = b.id_brand
         LEFT JOIN model m ON p.id_model = m.id_model
         LEFT JOIN product_category pc ON pc.id_product = p.id_product
         WHERE p.deleted_at IS NULL

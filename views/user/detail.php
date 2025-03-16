@@ -78,10 +78,16 @@
         <div class="col-12 col-md-12 col-lg-5">
             <form action="@" method="post">
                 <div class="row">
-                    <div class="col-12 fw-semibold fs-4 p-0 mb-lg-4 mb-2">
+                    <div class="col-12 fw-semibold fs-4 p-0 mb-2">
                         <?= $detail_product['name_product'] ?>
                     </div>
-                    <!-- [MODEL] -->
+                    <div class="col-12 p-0 d-flex mb-2">
+                        <a href="#" class="border border-success text-muted fw-semibold rounded-5 small px-2 text-decoration-none d-flex align-items-center me-1 gap-1">
+                            <img height="14" src="<?= URL_STORAGE . $detail_product['logo_brand'] ?>" alt="$detail_product['logo_brand']">
+                            <?= $detail_product['name_brand'] ?>
+                        </a>
+                    </div>
+                     <?php if(isset($detail_product['array_model']) && count($detail_product['array_model']) > 1) : // Render list model ?>
                     <div class="col-12 p-0">
                         <div class="text-start small mb-1 fw-semibold">Lựa chọn loại</div>
                         <div class="mb-3">
@@ -92,12 +98,13 @@
                             <?php endforeach ?>
                         </div>
                     </div>
-                    <!-- [COLOR] -->
+                    <?php endif ?>
+                    <?php if(isset($detail_product['array_color'])) : // Render list color ?>
                     <div class="col-12 p-0">
                         <div class="text-start small mb-1 fw-semibold">Lựa chọn màu</div>
                         <div class="mb-3">
                             <?php foreach ($detail_product['array_color'] as $color) : extract($color) ?>
-                            <a href="<?= URL.'chi-tiet/'.$slug_product ?>" class="<?= $detail_product['id_color'] == $id_color ? 'active' : '' ?> btn btn-sm btn-outline-success">
+                            <a href="<?= URL.'chi-tiet/'.$slug_product ?>" class="<?= $detail_product['id_color'] == $id_color ? 'active' : '' ?> btn btn-sm btn-outline-success mb-1">
                                 <div class="d-flex align-items-center">
                                     <div style="background-color: <?= $code_color ?>" class="box-color me-2"></div>
                                     <small><?= $name_color ?></small>
@@ -106,10 +113,22 @@
                             <?php endforeach ?>
                         </div>
                     </div>
+                    <?php endif ?>
+                    <?php if($detail_product['sale_price_product']) : ?>
                     <div class="col-12 p-0 d-flex align-items-center">
-                        <div class="me-2 fs-5">Giá :</div>
+                        <div class="me-2 fs-6">Giá :</div>
+                        <div class="fw-bold text-danger fs-5"><?=number_format($detail_product['sale_price_product'],0,',','.') ?> vnđ</div>
+                    </div>
+                    <div class="col-12 p-0 d-flex align-items-center">
+                        <div class="text-muted text-decoration-line-through"><?=number_format($detail_product['price_product'],0,',','.') ?> vnđ</div>
+                        <div class="me-2 text-danger ms-2"> -<?=ceil(100-($detail_product['sale_price_product']/$detail_product['price_product'])*100) ?>% </div>
+                    </div>
+                    <?php else : ?>
+                    <div class="col-12 p-0 d-flex align-items-center">
+                        <div class="me-2 fs-6">Giá :</div>
                         <div class="fw-bold text-danger fs-5"><?=number_format($detail_product['price_product'],0,',','.') ?> vnđ</div>
                     </div>
+                    <?php endif ?>
                     <!-- [MUA - TRẢ GÓP - GIỎ HÀNG] -->
                     <div class="col-12 mt-3">
                         <div class="row">
