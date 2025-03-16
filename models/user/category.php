@@ -31,7 +31,7 @@ function render_card_product($data) {
     // nếu có giá giảm
     if($sale_price_product) {
         // format phần trăm giá giảm
-        $percent_sale = ceil(100-($sale_price_product/$price_product)*100);
+        $value_sale = number_format(($price_product - $sale_price_product)/1000,0,',','.');
         // format giá giảm
         $sale_price_product = number_format($sale_price_product,0,',','.');
         // format giá
@@ -41,8 +41,8 @@ function render_card_product($data) {
         <<<HTML
         <div class="text-secondary small">
             <del><small>{$price_product}vnđ</small></del>
-            <small class="text-danger ms-1">
-                -{$percent_sale}%
+            <small class="text-danger ms-1 fst-semibold">
+                giảm {$value_sale}K
             </small>
         </div>
         <div class="text-danger fw-bold me-1">{$sale_price_product} vnđ</div>
