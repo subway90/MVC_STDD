@@ -10,14 +10,29 @@ function get_product_detail($slug) {
     
     // lấy thông tin chung
     $result = pdo_query_one(
-        'SELECT p.*, m.id_series, m.id_model
+        'SELECT p.*, m.id_series, m.id_model, pc.id_category_v2
         FROM product p
         LEFT JOIN model m ON p.id_model = m.id_model
+        LEFT JOIN product_category pc ON pc.id_product = p.id_product
         WHERE p.deleted_at IS NULL
         AND p.slug_product = "'.$slug.'"
         '
     );
 
+    // lấy thông tin sản phẩm liên quan
+    $result['list_recommend'] = pdo_query(
+        'SELECT p.id_product, p.name_product, p.price_product, p.sale_price_product, p.slug_product, b.logo_brand, b.name_brand, pi.path_product_image
+        FROM product p
+        LEFT JOIN product_image pi ON pi.id_product = p.id_product
+        LEFT JOIN brand b ON p.id_brand = b.id_brand
+        LEFT JOIN product_category pc ON pc.id_product = p.id_product
+        WHERE pc.id_category_v2 = '.$result['id_category_v2'].'
+        AND p.id_product != '.$result['id_product'].'
+        AND p.deleted_at IS NULL
+        GROUP BY p.id_product
+        ORDER BY p.price_product ASC
+        LIMIT 5'
+    );
 
     // lấy mảng ảnh
     $result['array_image'] = pdo_query(
