@@ -47,17 +47,23 @@
             <div id="galery-product" class="carousel slide">
                 <!-- [ẢNH LỚN] -->
                 <div class="carousel-inner position-relative">
-                <?php foreach($detail_product['array_image'] as $i => $image): extract($image)?>
+                <?php if($detail_product['array_image']) : ?>
+                    <?php foreach($detail_product['array_image'] as $i => $image): extract($image)?>
                     <div class="<?= $i == 0 ? 'active' : '' ?> carousel-item">
                         <img class="w-100" src="<?= URL_STORAGE.$path_product_image?>" alt="" onclick="openFullscreen(this.src)">
                     </div>
-                <?php endforeach ?>
+                    <?php endforeach ?>
+                <?php else : ?>
+                    <div class="active carousel-item">
+                        <img class="w-100" src="<?= DEFAULT_IMAGE?>" alt="" onclick="openFullscreen(this.src)">
+                    </div>
+                <?php endif ?>
                 </div>
                 <span class="position-absolute top-50 w-100 d-flex justify-content-between px-2">
-                    <button class="btn bg-success text-light bg-opacity-50 rounded-pill" data-bs-target="#galery-product" data-bs-slide="prev">
+                    <button class="btn bg-success text-light rounded-pill" data-bs-target="#galery-product" data-bs-slide="prev">
                         <i class="fa fa-lg fa-angle-left" aria-hidden="true"></i>
                     </button>
-                    <button class="btn bg-success text-light bg-opacity-50 rounded-pill " data-bs-target="#galery-product" data-bs-slide="next">
+                    <button class="btn bg-success text-light rounded-pill " data-bs-target="#galery-product" data-bs-slide="next">
                         <i class="fa fa-lg fa-angle-right" aria-hidden="true"></i>
                     </button>
                 </span>
