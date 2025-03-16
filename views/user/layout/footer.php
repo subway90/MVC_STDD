@@ -6,20 +6,20 @@
     <div class="row">
         <div class="col-12 col-md-3 col-lg-3">
             <p class="h5 text-light mb-3 text-center text-lg-start">
-                <span><img class="w-25 me-3" src="uploads/logo.png" alt=""></span>
+                <span><img class="w-25 me-3" src="<?= WEB_LOGO ?>" alt=""></span>
                 <span>
-                    TÊN WEBSITE
+                    <?= WEB_NAME ?>
                 </span>
             </p>
             <div class="text-center text-lg-start">
                 <p class="text-light"><span class="h6">Địa chỉ: </span><span class="small">
-                        01 Trần Hưng Đạo, Phường 5, Quận 1, Hồ Chí Minh
+                        <?= WEB_ADDRESS ?>
                     </span></p>
                 <p class="text-light"><span class="h6">Hotline: </span><span class="small">
-                        0999 79 79 79
+                        <?= WEB_HOTLINE ?>
                     </span></p>
                 <p class="text-light"><span class="h6">Email: </span><span class="small">
-                        name@example.com
+                        <?= WEB_EMAIL ?>
                     </span></p>
             </div>
         </div>
