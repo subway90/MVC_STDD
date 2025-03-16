@@ -75,19 +75,24 @@ function render_card_product($data) {
                         {$name_brand}
                     </a>
                 </div>
-                <a href="/chi-tiet/{$slug_product}" class="text-decoration-none flex-grow-1 d-flex">
+                <div class="text-decoration-none flex-grow-1 d-flex">
                     <div class="card-body p-2 flex-grow-1 d-flex flex-column justify-content-between">
-                        <h6 class="card-title fw-bold text-dark p-0">{$name_product}</h6>
-                        <div class="">
-                            {$content_sale}
+                        <a href="/chi-tiet/{$slug_product}" class="text-decoration-none flex-grow-1 d-flex flex-column justify-content-between">
+                            <h6 class="card-title fw-bold text-dark p-0">{$name_product}</h6>
+                            <div class="">
+                                {$content_sale}
+                            </div>
+                        </a>
+                        <form method="post" action="gio-hang">
                             <div class="d-flex justify-content-between mt-2">
+                                <input type="hidden" class="idProduct" value="{$id_product}">
                                 <button type="button" class="btn btn-sm btn-success rounded-0 flex-grow-1"><i class="bi bi-cart-check me-2"></i><small>Mua ngay</small></button>
                                 <button type="button" class="btn btn-sm btn-outline-success rounded-0 ms-1"><i class="bi bi-heart"></i></button>
-                                <button type="button" class="btn btn-sm btn-outline-success rounded-0 ms-1"><i class="bi bi-cart-plus"></i></button>
+                                <button type="button" id="addCartBtn" class="btn btn-sm btn-outline-success rounded-0 ms-1"><i class="bi bi-cart-plus"></i></button>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
 HTML;
