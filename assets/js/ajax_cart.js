@@ -12,7 +12,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $("#messageCart").html(response.message);
-                loadCart();
+                loadCountCart();
             },
             error: function(xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
@@ -21,9 +21,9 @@ $(document).ready(function() {
     });
 
     // Lấy danh sách
-    function loadCart() {
+    function loadCountCart() {
         $.ajax({
-            url: '/gio-hang/get',
+            url: '/gio-hang/get_count',
             method: 'GET',
             dataType: 'json',
             success: function (response) {
@@ -33,5 +33,5 @@ $(document).ready(function() {
     }
 
     // Gọi hàm loadCart khi trang được tải
-    loadCart();
+    loadCountCart();
 });
