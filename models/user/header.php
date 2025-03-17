@@ -19,7 +19,7 @@ function showCanvas() {
 }
 
 /**
- * Lấy dữ liệu danh sách sản phẩm trong session giỏ hàng
+ * Lấy dữ liệu  sản phẩm trong session giỏ hàng
  * @param $get_type Loại cần lấy :
  * 
  * - total : Tổng tiền
@@ -27,6 +27,8 @@ function showCanvas() {
  * - count : Số lượng
  * 
  * - list : Danh sách sản phẩm
+ * 
+ * - all : Tất cả, bao gồm tổng tiền, số lượng, danh sách sản phẩm
  * 
  * Trả về null Nếu $get_type không hợp lệ
  * 
@@ -37,12 +39,11 @@ function get_cart($get_type) {
     $list = [];
     $total = 0;
     $count = 0;
-    $data = [];
 
     // Kiểm tra type
     if(!in_array($get_type,$type)) die(_s_me_error."$get_type không hợp lệ <br> Mảng $get_type = ['total','list','count','all']"._e_me_error);
 
-    // Trả về
+    // Truy vấn từ data ở session cart
     if(!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $cart) {
             $product = pdo_query_one(
@@ -57,6 +58,7 @@ function get_cart($get_type) {
                 AND p.id_product = '.$cart['id_product']
             );
             
+            // Nếu sản phẩm tồn tại
             if(!empty($product)) {
                 // Giải nén row
                 extract($product);
@@ -72,14 +74,18 @@ function get_cart($get_type) {
                     'code_color' => $code_color,
                     'id_product' => $id_product,
                 ];
+
                 // lấy tổng tiền
                 if($sale_price_product) $price_product = $sale_price_product;
                 $total += $cart['quantity_product']*$price_product;
-                $count++;
+
                 // đếm số lượng
+                $count++;
             }
         }
     }
+
+    // Trả về theo yêu cầu
     if($get_type == 'list') return ['list' => $list];
     elseif($get_type == 'count') return ['count' => $count];
     elseif($get_type == 'total') return ['total' => $total];
