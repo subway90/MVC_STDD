@@ -86,9 +86,9 @@ function get_cart($get_type) {
     }
 
     // Trả về theo yêu cầu
-    if($get_type == 'list') return ['list' => $list];
-    elseif($get_type == 'count') return ['count' => $count];
-    elseif($get_type == 'total') return ['total' => $total];
+    if($get_type == 'list') return $list;
+    elseif($get_type == 'count') return $count;
+    elseif($get_type == 'total') return $total;
     elseif($get_type == 'all') return ['count' => $count,'total' => $total,'list' => $list];
     else return null;
     
