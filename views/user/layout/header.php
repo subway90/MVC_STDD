@@ -44,6 +44,8 @@
         </div>
     </div>
 
+    <div id="messageCart"></div>
+
     <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-3">
         <div class="container p-lg-0">
             <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu"><i class="bi bi-list fs-5"></i></button>
@@ -98,7 +100,7 @@
                 <a href="<?= URL ?>gio-hang" class="btn btn-outline-light position-relative rounded-circle me-2">
                     <i class="bi bi-cart fs-5"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        1
+                        <span id="countCart"></span>
                     </span>
                 </a>
                 <?= layout('user','acccount-dropdown') ?>
