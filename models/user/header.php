@@ -20,32 +20,74 @@ function showCanvas() {
 
 /**
  * Lấy dữ liệu danh sách sản phẩm trong session giỏ hàng
+ * @param $get_type Loại cần lấy :
+ * 
+ * - total : Tổng tiền
+ * 
+ * - count : Số lượng
+ * 
+ * - list : Danh sách sản phẩm
+ * 
+ * Trả về null Nếu $get_type không hợp lệ
+ * 
  */
-function list_product_in_cart() {
-    $list_product = [];
+function get_cart($get_type) {
+    // Khai báo
+    $type = ['total','list','count','all']; // Loại cần lấy
+    $list = [];
+    $total = 0;
+    $count = 0;
+    $data = [];
+
+    // Kiểm tra type
+    if(!in_array($get_type,$type)) die(_s_me_error."$get_type không hợp lệ <br> Mảng $get_type = ['total','list','count','all']"._e_me_error);
+
+    // Trả về
     if(!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $cart) {
             $product = pdo_query_one(
-                'SELECT * FROM product
-                WHERE id_product ='.$cart['id_product']
-                .' AND deleted_at IS NULL'
+                'SELECT p.*, m.id_series, m.id_model, c.name_color, c.code_color, pc.id_category_v2, b.*, pi.path_product_image
+                FROM product p
+                LEFT JOIN brand b ON p.id_brand = b.id_brand
+                LEFT JOIN model m ON p.id_model = m.id_model
+                LEFT JOIN color c ON p.id_color = c.id_color
+                LEFT JOIN product_category pc ON pc.id_product = p.id_product
+                LEFT JOIN product_image pi ON pi.id_product_image = p.id_product
+                WHERE p.deleted_at IS NULL
+                AND p.id_product = '.$cart['id_product']
             );
+            
             if(!empty($product)) {
+                // Giải nén row
                 extract($product);
-                $list_product[] = [
-                    'quantity_product_in_cart' => $cart['quantity_product'],
+                // lấy data
+                $list[] = [
                     'name_product' => $name_product,
-                    'description_product' => $description_product,
-                    'quantity_product' => $quantity_product,
                     'price_product' => $price_product,
-                    'image_product' => $image_product,
+                    'sale_price_product' => $sale_price_product,
+                    'quantity_product_in_cart' => $cart['quantity_product'],
+                    'quantity_product' => $quantity_product,
+                    'path_product_image' => $path_product_image,
+                    'name_color' => $name_color,
+                    'code_color' => $code_color,
                     'id_product' => $id_product,
                 ];
+                // lấy tổng tiền
+                if($sale_price_product) $price_product = $sale_price_product;
+                $total += $cart['quantity_product']*$price_product;
+                $count++;
+                // đếm số lượng
             }
         }
     }
-    return $list_product;
+    if($get_type == 'list') return ['list' => $list];
+    elseif($get_type == 'count') return ['count' => $count];
+    elseif($get_type == 'total') return ['total' => $total];
+    elseif($get_type == 'all') return ['count' => $count,'total' => $total,'list' => $list];
+    else return null;
+    
 }
+
 
 /**
  * Hàm này dùng để trả về tổng tiền trong giỏ hàng
