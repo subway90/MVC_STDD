@@ -11,7 +11,11 @@
         <li><a class="dropdown-item" href="<?= URL ?>tai-khoan/doi-thuong"><i class="bi bi-gift me-2"></i> Điểm đổi thưởng</a></li>
         <li><a class="dropdown-item" href="<?= URL ?>tai-khoan/yeu-thich"><i class="bi bi-heart me-2"></i> Sản phẩm yêu thích</a></li>
         <hr class="border-2 btn-dark my-2">
-        <li><a class="dropdown-item text-danger" href="<?= URL ?>dang-xuat"><i class="bi bi-box-arrow-right me-2"></i> Đăng xuất</a></li>
+        <li>
+            <form action="/dang-xuat" method="post">
+                <button type="submit" name="logout" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i> Đăng xuất</button>
+            </form>
+        </li>
     </ul>
 </div>
 <?php else : // Nếu chưa đăng nhập?>
