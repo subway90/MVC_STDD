@@ -31,7 +31,9 @@ $(document).ready(function () {
     let selectedBrand = 0;
     let selectedColor = 0;
 
-    loadProduct(selectedPrice, selectedBrand, selectedColor);
+    if (window.location.pathname.startsWith('/danh-muc')) {
+        loadProduct(selectedPrice, selectedBrand, selectedColor);
+    }
 
     $('input[name="filterPrice"]').change(function () {
         selectedPrice = $(this).val();
