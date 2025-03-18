@@ -53,7 +53,7 @@ function get_cart($get_type) {
                 LEFT JOIN model m ON p.id_model = m.id_model
                 LEFT JOIN color c ON p.id_color = c.id_color
                 LEFT JOIN product_category pc ON pc.id_product = p.id_product
-                LEFT JOIN product_image pi ON pi.id_product_image = p.id_product
+                LEFT JOIN product_image pi ON pi.id_product = p.id_product
                 WHERE p.deleted_at IS NULL
                 AND p.id_product = '.$cart['id_product']
             );
@@ -65,6 +65,7 @@ function get_cart($get_type) {
                 // lấy data
                 $list[] = [
                     'name_product' => $name_product,
+                    'slug_product' => $slug_product,
                     'price_product' => $price_product,
                     'sale_price_product' => $sale_price_product,
                     'quantity_product_in_cart' => $cart['quantity_product'],
