@@ -47,7 +47,7 @@ function get_cart($get_type) {
     if(!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $cart) {
             $product = pdo_query_one(
-                'SELECT p.*, m.id_series, m.id_model, c.name_color, c.code_color, pc.id_category_v2, b.*, pi.path_product_image
+                'SELECT p.*, m.*, c.name_color, c.code_color, pc.id_category_v2, b.*, pi.path_product_image
                 FROM product p
                 LEFT JOIN brand b ON p.id_brand = b.id_brand
                 LEFT JOIN model m ON p.id_model = m.id_model
@@ -64,6 +64,10 @@ function get_cart($get_type) {
                 extract($product);
                 // lấy data
                 $list[] = [
+                    'name_brand' => $name_brand,
+                    'logo_brand' => $logo_brand,
+                    'name_model' => $name_model,
+                    'hide_model' => $hide_model,
                     'name_product' => $name_product,
                     'slug_product' => $slug_product,
                     'price_product' => $price_product,
