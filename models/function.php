@@ -39,13 +39,16 @@ function is_login() {
 /**
  * Lấy thông tin của một user thông qua param
  * 
+ * Trả về FALSE nếu dữ liệu trống hoặc không tồn tại
+ * 
  * @param string $param Thông tin cần lấy
  * 
  * @return mixed
  */
 function auth($param) {
-    if(empty($_SESSION['user'])) die(_s_me_error.'Không thể sử dụng hàm auth() nếu session user rỗng'._e_me_error);
-    if(!isset($_SESSION['user'][$param])) die(_s_me_error.'Không tồn tại param '.$param.' trong session user'._e_me_error);
+    if(empty($_SESSION['user'])) return false;
+    elseif($param == 'all') return $_SESSION['user'];
+    elseif(!isset($_SESSION['user'][$param])) die(_s_me_error.'Không tồn tại param '.$param.' trong session user'._e_me_error);
     else return $_SESSION['user'][$param];
 }
 
@@ -384,10 +387,10 @@ function show_error($array) {
  * @return void
  */
 function auto_login() {
-    // Nếu session user rỗng, tức là chưa đăng nhập
-    if(empty($_SESSION['user'])) {
+    // Nếu chưa đăng nhập
+    if(!is_login()) {
         // nếu có cookie token_remember
-        if(isset($_COOKIE['token_remember'])) $token_remember = $_COOKIE['token_remember'];
+        if(isset($_COOKIE['token_remember'])) $token_remember = clear_input($_COOKIE['token_remember']);        
         else $token_remember = '';
         // nếu có value
         if($token_remember) {
