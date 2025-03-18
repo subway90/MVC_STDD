@@ -20,7 +20,7 @@ $(document).ready(function() {
         });
     });
 
-    // Lấy danh sách
+    // Lấy số lượng sản phẩm
     function loadCountCart() {
         $.ajax({
             url: '/gio-hang/get_count',
@@ -32,6 +32,23 @@ $(document).ready(function() {
         });
     }
 
+    // Lấy danh sách
+    function loadListCart() {
+        $.ajax({
+            url: '/gio-hang/get_list',
+            method: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                $("#listCart").html(response.data);
+                $("#totalCart").html(response.total);
+            },
+        });
+    }
+
     // Gọi hàm loadCart khi trang được tải
     loadCountCart();
+    // Gọi hàm loadListCart khi truy cập giỏ hàng
+    if (window.location.pathname === '/gio-hang') {
+        loadListCart();
+    }
 });

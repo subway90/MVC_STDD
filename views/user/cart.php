@@ -23,84 +23,29 @@
                         <th>Giá</th>
                         <th class="text-center">Số lượng</th>
                         <th>Thành tiền</th>
-                        <th>Xóa</th>
+                        <th class="text-center">Xóa</th>
                     </thead>
-                    <tbody class="align-middle text-end">
-                        <tr class="align-middle">
-                            <td class="text-start d-flex align-items-center">
-                                <div><img width="50" src="publics/img/phone/iphone/iphone-12/origin/12-green.jpg"
-                                        alt="iphone11"></div>
-                                <div>
-                                    <span class="text-success fw-bold">iPhone 12 chính hãng VNA</span>
-                                    <div class="small text-muted">
-                                        128GB - màu xanh
-                                    </div>
-                                </div>
-                            </td>
-                            <td> 12,999,000 vnđ</td>
-                            <td>
-                                <form method="post">
-                                    <input type="hidden" name="idCart">
-                                    <div
-                                        class="btn-group d-flex align-items-center mx-auto w-25 justify-content-center">
-                                        <button name="quantity" class="btn btn-outline-success btn-sm">
-                                            <i class="small fas fa-minus"></i>
-                                        </button>
-                                        <span class="mx-2"> 1 </span>
-                                        <button name="quantity" class="btn btn-outline-success btn-sm">
-                                            <i class="small fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td class="text-end">12,999,000 vnđ</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-outline-danger">
-                                    <i class="fa-solid fa-times"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-end">
-                            <a href="#" class="btn btn-sm px-2 py-0 btn-outline-danger"><small><i class="fa-solid fa-trash me-2"></i>Xoá tất cả</small></a>
-                            </td>
-                        </tr>
-                    </tfoot>
+                    <tbody id="listCart" class="align-middle text-end">
+                    </tbody>
                 </table>
             </div>
         </div>
         <div class="col-12 col-md-12 col-lg-4 p-0 ps-lg-3">
-            <form action="#" method="get">
-                <label for="voucher">Mã giảm giá</label>
-                <div class="input-group mt-1">
-                    <input type="text" name="voucher" id="voucher" class="form-control text-success"
-                        placeholder="Nhập mã giảm giá tại đây...">
-                    <button type="submit" class="btn btn-success">Áp dụng</button>
-                </div>
-            </form>
-            <div class="bg-light px-4 py-2 rounded-3 mt-3">
-                <div class="h5 py-3 text-center text-lg-start">Giỏ hàng</div>
-                <div class="w-100 d-flex justify-content-between py-2">
-                    <div class="">
-                        iPhone 12 chính hãng VNA
-                        <div class="small text-muted">số lượng: 1</div>
-                    </div>
-                    <div class="">12,999,000 vnđ</div>
-                </div>
-                <div class="h5 mt-3 text-center text-lg-start">Hóa đơn</div>
-                <div class="w-100 d-flex justify-content-between py-2">
-                    <div class="">Sản phẩm</div>
-                    <div class="">12,999,000 vnđ</div>
-                </div>
-                <div class="w-100 d-flex justify-content-between py-2">
-                    <div class="">Mã giảm giá</div>
-                    <div class="">300 vnđ</div>
+            <div class="bg-light px-4 py-2 rounded-3">
+                <div class="my-4    ">
+                    <form action="#" method="get">
+                        <label class="small" for="voucher">Mã giảm giá</label>
+                        <div class="input-group mt-1">
+                            <input type="text" name="voucher" id="voucher" class="form-control text-success"
+                                placeholder="Nhập mã giảm giá tại đây...">
+                            <button type="submit" class="btn btn-success">Áp dụng</button>
+                        </div>
+                    </form>
                 </div>
                 <hr class="w-100 border border-success border-1 my-1">
                 <div class="w-100 d-flex justify-content-between py-2 fw-bold">
                     <div class="">TỔNG THANH TOÁN</div>
-                    <div class="text-success">12,699,000 vnđ</div>
+                    <div id="totalCart" class="text-success"></div>
                 </div>
             </div>
             <div class="py-3">
