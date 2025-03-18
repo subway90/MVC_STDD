@@ -12,7 +12,7 @@
                 <form action="/dang-nhap<?= $return_checkout_page ? '/thanh-toan' : '' ?>" method="post">
                     <div class="col-12 text-center d-flex justify-content-center">
                         <div class="form-floating mb-3 w-100">
-                            <input type="text" name="username" value="<?=$username?>" class="form-control bg-success-subtle" id="floatingInput" placeholder="Nhập TK">
+                            <input type="text" name="username" value="<?=$username?>" class="form-control bg-success-subtle" id="floatingInput" placeholder="Nhập TK" autocomplete="new-password">
                             <label for="floatingInput">Số điện thoại</label>
                         </div>
                     </div>
