@@ -186,3 +186,23 @@ function render_product_in_cart_end() {
         </tr>
     HTML;
 }
+
+function render_button_checkout() {
+    // Lấy URL
+    $url = URL;
+    // Nếu chưa đăng nhập
+    if(!is_login()) :
+    return
+    <<<HTML
+        <a href="{$url}dang-nhap/gio-hang" class="w-100 btn btn-success">Đăng nhập để Thanh toán</a>
+    HTML;
+    // Nếu đã đăng nhập
+    else :
+    // format state
+    get_cart('count') == 0 ? $state_button = 'disabled' : $state_button = '';
+    return
+    <<<HTML
+        <a href="{$url}thanh-toan" class="w-100 btn btn-success {$state_button}">Thanh toán</a>
+    HTML;
+    endif;
+}

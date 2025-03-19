@@ -48,12 +48,7 @@
                     <div id="totalCart" class="text-success"></div>
                 </div>
             </div>
-            <div class="py-3">
-                <?php if(!is_login()) : // Nếu chưa đăng nhập?>
-                <a href="<?= URL ?>dang-nhap/gio-hang" class="w-100 btn btn-success">Đăng nhập để Thanh toán</a>
-                <?php else : // Nếu đã đăng nhập?>
-                <a href="<?= URL ?>thanh-toan" class="w-100 btn btn-success <?=get_cart('count') == 0 ? 'disabled' : '' ?>">Thanh toán</a>
-                <?php endif ?>
+            <div id="btnCheckout" class="py-3">
             </div>
         </div>
     </div>

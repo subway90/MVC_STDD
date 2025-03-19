@@ -34,6 +34,7 @@ if(get_action_uri(1) == 'get_list') {
     view_json(200,[
         'total' => number_format(get_cart('total'),0,',','.').' vnđ',
         'data' => $render_product_in_cart,
+        'btnCheckout' => render_button_checkout(),
     ]);
 }
 
