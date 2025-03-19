@@ -110,6 +110,10 @@ function render_product_in_cart($data) {
     else $name_model = ''; // trống tên model
     // format logo thương hiệu
     if($logo_brand) $logo_brand = URL_STORAGE.$logo_brand;
+    // format nút tăng, giảm số lượng
+    ($quantity_product_in_cart == $quantity_product) ? $state_button_plus = 'disabled' : $state_button_plus = '';
+    ($quantity_product_in_cart == 1) ? $state_button_minus = 'disabled' : $state_button_minus = '';
+
     return 
     <<<HTML
         <tr class="align-middle">
@@ -127,14 +131,14 @@ function render_product_in_cart($data) {
             <td> {$price_product} vnđ</td>
             <td>
                 <form method="post">
-                    <input type="hidden" name="idCart">
+                    <input type="hidden" class="idProduct" value="{$id_product}">
                     <div
                         class="btn-group d-flex align-items-center mx-auto w-25 justify-content-center">
-                        <button name="quantity" class="btn btn-outline-success btn-sm">
+                        <button {$state_button_minus} type="button" id="minusCartBtn" class="btn btn-outline-success btn-sm">
                             <i class="small fas fa-minus"></i>
                         </button>
-                        <span class="mx-2"> 1 </span>
-                        <button name="quantity" class="btn btn-outline-success btn-sm">
+                        <span class="mx-2"> {$quantity_product_in_cart} </span>
+                        <button {$state_button_plus} type="button" id="plusCartBtn" class="btn btn-outline-success btn-sm">
                             <i class="small fas fa-plus"></i>
                         </button>
                     </div>
@@ -142,9 +146,12 @@ function render_product_in_cart($data) {
             </td>
             <td class="text-end">{$total_product} vnđ</td>
             <td class="text-center">
-                <a href="#" class="btn btn-sm btn-outline-danger border-0 bg-transparent p-0">
-                    <i class="fa-solid fa-times"></i>
-                </a>
+                <form method="post">
+                    <input type="hidden" class="idProduct" value="{$id_product}">
+                    <button type="button" id="deleteCartBtn" class="btn btn-sm btn-outline-danger border-0 bg-transparent p-0">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </form>
             </td>
         </tr>
     HTML;
@@ -172,7 +179,9 @@ function render_product_in_cart_end() {
     <<<HTML
         <tr>
             <td colspan="5" class="text-end">
-            <a href="#" class="btn btn-sm px-2 py-0 btn-outline-danger"><small><i class="fa-solid fa-trash me-2"></i>Xoá tất cả</small></a>
+                <form method="post">
+                    <button id="deleteAllCartBtn" type="button" class="btn btn-sm px-2 py-0 btn-outline-danger"><small><i class="fa-solid fa-trash me-2"></i>Xoá tất cả</small></button>
+                </form>
             </td>
         </tr>
     HTML;
