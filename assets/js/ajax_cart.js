@@ -75,6 +75,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $("#messageCart").html(response.message);
+                loadCountCart();
                 loadListCart();
             },
             error: function(xhr, status, error) {
@@ -93,6 +94,7 @@ $(document).ready(function() {
             },
             success: function(response) {
                 $("#messageCart").html(response.message);
+                loadCountCart();
                 loadListCart();
             },
             error: function(xhr, status, error) {
