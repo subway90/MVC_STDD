@@ -99,11 +99,16 @@ function render_product_in_cart($data) {
     if($path_product_image) $path_product_image = URL_STORAGE.$path_product_image;
     // nếu không có ảnh -> lấy ảnh mặt định
     else $path_product_image = DEFAULT_IMAGE;
+    // format giá
+    if($sale_price_product) $format_price = '
+        <div class="text-decoration-line-through small text-muted">'.number_format($price_product,0,',','.').' vnđ</div>
+        <div>'.number_format($sale_price_product,0,',','.').' vnđ</div>';
+    else $format_price = '<div>'.number_format($price_product,0,',','.').' vnđ</div>';
     // Nếu có giá giảm -> gán cho giá
     if($sale_price_product) $price_product = $sale_price_product;
     // format tổng tiền
     $total_product = number_format($price_product*$quantity_product_in_cart,0,',','.');
-    // format giá
+    
     $price_product = number_format($price_product,0,',','.');
     // format tên model nếu có tên model và ẩn = false
     if($name_model && !$hide_model) $name_model = "- ".$name_model;
@@ -128,7 +133,9 @@ function render_product_in_cart($data) {
                     </div>
                 </div>
             </td>
-            <td> {$price_product} vnđ</td>
+            <td>
+                {$format_price}
+            </td>
             <td>
                 <form method="post">
                     <input type="hidden" class="idProduct" value="{$id_product}">
