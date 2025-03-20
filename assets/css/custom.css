@@ -10,6 +10,10 @@
     --orange-color: #fc521d !important; /* Màu tối */
 }
 
+.voucher {
+    border-style: dashed;
+}
+
 .carousel-item img {
     cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
 }

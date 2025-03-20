@@ -84,17 +84,17 @@
         <div class="col-12 col-md-12 col-lg-5">
             <form action="@" method="post">
                 <div class="row">
-                    <div class="col-12 fw-semibold fs-4 p-0 mb-2">
+                    <div class="col-12 fw-semibold fs-4 mb-2">
                         <?= $detail_product['name_product'] ?>
                     </div>
-                    <div class="col-12 p-0 d-flex mb-2">
+                    <div class="col-12 d-flex mb-2">
                         <a href="#" class="border border-success text-muted fw-semibold rounded-5 small px-2 text-decoration-none d-flex align-items-center me-1 gap-1">
                             <img height="14" src="<?= URL_STORAGE . $detail_product['logo_brand'] ?>" alt="$detail_product['logo_brand']">
                             <?= $detail_product['name_brand'] ?>
                         </a>
                     </div>
                      <?php if(isset($detail_product['array_model']) && count($detail_product['array_model']) > 1) : // Render list model ?>
-                    <div class="col-12 p-0">
+                    <div class="col-12">
                         <div class="text-start small mb-1 fw-semibold">Lựa chọn loại</div>
                         <div class="mb-3">
                             <?php foreach ($detail_product['array_model'] as $model) : extract($model) ?>
@@ -106,7 +106,7 @@
                     </div>
                     <?php endif ?>
                     <?php if(isset($detail_product['array_color'])) : // Render list color ?>
-                    <div class="col-12 p-0">
+                    <div class="col-12">
                         <div class="text-start small mb-1 fw-semibold">Lựa chọn màu</div>
                         <div class="mb-3">
                             <?php foreach ($detail_product['array_color'] as $color) : extract($color) ?>
@@ -121,16 +121,16 @@
                     </div>
                     <?php endif ?>
                     <?php if($detail_product['sale_price_product']) : ?>
-                    <div class="col-12 p-0 d-flex align-items-center">
+                    <div class="col-12 d-flex align-items-center">
                         <div class="me-2 fs-6">Giá :</div>
                         <div class="fw-bold text-danger fs-5"><?=number_format($detail_product['sale_price_product'],0,',','.') ?> vnđ</div>
                     </div>
-                    <div class="col-12 p-0 d-flex align-items-center">
+                    <div class="col-12 d-flex align-items-center">
                         <div class="text-muted text-decoration-line-through"><?=number_format($detail_product['price_product'],0,',','.') ?> vnđ</div>
-                        <div class="me-2 text-danger ms-2"> -<?=ceil(100-($detail_product['sale_price_product']/$detail_product['price_product'])*100) ?>% </div>
+                        <div class="me-2 text-danger ms-2"> Giảm <?=number_format($detail_product['price_product']-$detail_product['sale_price_product'],0,',','.') ?> vnđ</div>
                     </div>
                     <?php else : ?>
-                    <div class="col-12 p-0 d-flex align-items-center">
+                    <div class="col-12 d-flex align-items-center">
                         <div class="me-2 fs-6">Giá :</div>
                         <div class="fw-bold text-danger fs-5"><?=number_format($detail_product['price_product'],0,',','.') ?> vnđ</div>
                     </div>
@@ -158,30 +158,25 @@
                     <!-- [THÔNG TIN KM] -->
                     <div class="col-12 mt-3 mt-lg-5">
                         <p class="text-success text-uppercase fw-semibold">chương trình khuyến mãi</p>
-                        <div class="my-2">
-                            <div class="btn btn-warning bg-gradient text-light p-0 px-1 small">
-                                <span class="small">KM1</span>
+                        <?php if(!empty($detail_product['array_voucher'])) : // Nếu có voucher ?>
+                        <?php foreach ($detail_product['array_voucher'] as $item) : extract($item)?>
+                        <div class="my-3">
+                            <div class="border-1 voucher small rounded-2 d-inline px-1 me-1 text-danger">
+                                <?= $code_voucher ?>
                             </div>
                             <span>
-                                <a class="text-decoration-none text-green" href="#">
-                                    Giảm thêm 30% giá trị máy cũ, tối đa 2.000.000đ khi tham gia thu cũ, đổi mới iPhone
-                                    15
-                                    Series.
-                                </a>
+                                <span class="lh-1 small">
+                                    <?= $description_voucher ?>
+                                    <?php if($apply_this_product) : ?>
+                                        <span class="text-muted small fst-italic"> - Chỉ áp dụng cho sản phẩm này</span>
+                                    <?php endif ?>
+                                </span>
                             </span>
                         </div>
-                        <div class="my-2">
-                            <div class="btn btn-warning bg-gradient text-light p-0 px-1 small">
-                                <span class="small">KM2</span>
-                            </div>
-                            <span>
-                                <a class="text-decoration-none text-green" href="#">
-                                    Giảm thêm 100.000đ khi khách hàng thanh toán bằng hình thức chuyển khoản ngân hàng
-                                    khi
-                                    mua iPhone 15 Series.
-                                </a>
-                            </span>
-                        </div>
+                        <?php endforeach ?>
+                        <?php else : ?>
+                            Hiện tại chưa có khuyến mãi
+                        <?php endif ?>
                     </div>
                 </div>
             </form>

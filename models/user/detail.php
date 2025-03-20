@@ -73,7 +73,18 @@ function get_product_detail($slug) {
             ORDER BY p.created_at ASC'
         );
     }
-    
+
+    // lấy danh sách chương trình khuyến mãi theo sản phẩm hoặc công khai
+    $result['array_voucher'] = pdo_query(
+        'SELECT v.*, vp.id_product apply_this_product
+        FROM voucher v
+        LEFT JOIN voucher_product vp ON v.code_voucher = vp.code_voucher
+        WHERE vp.id_product = '.$result['id_product'].' OR vp.id_product IS NULL
+        AND v.public_voucher = 1
+        AND v.expire_voucher > NOW()
+        AND v.deleted_at IS NULL'
+    );
+
     //trả kết quả
     return $result;
 
