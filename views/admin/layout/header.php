@@ -135,7 +135,9 @@
                         <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
                             <li>
                                 <a class="dropdown-item" href="<?= URL ?>">Trang chủ</a>
-                                <a class="dropdown-item text-danger" href="<?= URL . "dang-xuat" ?>">Thoát</a>
+                                <form action="<?= URL ?>dang-xuat" method="post">
+                                    <button name="logout" type="submit" class="dropdown-item text-danger" href="<?= URL . "dang-xuat" ?>">Thoát</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
