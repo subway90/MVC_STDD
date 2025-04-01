@@ -85,7 +85,14 @@ function login($username,$password) {
                 'UPDATE user SET token_remember ="'.$token_remember.'" WHERE username ="'.$_SESSION['user']['username'].'"'
             );
             // Lưu token remember vào cookie (thời hạn là 1 tháng)
-            setcookie('token_remember', $token_remember, time() + (86400 * 30));
+            setcookie('token_remember',$token_remember, [
+                'expires' => time() + (86400 * 30), // thời hạn cookie
+                'path' => '/', // Cookie có thể truy cập từ mọi đường dẫn
+                'domain' => DOMAIN, // Thay đổi theo domain của bạn
+                'secure' => true, // Chỉ gửi cookie qua HTTPS
+                'httponly' => true, // Tránh getCookie
+                'samesite' => 'Strict' // Bảo vệ khỏi các tấn công CSRF
+            ]);
             // Thông báo toast
             toast_create('success','<i class="bi bi-check-circle me-2"></i> Đăng nhập thành công');
 
