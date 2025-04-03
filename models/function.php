@@ -11,28 +11,35 @@ const _e_me_error = '</div>';
  * @param mixed $type Loại author cần xác thực
  * @return void
  */
-function author($type) {
+function author($type)
+{
     $author = false; // trạng thái author
     $array_type = [];
     // kiểm tra đã đăng nhập chưa
-    if(!empty($_SESSION['user'])) {
+    if (!empty($_SESSION['user'])) {
         // tạo thành mảng nếu là chuỗi
-        if(!is_array($type)) $array_type[] = $type;
-        else $array_type = $type;
+        if (!is_array($type))
+            $array_type[] = $type;
+        else
+            $array_type = $type;
         // so sánh phần tử của mảng author yêu cầu với author hiện tại của user
-        foreach($array_type as $type){
-            if($_SESSION['user']['name_role'] == $type) $author = true;
+        foreach ($array_type as $type) {
+            if ($_SESSION['user']['name_role'] == $type)
+                $author = true;
         }
     }
-    if(!$author) view_error(401);
+    if (!$author)
+        view_error(401);
 }
 
 /**
  * Kiểm tra đã đăng nhập hay chưa, nếu chưa đăng nhập sẽ trả về FALSE, ngược lại sẽ trả về TRUE
  * @return bool
  */
-function is_login() {
-    if(!empty($_SESSION['user'])) return true;
+function is_login()
+{
+    if (!empty($_SESSION['user']))
+        return true;
     return false;
 }
 
@@ -45,11 +52,16 @@ function is_login() {
  * 
  * @return mixed
  */
-function auth($param) {
-    if(empty($_SESSION['user'])) return false;
-    elseif($param == 'all') return $_SESSION['user'];
-    elseif(!isset($_SESSION['user'][$param])) die(_s_me_error.'Không tồn tại param '.$param.' trong session user'._e_me_error);
-    else return $_SESSION['user'][$param];
+function auth($param)
+{
+    if (empty($_SESSION['user']))
+        return false;
+    elseif ($param == 'all')
+        return $_SESSION['user'];
+    elseif (!isset($_SESSION['user'][$param]))
+        die(_s_me_error . 'Không tồn tại param ' . $param . ' trong session user' . _e_me_error);
+    else
+        return $_SESSION['user'][$param];
 }
 
 /**
@@ -57,18 +69,21 @@ function auth($param) {
  * @param string $title Tiêu đề trang
  * @param string $page Tên file view cần load
  * @param $data Mảng dữ liệu
-*/
-function view($type,$title,$page,$data) {
-    if($type != 'admin' && $type != 'user') die(_s_me_error.'Type khai báo <strong>'.$type.'</strong> không phù hợp trong mảng [user,admin] '._e_me_error);
-    if(file_exists('views/'.$type.'/'.$page.'.php')) {
-        if(!empty($data)) extract($data);
-        require_once 'models/'.$type.'/header.php';
-        require_once 'views/'.$type.'/layout/header.php';
-        require_once 'views/'.$type.'/'.$page.'.php';
-        require_once 'views/'.$type.'/layout/footer.php';
+ */
+function view($type_of_role, $title, $page, $data)
+{
+    if ($type_of_role != 'admin' && $type_of_role != 'user')
+        die(_s_me_error . 'Type khai báo <strong>' . $type_of_role . '</strong> không phù hợp trong mảng [user,admin] ' . _e_me_error);
+    if (file_exists('views/' . $type_of_role . '/' . $page . '.php')) {
+        if (!empty($data))
+            extract($data);
+        require_once 'models/' . $type_of_role . '/header.php';
+        require_once 'views/' . $type_of_role . '/layout/header.php';
+        require_once 'views/' . $type_of_role . '/' . $page . '.php';
+        require_once 'views/' . $type_of_role . '/layout/footer.php';
         exit;
-    }else {
-        die(_s_me_error.'Trang view <strong>'.$page.'.php</strong> mà bạn khai báo không được tìm thấy tại :<br> <strong>path : views/'.$type.'/'.$page.'.php</strong>'._e_me_error);
+    } else {
+        die(_s_me_error . 'Trang view <strong>' . $page . '.php</strong> mà bạn khai báo không được tìm thấy tại :<br> <strong>path : views/' . $type_of_role . '/' . $page . '.php</strong>' . _e_me_error);
     }
 }
 
@@ -78,12 +93,14 @@ function view($type,$title,$page,$data) {
  * @param string $name_model Tên model cần gọi ra
  * @return void
  */
-function model($type,$name_model) {
-    if($type != 'admin' && $type != 'user') die(_s_me_error.'Type khai báo <strong>'.$type.'</strong> không phù hợp trong mảng [user,admin] '._e_me_error);
-    if(file_exists('models/'.$type.'/'.$name_model.'.php')) {
-        require_once 'models/'.$type.'/'.$name_model.'.php';
-    }else {
-        die(_s_me_error.'Model <strong> '.$name_model.'</strong> mà bạn khai báo không được tìm thấy tại :<br> <strong>path : models/'.$type.'/'.$name_model.'php</strong>'._e_me_error);
+function model($type, $name_model)
+{
+    if ($type != 'admin' && $type != 'user')
+        die(_s_me_error . 'Type khai báo <strong>' . $type . '</strong> không phù hợp trong mảng [user,admin] ' . _e_me_error);
+    if (file_exists('models/' . $type . '/' . $name_model . '.php')) {
+        require_once 'models/' . $type . '/' . $name_model . '.php';
+    } else {
+        die(_s_me_error . 'Model <strong> ' . $name_model . '</strong> mà bạn khai báo không được tìm thấy tại :<br> <strong>path : models/' . $type . '/' . $name_model . 'php</strong>' . _e_me_error);
     }
 }
 
@@ -96,9 +113,10 @@ function model($type,$name_model) {
  * @param int $code Mã trạng thái trang 
  * @return void
  */
-function view_error($code) {
+function view_error($code)
+{
     http_response_code($code);
-    require_once 'page_error/'.$code.'.php';
+    require_once 'page_error/' . $code . '.php';
     exit();
 }
 
@@ -108,24 +126,47 @@ function view_error($code) {
  * @param string $type Folder layout [user,admin]
  * @param string $layout Tên layout
  */
-function layout($type,$layout) {
-    if($type != 'admin' && $type != 'user') die(_s_me_error.'Type khai báo <strong>'.$type.'</strong> không phù hợp trong mảng [user,admin] '._e_me_error);
-    if(file_exists('views/'.$type.'/layout'.'/'.$layout.'.php')) {
-        if(!empty($data)) extract($data);
-        require 'views/'.$type.'/layout'.'/'.$layout.'.php';
-    }else die(_s_me_error.'Trang layout <strong>'.$type.'/layout'.'/'.$layout.'.php</strong> mà bạn khai báo không được tìm thấy'._e_me_error);
+function layout($type, $layout)
+{
+    if ($type != 'admin' && $type != 'user')
+        die(_s_me_error . 'Type khai báo <strong>' . $type . '</strong> không phù hợp trong mảng [user,admin] ' . _e_me_error);
+    if (file_exists('views/' . $type . '/layout' . '/' . $layout . '.php')) {
+        if (!empty($data))
+            extract($data);
+        require 'views/' . $type . '/layout' . '/' . $layout . '.php';
+    } else
+        die(_s_me_error . 'Trang layout <strong>' . $type . '/layout' . '/' . $layout . '.php</strong> mà bạn khai báo không được tìm thấy' . _e_me_error);
 }
 
-function alert($content) {
-    echo '<script>alert("'.$content.'")</script>';
+
+/**
+ * Dùng để sử dụng controller theo role [folder]
+ * @param mixed $type_of_role Folder
+ * @param mixed $name_controller Tên controller
+ * @return void
+ */
+function controller($type_of_role, $name_controller)
+{
+    if (file_exists('controllers/' . $type_of_role . '/' . $name_controller . '.php'))
+        require_once 'controllers/' . $type_of_role . '/' . $name_controller . '.php';
+    else
+        return view_error(404);
+    exit;
+}
+
+function alert($content)
+{
+    echo '<script>alert("' . $content . '")</script>';
 }
 
 /**
  * Hàm tạo token ngẫu nhiên theo độ dài tùy ý trong phạm vi [a-z][A-Z][0-9]
  * @param int $length độ dài kí tự token (0-100)
  */
-function create_token($length){
-    if($length <= 0) return "[ERROR] length not valid";
+function create_token($length)
+{
+    if ($length <= 0)
+        return "[ERROR] length not valid";
     $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     return substr(str_shuffle($permitted_chars), 0, $length);
 }
@@ -134,7 +175,8 @@ function create_token($length){
  * Hàm này dùng để loại bỏ dấu của chuỗi
  * @param string $input Chuỗi cần loại bỏ dấu
  */
-function create_slug($input) {
+function create_slug($input)
+{
     $search = array(
         '#(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)#', #1
         '#(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)#',#2
@@ -179,26 +221,29 @@ function create_slug($input) {
  * @param $input Nhập thời gian cần FORMAT, [YYYY-MM-DD hh:mm:ss]
  * @param $format Nhập biểu thức muốn hiển thị. Ví dụ 'Lúc hh:mm ngày DD/MM/YYYY'
  */
-function format_time($input,$format){
-    if(strtotime($input) !== false && similar_text($input,'- - : :') == 5){ #kiểm tra $input nhập vào có hợp lệ không | hàm strtotime: trả về số giây(int) đếm được kể từ ngày 1/1/1976 -> thời gian input
-        $arr = explode(' ',$input); #YYYY-MM-DD hh:mm:ss -> [0] YYYY-MM-DD [1] hh:mm:ss
-        $arr_time = explode('-',$arr[0]); //arr_time[0] YYYY [1] MM [2] DD
-        $arr_day = explode(':',$arr[1]);  //arr_day[0] hh [1] mm [2] ss
-        return str_replace(['hh','mm','ss','YYYY','MM','DD'],[$arr_day[0],$arr_day[1],$arr_day[2],$arr_time[0],$arr_time[1],$arr_time[2]],$format);
-    }else return 'Thời gian nhập vào chưa đúng form YYYY-MM-DD hh:mm:ss';
+function format_time($input, $format)
+{
+    if (strtotime($input) !== false && similar_text($input, '- - : :') == 5) { #kiểm tra $input nhập vào có hợp lệ không | hàm strtotime: trả về số giây(int) đếm được kể từ ngày 1/1/1976 -> thời gian input
+        $arr = explode(' ', $input); #YYYY-MM-DD hh:mm:ss -> [0] YYYY-MM-DD [1] hh:mm:ss
+        $arr_time = explode('-', $arr[0]); //arr_time[0] YYYY [1] MM [2] DD
+        $arr_day = explode(':', $arr[1]);  //arr_day[0] hh [1] mm [2] ss
+        return str_replace(['hh', 'mm', 'ss', 'YYYY', 'MM', 'DD'], [$arr_day[0], $arr_day[1], $arr_day[2], $arr_time[0], $arr_time[1], $arr_time[2]], $format);
+    } else
+        return 'Thời gian nhập vào chưa đúng form YYYY-MM-DD hh:mm:ss';
 }
 
 /**
  * Hàm trả về IP Address của người dùng
  */
-function get_ip(){  
-    if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+function get_ip()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
         //check ip from share internet
         $ip = $_SERVER['HTTP_CLIENT_IP'];
-    }else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+    } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
         //to check ip is pass from proxy
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    }else{
+    } else {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
     return $ip;
@@ -208,10 +253,11 @@ function get_ip(){
  * Dùng để trả về các thông số của $_SERVER
  * @return array
  */
-function test_server() {
-    echo'<pre>';
-    print_r($_SERVER) ;
-    echo'</pre>';
+function test_server()
+{
+    echo '<pre>';
+    print_r($_SERVER);
+    echo '</pre>';
     exit;
 }
 
@@ -220,10 +266,11 @@ function test_server() {
  * @param $array Mảng cần hiển thị
  * @return array
  */
-function test_array($array) {
-    echo'<pre>';
-    print_r($array) ;
-    echo'</pre>';
+function test_array($array)
+{
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
     exit;
 }
 
@@ -232,7 +279,8 @@ function test_array($array) {
  * @param $input Giá trị cần hiển thị
  * @return mixed
  */
-function test($input) {
+function test($input)
+{
     var_dump($input);
     exit;
 }
@@ -243,9 +291,10 @@ function test($input) {
  * 
  * @param string $case Tên route muốn chuyển đến
  */
-function route($case) {
-        header('Location:'.URL.$case);
-        exit;
+function route($case = null)
+{
+    header('Location:' . URL . $case);
+    exit;
 }
 
 /**
@@ -253,7 +302,8 @@ function route($case) {
  * @param string $type Loại background [danger,warning,success]
  * @param string $message Tin nhắn cần thông báo
  */
-function toast_create($type,$message) {
+function toast_create($type, $message)
+{
     $_SESSION['toast'][0] = $type;
     $_SESSION['toast'][1] = $message;
 }
@@ -262,13 +312,14 @@ function toast_create($type,$message) {
  * Dùng để show toast (Thường để ở header layout)
  * @return void
  */
-function toast_show() {
-    if(!empty($_SESSION['toast'])) {
+function toast_show()
+{
+    if (!empty($_SESSION['toast'])) {
         echo '
         <style>
         .line-bar {
             height: 2px;
-            animation: lmao '.(TOAST_TIME/1000).'s linear forwards;
+            animation: lmao ' . (TOAST_TIME / 1000) . 's linear forwards;
         }
         @keyframes lmao {
             from {
@@ -280,17 +331,17 @@ function toast_show() {
           }      
         </style>
         <div style="z-index: 9999;" class="position-fixed end-0 me-1 mt-5 pt-5">
-            <div class="w-100 alert alert-'.$_SESSION['toast'][0].' border-0 alert-dismissible fade show m-0 rounded-0" role="alert">
-                <span class="ps-2 pe-5 py-2">'.$_SESSION['toast'][1].'</span>
+            <div class="w-100 alert alert-' . $_SESSION['toast'][0] . ' border-0 alert-dismissible fade show m-0 rounded-0" role="alert">
+                <span class="ps-2 pe-5 py-2">' . $_SESSION['toast'][1] . '</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="bg-'.$_SESSION['toast'][0].' line-bar"></div>
+            <div class="bg-' . $_SESSION['toast'][0] . ' line-bar"></div>
         </div>
         <script>
             function closeAlert() {
                 document    .querySelector(".btn-close").click();
             }
-            setTimeout(closeAlert,'.TOAST_TIME.')
+            setTimeout(closeAlert,' . TOAST_TIME . ')
         </script>';
     }
     unset($_SESSION['toast']);
@@ -301,7 +352,8 @@ function toast_show() {
  * @param string $input
  * @return array|string|null
  */
-function clear_input($input) {
+function clear_input($input)
+{
     // Chuyển đổi các kí tự đặc biệt thành mã code HTML
     return filter_var($input, FILTER_SANITIZE_STRING);
 }
@@ -316,20 +368,24 @@ function clear_input($input) {
  * @param mixed $file File cần lưu
  * @return string Trả về đường dẫn đã lưu nếu lưu thành công, trả về 0 nếu lưu thất bại
  */
-function save_file($bool_encrypt,$folder,$file) {
+function save_file($bool_encrypt, $folder, $file)
+{
     // Kiểm tra thư mục tồn tại chưa
-    if(!is_dir('assets/file/'.$folder)) die(_s_me_error.'Thư mục asset/file/'.$folder.' chưa được tạo khi dùng hàm save_file'._e_me_error);
-    if($bool_encrypt) {
+    if (!is_dir('assets/file/' . $folder))
+        die(_s_me_error . 'Thư mục asset/file/' . $folder . ' chưa được tạo khi dùng hàm save_file' . _e_me_error);
+    if ($bool_encrypt) {
         // Mã hoá tên file
-        $file['name'] = uniqid().'.'.pathinfo($file['name'], PATHINFO_EXTENSION);
-    }else{
+        $file['name'] = uniqid() . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+    } else {
         // Kiểm tra file đã tồn tại chưa, nếu có thì thêm hậu tố -copy
-        if(file_exists('assets/file/'.$folder.'/'.$file["name"])) $file['name'] = pathinfo($file['name'],PATHINFO_FILENAME).'-copy.'.pathinfo($file['name'], PATHINFO_EXTENSION);
+        if (file_exists('assets/file/' . $folder . '/' . $file["name"]))
+            $file['name'] = pathinfo($file['name'], PATHINFO_FILENAME) . '-copy.' . pathinfo($file['name'], PATHINFO_EXTENSION);
     }
     // Tiến hành lưu
-    $check = move_uploaded_file($file["tmp_name"], 'assets/file/'.$folder.'/'.basename($file["name"]));
+    $check = move_uploaded_file($file["tmp_name"], 'assets/file/' . $folder . '/' . basename($file["name"]));
     // Trả về path đã lưu
-    if($check) return $folder.'/'.$file['name'];
+    if ($check)
+        return $folder . '/' . $file['name'];
     return 0;
 }
 
@@ -337,9 +393,12 @@ function save_file($bool_encrypt,$folder,$file) {
  * Hàm này dùng để xoá file theo PATH
  * @param mixed $path Đường dẫn file cần xoá
  */
-function delete_file($path) {
-    if (file_exists('assets/file/'.$path)) (unlink('assets/file/'.$path));
-    else die(_s_me_error.' File không được tìm thấy để xoá. Path file: '.'assets/file/'.$path._e_me_error);
+function delete_file($path)
+{
+    if (file_exists('assets/file/' . $path))
+        (unlink('assets/file/' . $path));
+    else
+        die(_s_me_error . ' File không được tìm thấy để xoá. Path file: ' . 'assets/file/' . $path . _e_me_error);
 }
 
 /**
@@ -364,9 +423,10 @@ function create_uuid()
  * @param array $data
  * @return void
  */
-function view_json($status,$data) {
+function view_json($status, $data)
+{
     header('Content-Type: application/json');
-    $data = array_merge(['status' => $status],$data);
+    $data = array_merge(['status' => $status], $data);
     echo json_encode($data);
     exit;
 }
@@ -376,9 +436,11 @@ function view_json($status,$data) {
  * @param $array mảng lỗi
  * @return void
  */
-function show_error($array) {
-    if(!empty($array)){ 
-        foreach ($array as $error) echo'<div class="text-danger small mb-2"><i class="fas fa-exclamation-triangle me-2"></i>'.$error.'</div>';
+function show_error($array)
+{
+    if (!empty($array)) {
+        foreach ($array as $error)
+            echo '<div class="text-danger small mb-2"><i class="fas fa-exclamation-triangle me-2"></i>' . $error . '</div>';
     }
 }
 
@@ -386,14 +448,17 @@ function show_error($array) {
  * Hàm này dùng để tự động đăng nhập khi vừa truy cập trình duyệt
  * @return void
  */
-function auto_login() {
+function auto_login()
+{
     // Nếu chưa đăng nhập
-    if(!is_login()) {
+    if (!is_login()) {
         // nếu có cookie token_remember
-        if(isset($_COOKIE['token_remember'])) $token_remember = clear_input($_COOKIE['token_remember']);        
-        else $token_remember = '';
+        if (isset($_COOKIE['token_remember']))
+            $token_remember = clear_input($_COOKIE['token_remember']);
+        else
+            $token_remember = '';
         // nếu có value
-        if($token_remember) {
+        if ($token_remember) {
             // lấy thông tin user bằng token
             $get_user = pdo_query_one(
                 'SELECT u.*, r.name_role
@@ -401,14 +466,14 @@ function auto_login() {
                 JOIN role r
                 ON u.id_role = r.id_role
                 WHERE u.deleted_at IS NULL
-                AND u.token_remember = "'.$token_remember.'"'
+                AND u.token_remember = "' . $token_remember . '"'
             );
             // nếu lấy thông tin thành công
-            if($get_user) {
+            if ($get_user) {
                 // gán dữ liệu cho session
                 $_SESSION['user'] = $get_user;
                 // thông báo toast
-                toast_create('success','Chào mừng bạn quay trở lại '.WEB_NAME);
+                toast_create('success', 'Chào mừng bạn quay trở lại ' . WEB_NAME);
             }
         }
     }
@@ -423,12 +488,13 @@ function auto_login() {
  * @param string $message Nội dung thông báo
  * @return string Đoạn script thông báo toast
  */
-function toast($type,$message) {
-        return '
+function toast($type, $message)
+{
+    return '
         <style>
         .line-bar {
             height: 2px;
-            animation: lmao '.(TOAST_TIME/1000).'s linear forwards;
+            animation: lmao ' . (TOAST_TIME / 1000) . 's linear forwards;
         }
         @keyframes lmao {
             from {
@@ -440,17 +506,17 @@ function toast($type,$message) {
           }      
         </style>
         <div style="z-index: 9999;" class="position-fixed end-0 me-1 mt-5 pt-5">
-            <div class="w-100 alert alert-'.$type.' border-0 alert-dismissible fade show m-0 rounded-0" role="alert">
-                <span class="ps-2 pe-5 py-2">'.$message.'</span>
+            <div class="w-100 alert alert-' . $type . ' border-0 alert-dismissible fade show m-0 rounded-0" role="alert">
+                <span class="ps-2 pe-5 py-2">' . $message . '</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="bg-'.$type.' line-bar"></div>
+            <div class="bg-' . $type . ' line-bar"></div>
         </div>
         <script>
             function closeAlert() {
                 document    .querySelector(".btn-close").click();
             }
-            setTimeout(closeAlert,'.TOAST_TIME.')
+            setTimeout(closeAlert,' . TOAST_TIME . ')
         </script>';
 }
 
@@ -459,9 +525,14 @@ function toast($type,$message) {
  * 
  * @param mixed $order Thứ tự phần tử cần lấy, hoặc để string('test') để lấy toàn bộ
  */
-function get_action_uri($order) {
-    $array_uri = explode('/',$_GET['act']); // tạo mảng bởi dấu phân cách "/"
-    if($order === 'test') return $array_uri;
-    else if(!empty($array_uri[$order])) return $array_uri[$order];
+function get_action_uri($order)
+{
+    if (isset($_GET['act'])) {
+        $array_uri = explode('/', $_GET['act']); // tạo mảng bởi dấu phân cách "/"
+        if ($order === 'test')
+            return $array_uri;
+        else if (!empty($array_uri[$order]))
+            return $array_uri[$order];
+    }
     return false;
 }
