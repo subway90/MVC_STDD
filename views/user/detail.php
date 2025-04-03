@@ -88,7 +88,7 @@
                         <?= $detail_product['name_product'] ?>
                     </div>
                     <div class="col-12 d-flex mb-2">
-                        <a href="#" class="border border-success text-muted fw-semibold rounded-5 small px-2 text-decoration-none d-flex align-items-center me-1 gap-1">
+                        <a href="#" class="bg-light border border-success text-muted fw-semibold rounded-5 small px-2 text-decoration-none d-flex align-items-center me-1 gap-1">
                             <img height="14" src="<?= URL_STORAGE . $detail_product['logo_brand'] ?>" alt="$detail_product['logo_brand']">
                             <?= $detail_product['name_brand'] ?>
                         </a>
