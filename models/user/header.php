@@ -30,15 +30,18 @@ function showCanvas() {
  * 
  * - all : Tất cả, bao gồm tổng tiền, số lượng, danh sách sản phẩm
  * 
+ * - array_id : Lấy chuỗi id sản phẩm (dùng cho query voucher)
+ * 
  * Trả về null Nếu $get_type không hợp lệ
  * 
  */
 function get_cart($get_type) {
     // Khai báo
-    $type = ['total','list','count','all']; // Loại cần lấy
+    $type = ['total','list','count','array_id','all']; // Loại cần lấy
     $list = [];
     $total = 0;
     $count = 0;
+    $array_id = [];
 
     // Kiểm tra type
     if(!in_array($get_type,$type)) die(_s_me_error."$get_type không hợp lệ <br> Mảng $get_type = ['total','list','count','all']"._e_me_error);
@@ -86,6 +89,9 @@ function get_cart($get_type) {
 
                 // đếm số lượng
                 $count++;
+
+                // lấy chuỗi id sản phẩm
+                $array_id[] = $id_product;
             }
         }
     }
@@ -95,6 +101,8 @@ function get_cart($get_type) {
     elseif($get_type == 'count') return $count;
     elseif($get_type == 'total') return $total;
     elseif($get_type == 'all') return ['count' => $count,'total' => $total,'list' => $list];
+    elseif($get_type == 'array_id') return $array_id;
+
     else return null;
     
 }
