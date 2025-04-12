@@ -1,6 +1,8 @@
 <?php
 
-const URL = 'https://subway90.vn/';
+const DOMAIN = 'subway90.vn';
+
+const URL = 'https://' . DOMAIN . '/';
 const URL_ADMIN = URL.'admin/';
 const URL_STORAGE = URL."assets/file/";
 
