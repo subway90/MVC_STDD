@@ -125,6 +125,7 @@ $(document).ready(function() {
                 $("#listCart").html(response.data);
                 $("#totalCart").html(response.total);
                 $("#btnCheckout").html(response.btnCheckout);
+                $("#listVoucher").html(response.listVoucher);
             },
             error: function(xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);

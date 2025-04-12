@@ -32,7 +32,7 @@
         </div>
         <div class="col-12 col-md-12 col-lg-4 p-0 ps-lg-3">
             <div class="bg-light px-4 py-2 rounded-3">
-                <div class="my-4    ">
+                <div class="my-4">
                     <form action="#" method="get">
                         <label class="small" for="voucher">Mã giảm giá</label>
                         <div class="input-group mt-1">
@@ -42,6 +42,7 @@
                         </div>
                     </form>
                 </div>
+                <div id="listVoucher"></div>
                 <hr class="w-100 border border-success border-1 my-1">
                 <div class="w-100 d-flex justify-content-between py-2 fw-bold">
                     <div class="">TỔNG THANH TOÁN</div>

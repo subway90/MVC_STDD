@@ -133,7 +133,7 @@ function render_product_in_cart($data) {
                     </div>
                 </div>
             </td>
-            <td>
+            <td class="lh-1">
                 {$format_price}
             </td>
             <td>
@@ -212,4 +212,64 @@ function render_button_checkout() {
         <a href="{$url}thanh-toan" class="w-100 btn btn-success {$state_button}">Thanh toán</a>
     HTML;
     endif;
+}
+
+function render_list_voucher() {
+    
+    $result = 
+    <<<HTML
+        <div class="text-success h6">Danh sách mã giảm giá</div>
+    HTML;
+
+    
+    // nếu giỏ hàng trống
+    if(get_cart('count') == 0) $query_id_product = '';
+    // truy vấn lấy mã giảm giá
+    else $query_id_product = 'IN ('.implode(',',get_cart('array_id')).') OR vp.id_product';
+
+    // thực thi truy vấn
+    $query = pdo_query(
+        'SELECT v.*, vp.id_product, p.name_product
+        FROM voucher v
+        LEFT JOIN voucher_product vp ON v.code_voucher = vp.code_voucher
+        LEFT JOIN product p ON vp.id_product = p.id_product
+        WHERE (vp.id_product '.$query_id_product.' IS NULL)
+        AND v.public_voucher = 1
+        AND v.expire_voucher > NOW()
+        AND v.deleted_at IS NULL
+        ORDER BY expire_voucher ASC'
+    );
+
+    // nếu có danh sách mã giảm giá
+    if(!empty($query)) {
+        foreach ($query as $item) { extract($item);
+
+            // nếu mã giảm giá này dành cho sản phẩm
+            if($id_product) $apply_idproduct = '<div class="fst-italic text-muted">Áp dụng cho sản phẩm <span class="fw-semibold">'.$name_product.'</span></div>';
+            else $apply_idproduct = '';
+
+            // render
+            $result .= 
+            <<<HTML
+                <div class="row p-1">
+                    <div class="w-75 border-1 border-end-0 rounded-2 voucher btn border-success small text-start">
+                        <small class="small">
+                            <span class="small text-success fw-bold">{$code_voucher}</span>
+                            <div class="small text-dark"> 
+                                {$description_voucher}
+                                {$apply_idproduct}
+                            </div>
+                        </small>
+                    </div>
+                    <button class="w-25 btn btn-sm voucher btn-outline-success small rounded-2">
+                        <small class="fw-semibold">
+                            Sử dụng ngay
+                        </small>
+                    </button>
+                </div>
+            HTML;
+        }
+    }
+
+    return $result;
 }

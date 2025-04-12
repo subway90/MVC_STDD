@@ -35,6 +35,7 @@ if(get_action_uri(1) == 'get_list') {
         'total' => number_format(get_cart('total'),0,',','.').' vnđ',
         'data' => $render_product_in_cart,
         'btnCheckout' => render_button_checkout(),
+        'listVoucher' => render_list_voucher() // Lấy voucher,
     ]);
 }
 
