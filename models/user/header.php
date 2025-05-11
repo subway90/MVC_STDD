@@ -1,5 +1,7 @@
 <?php
 
+model('user','voucher');
+
 /**
  * Dùng để hiển thị Canvas giỏ hàng nếu $_SESSION['showCanvasCart'] TRUE
  */

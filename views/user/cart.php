@@ -3,7 +3,7 @@
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item fw-bold">
-                <a href="" class="text-decoration-none text-success">Trang chủ</a>
+                <a href="/" class="text-decoration-none text-success">Trang chủ</a>
             </li>
             <li class="breadcrumb-item fw-bold">
                 <a href="#" class="text-decoration-none text-dark">Giỏ hàng</a>

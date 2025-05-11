@@ -201,7 +201,7 @@ function render_button_checkout() {
     if(!is_login()) :
     return
     <<<HTML
-        <a href="{$url}dang-nhap/gio-hang" class="w-100 btn btn-success">Đăng nhập để Thanh toán</a>
+        <a href="{$url}dang-nhap/gio-hang" class="w-100 btn btn-success">Đăng nhập để Đặt hàng</a>
     HTML;
     // Nếu đã đăng nhập
     else :
@@ -209,7 +209,7 @@ function render_button_checkout() {
     get_cart('count') == 0 ? $state_button = 'disabled' : $state_button = '';
     return
     <<<HTML
-        <a href="{$url}thanh-toan" class="w-100 btn btn-success {$state_button}">Thanh toán</a>
+        <a href="{$url}dat-hang" class="w-100 btn btn-success {$state_button}">Đặt hàng</a>
     HTML;
     endif;
 }

@@ -60,9 +60,30 @@
     box-shadow: inset 2px -2px 4px rgba(0, 0, 0, 0.6), 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.form-check-label {
+  border: 1px dashed #999999;
+  border-radius: 4px;
+  padding: 10px;
+  color: #999999;
+}
+
+.border-primary {
+  border-color: var(--primary-color) !important;
+}
+
+.form-check-input {
+  display: none;
+}
+
+.form-check-input:checked + .form-check-label {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  border-style: solid;
+}
+
 .form-check-input:checked {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+  /* Khi input được chọn, border thành solid */
+  border: 1px solid var(--primary-color);
 }
 
 .card-product {
