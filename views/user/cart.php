@@ -42,11 +42,42 @@
                         </div>
                     </form>
                 </div>
+                <!-- Show List Voucher -->
                 <div id="listVoucher"></div>
                 <hr class="w-100 border border-success border-1 my-1">
+                
+                <!-- Show Price -->
+                <div class="w-100 d-flex justify-content-between py-1 fw-bold">
+                    <div class="small">Tổng tiền sản phẩm</div>
+                    <div id="totalCart" class="text-success"></div>
+                </div>
+
+                <!-- Show Apply Voucher (if use)-->
+                <div id="applyVoucher"></div>
+
+                <hr class="w-100 border border-success border-1 my-1">
+
+                <!-- Show Delivery -->
+                <!-- <div class="w-100 d-flex justify-content-between py-1 fw-bold">
+                    <div class="small">Phí giao hàng</div>
+                    <div class="text-success">50.000 vnđ</div>
+                </div>
+
+                <div class="w-100 d-flex justify-content-between fw-bold">
+                    <div class="small">Khuyến mãi</div>
+                    <div class="text-success"> - 50.000 vnđ</div>
+                </div>
+                <div class="w-100">
+                    <div class="small fst-italic fw-semi">
+                        Sử dụng mã <span class="fw-bold text-success">FREESHIP</span> 
+                        - Miễn phí giao hàng cho lần đầu tiên mua hàng</div>
+                </div>
+                <hr class="w-100 border border-success border-1 my-1"> -->
+
+                <!-- Show Total Checkout -->
                 <div class="w-100 d-flex justify-content-between py-2 fw-bold">
                     <div class="">TỔNG THANH TOÁN</div>
-                    <div id="totalCart" class="text-success"></div>
+                    <div id="totalCheckout" class="text-success"></div>
                 </div>
             </div>
             <div id="btnCheckout" class="py-3">

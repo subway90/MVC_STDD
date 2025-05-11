@@ -22,7 +22,9 @@ function showCanvas() {
  * Lấy dữ liệu  sản phẩm trong session giỏ hàng
  * @param $get_type Loại cần lấy :
  * 
- * - total : Tổng tiền
+ * - total_cart : Tổng tiền trong giỏ hàng (không áp dụng voucher)
+ * 
+ * - total_checkout : Tổng tiền trong giỏ hàng (đã áp dụng voucher)
  * 
  * - count : Số lượng
  * 
@@ -37,14 +39,15 @@ function showCanvas() {
  */
 function get_cart($get_type) {
     // Khai báo
-    $type = ['total','list','count','array_id','all']; // Loại cần lấy
+    $type = ['total_cart','total_checkout','list','count','array_id','all']; // Loại cần lấy
     $list = [];
-    $total = 0;
+    $total_cart = 0;
+    $total_checkout = 0;
     $count = 0;
     $array_id = [];
 
     // Kiểm tra type
-    if(!in_array($get_type,$type)) die(_s_me_error."$get_type không hợp lệ <br> Mảng $get_type = ['total','list','count','all']"._e_me_error);
+    if(!in_array($get_type,$type)) die(_s_me_error."$get_type không hợp lệ <br> Mảng $get_type = ['total_cart','list','count','all']"._e_me_error);
 
     // Truy vấn từ data ở session cart
     if(!empty($_SESSION['cart'])) {
@@ -85,7 +88,7 @@ function get_cart($get_type) {
 
                 // lấy tổng tiền
                 if($sale_price_product) $price_product = $sale_price_product;
-                $total += $cart['quantity_product']*$price_product;
+                $total_cart += $cart['quantity_product']*$price_product;
 
                 // đếm số lượng
                 $count++;
@@ -99,37 +102,33 @@ function get_cart($get_type) {
     // Trả về theo yêu cầu
     if($get_type == 'list') return $list;
     elseif($get_type == 'count') return $count;
-    elseif($get_type == 'total') return $total;
+    elseif($get_type == 'total_cart') return $total_cart;
     elseif($get_type == 'all') return ['count' => $count,'total' => $total,'list' => $list];
     elseif($get_type == 'array_id') return $array_id;
+    elseif($get_type == 'total_checkout') {
+        
+        if(!empty($_SESSION['voucher'])) {
+            foreach ($_SESSION['voucher'] as $code) {
+                $get_voucher = get_one_voucher($code);
+                if(!empty($get_voucher) && $get_voucher['type_voucher'] === 'giảm tiền hoá đơn') break;
+            }
+        }else return $total_cart;
+
+        if($get_voucher) {
+            if($get_voucher['unit_voucher'] === '%') {
+                $value_discount = get_cart('total_cart')/100 * $get_voucher['value_voucher'];
+                // nếu có max value voucher và giá trị discount lớn hơn giá trị max -> so sánh và lấy giá max nếu vượt
+                if($get_voucher['max_value_voucher'] && $get_voucher['max_value_voucher'] < $value_discount) $value_discount = $get_one['max_value_voucher'];
+            }
+            else $value_discount = $get_voucher['value_voucher'];
+        }
+
+        return $total_cart - $value_discount;
+
+    }
 
     else return null;
     
-}
-
-
-/**
- * Hàm này dùng để trả về tổng tiền trong giỏ hàng
- * @return int
- */
-function total_cart() {
-
-    $total = 0;
-
-    if(!empty($_SESSION['cart'])) {
-        foreach ($_SESSION['cart'] as $cart) {
-            $get_price_product = pdo_query_value(
-                'SELECT price_product 
-                FROM product
-                WHERE id_product ='.$cart['id_product'].'
-                AND status_product = 1'
-            );
-
-            $total += $cart['quantity_product']*$get_price_product;
-        }
-    }
-
-    return $total;
 }
 
 /**

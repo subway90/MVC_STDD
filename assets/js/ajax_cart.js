@@ -20,6 +20,29 @@ $(document).ready(function() {
         });
     });
 
+    // Sử dụng event delegation cho nút thêm dùng voucher
+    $(document).on('click', '#useVoucher', function() {
+        // Tìm phần tử cha chứa idProduct
+        var codeVoucher = $(this).closest('form').find('.codeVoucher').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/use-voucher',
+            data: {
+                use_in_list: null,
+                code_voucher: codeVoucher
+            },
+            success: function(response) {
+                $("#messageCart").html(response.message);
+                loadCountCart();
+                loadListCart();
+            },
+            error: function(xhr, status, error) {
+                console.log('Lỗi sử dụng voucher : ' + error);
+            }
+        });
+    });
+
     // Tăng số lượng
     $(document).on('click', '#plusCartBtn', function() {
         // Tìm phần tử cha chứa idProduct
@@ -123,7 +146,9 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (response) {
                 $("#listCart").html(response.data);
-                $("#totalCart").html(response.total);
+                $("#totalCart").html(response.total_cart);
+                $("#applyVoucher").html(response.apply_voucher);
+                $("#totalCheckout").html(response.total_checkout);
                 $("#btnCheckout").html(response.btnCheckout);
                 $("#listVoucher").html(response.listVoucher);
             },

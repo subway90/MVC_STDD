@@ -214,62 +214,81 @@ function render_button_checkout() {
     endif;
 }
 
-function render_list_voucher() {
+function render_list_voucher($data) {
     
     $result = 
     <<<HTML
         <div class="text-success h6">Danh sách mã giảm giá</div>
     HTML;
 
-    
-    // nếu giỏ hàng trống
-    if(get_cart('count') == 0) $query_id_product = '';
-    // truy vấn lấy mã giảm giá
-    else $query_id_product = 'IN ('.implode(',',get_cart('array_id')).') OR vp.id_product';
-
-    // thực thi truy vấn
-    $query = pdo_query(
-        'SELECT v.*, vp.id_product, p.name_product
-        FROM voucher v
-        LEFT JOIN voucher_product vp ON v.code_voucher = vp.code_voucher
-        LEFT JOIN product p ON vp.id_product = p.id_product
-        WHERE (vp.id_product '.$query_id_product.' IS NULL)
-        AND v.public_voucher = 1
-        AND v.expire_voucher > NOW()
-        AND v.deleted_at IS NULL
-        ORDER BY expire_voucher ASC'
-    );
-
     // nếu có danh sách mã giảm giá
-    if(!empty($query)) {
-        foreach ($query as $item) { extract($item);
+    if(!empty($data)) {
+        foreach ($data as $item) { extract($item);
+            // Nếu là voucher public -> Hiện ra
+            if($public_voucher && !in_array($code_voucher,$_SESSION['voucher'])) {
 
-            // nếu mã giảm giá này dành cho sản phẩm
-            if($id_product) $apply_idproduct = '<div class="fst-italic text-muted">Áp dụng cho sản phẩm <span class="fw-semibold">'.$name_product.'</span></div>';
-            else $apply_idproduct = '';
-
-            // render
-            $result .= 
-            <<<HTML
-                <div class="row p-1">
-                    <div class="w-75 border-1 border-end-0 rounded-2 voucher btn border-success small text-start">
-                        <small class="small">
-                            <span class="small text-success fw-bold">{$code_voucher}</span>
-                            <div class="small text-dark"> 
-                                {$description_voucher}
-                                {$apply_idproduct}
+                // render
+                $result .= 
+                <<<HTML
+                    <form>
+                        <div class="row p-1">
+                            <div class="w-75 border-1 border-end-0 rounded-2 voucher btn border-success small text-start">
+                                <small class="small">
+                                    <span class="small text-success fw-bold">{$code_voucher}</span>
+                                    <div class="small text-dark"> 
+                                        {$description_voucher}
+                                    </div>
+                                </small>
                             </div>
-                        </small>
-                    </div>
-                    <button class="w-25 btn btn-sm voucher btn-outline-success small rounded-2">
-                        <small class="fw-semibold">
-                            Sử dụng ngay
-                        </small>
-                    </button>
-                </div>
-            HTML;
+                            <input type="hidden" class="codeVoucher" value="{$code_voucher}">
+                            <button type="button" id="useVoucher" class="w-25 btn btn-sm voucher btn-outline-success small rounded-2">
+                                <small class="fw-semibold">
+                                    Sử dụng ngay
+                                </small>
+                            </button>
+                        </div>
+                    </form>
+                HTML;
+            }
         }
     }
 
     return $result;
+}
+
+function render_apply_voucher() {
+    $get_one = null;
+    
+    // Lấy thông tin voucher đang sử dụng
+    if(!empty($_SESSION['voucher'])) {
+        foreach ($_SESSION['voucher'] as $i => $row) {
+            $get_one = get_one_voucher($_SESSION['voucher'][$i]);
+            if(!empty($get_one) && $get_one['type_voucher'] === 'giảm tiền hoá đơn') break;
+        }
+    }
+
+    if($get_one) {
+        if($get_one['unit_voucher'] === '%') {
+            $value_discount = get_cart('total_cart')/100 * $get_one['value_voucher'];
+            // nếu có max value voucher và giá trị discount lớn hơn giá trị max -> so sánh và lấy giá max nếu vượt
+            if($get_one['max_value_voucher'] && $get_one['max_value_voucher'] < $value_discount) $value_discount = $get_one['max_value_voucher'];
+        }
+        else $value_discount = $get_one['value_voucher'];
+        // format
+        $value_discount = number_format($value_discount,0,',','.');
+        return <<<HTML
+        <div class="w-100 d-flex justify-content-between fw-bold">
+            <div class="small">Khuyến mãi</div>
+            <div class="text-success"> - {$value_discount} vnđ</div>
+        </div>
+        <div class="w-100">
+            <div class="small fst-italic fw-semi">
+                Sử dụng mã <span class="fw-bold text-success"> {$get_one['code_voucher']} </span> 
+                - {$get_one['description_voucher']}
+            </div>
+        </div>
+        HTML;
+    }else {
+        return null;
+    }
 }

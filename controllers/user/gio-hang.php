@@ -3,6 +3,7 @@
 # [MODEL]
 model('user','header');
 model('user','cart');
+model('user','voucher');
 
 # [VARIABLE]
 $render_product_in_cart = '';
@@ -19,6 +20,11 @@ if(get_action_uri(1) == 'get_count') {
 
 // lấy tất cả thông tin giỏ hàng
 if(get_action_uri(1) == 'get_list') {
+    // Check validation session voucher
+    foreach ($_SESSION['voucher'] as $code) {
+        check_voucher($code);
+    }
+
     // Lấy danh sách sản phẩm
     $list_product_in_cart = get_cart('list');
     // Kiểm tra
@@ -32,10 +38,12 @@ if(get_action_uri(1) == 'get_list') {
     
     // trả json
     view_json(200,[
-        'total' => number_format(get_cart('total'),0,',','.').' vnđ',
+        'listVoucher' => render_list_voucher(get_list_voucher('all')), // Lấy voucher,
+        'apply_voucher' => render_apply_voucher(),
+        'total_cart' => number_format(get_cart('total_cart'),0,',','.').' vnđ',
+        'total_checkout' => number_format(get_cart('total_checkout'),0,',','.').' vnđ',
         'data' => $render_product_in_cart,
         'btnCheckout' => render_button_checkout(),
-        'listVoucher' => render_list_voucher() // Lấy voucher,
     ]);
 }
 
