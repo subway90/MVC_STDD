@@ -155,29 +155,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- [THÔNG TIN KM] -->
-                    <div class="col-12 mt-3 mt-lg-5">
-                        <p class="text-success text-uppercase fw-semibold">chương trình khuyến mãi</p>
-                        <?php if(!empty($detail_product['array_voucher'])) : // Nếu có voucher ?>
-                        <?php foreach ($detail_product['array_voucher'] as $item) : extract($item)?>
-                        <div class="my-3">
-                            <div class="border-1 voucher small rounded-2 d-inline px-1 me-1 text-danger">
-                                <?= $code_voucher ?>
-                            </div>
-                            <span>
-                                <span class="lh-1 small">
-                                    <?= $description_voucher ?>
-                                    <?php if($apply_this_product) : ?>
-                                        <span class="text-muted small fst-italic"> - Chỉ áp dụng cho sản phẩm này</span>
-                                    <?php endif ?>
-                                </span>
-                            </span>
-                        </div>
-                        <?php endforeach ?>
-                        <?php else : ?>
-                            Hiện tại chưa có khuyến mãi
-                        <?php endif ?>
-                    </div>
                 </div>
             </form>
         </div>
