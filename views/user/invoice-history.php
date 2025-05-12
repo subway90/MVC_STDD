@@ -38,6 +38,9 @@
                         <span class="badge border border-1 text-secondary border-secondary"><?= $row['status_order'] ?></span>
                     </td>
                     <td class="text-center"><?=format_time($row['created_at'],'DD/MM lúc hh:mm')?></td>
+                    <td class="text-end">
+                        <a href="<?=URL?>lich-su-mua-hang/<?=$id_invoice?>" class="btn btn-sm border-1 btn-outline-success mt-2 mt-lg-0"><i class="fas fa-eye"></i> Xem chi tiết</a>
+                    </td>
                 </tr>
                 <?php endforeach; endif ?>
             </tbody>
