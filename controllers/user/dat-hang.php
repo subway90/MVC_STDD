@@ -128,7 +128,7 @@ if($bool_checkout) {
     unset($_SESSION['cart']); // xoá session giỏ hàng
     unset($_SESSION['checkout']); // xoá session thanh toán
     unset($_SESSION['voucher']); // xoá session voucher
-    route('don-hang/'.$id_invoice); // chuyển đến trang đơn hàng
+    route('lich-su-mua-hang/'.$id_invoice); // chuyển đến trang đơn hàng
 }
 
 
