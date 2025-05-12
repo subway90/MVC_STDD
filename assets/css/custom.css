@@ -1,13 +1,22 @@
 :root {
-    --primary-color: #228654 !important; /* Tùy chỉnh màu chính */
-    --secondary-color: #33c1ff !important; /* Tùy chỉnh màu phụ */
-    --success-color: #28a745 !important; /* Màu thành công */
-    --danger-color: #dc3545 !important; /* Màu nguy hiểm */
-    --warning-color: #ffc107 !important; /* Màu cảnh báo */
-    --info-color: #17a2b8 !important; /* Màu thông tin */
-    --light-color: #ffffff !important; /* Màu sáng */
-    --dark-color: #343a40 !important; /* Màu tối */
-    --orange-color: #fc521d !important; /* Màu tối */
+    --primary-color: #228654 !important;
+    /* Tùy chỉnh màu chính */
+    --secondary-color: #33c1ff !important;
+    /* Tùy chỉnh màu phụ */
+    --success-color: #28a745 !important;
+    /* Màu thành công */
+    --danger-color: #dc3545 !important;
+    /* Màu nguy hiểm */
+    --warning-color: #ffc107 !important;
+    /* Màu cảnh báo */
+    --info-color: #17a2b8 !important;
+    /* Màu thông tin */
+    --light-color: #ffffff !important;
+    /* Màu sáng */
+    --dark-color: #343a40 !important;
+    /* Màu tối */
+    --orange-color: #fc521d !important;
+    /* Màu tối */
 }
 
 .voucher {
@@ -15,27 +24,33 @@
 }
 
 .carousel-item img {
-    cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
+    cursor: pointer;
+    /* Thay đổi con trỏ khi hover lên ảnh */
 }
+
 .thumbnail {
     width: 100px;
     height: auto;
     cursor: pointer;
     opacity: 0.6;
 }
+
 .thumbnail.active {
     opacity: 1;
 }
 
 #fullscreenImage {
     width: 100%;
-    max-height:100vh; /* Giới hạn chiều cao tối đa là chiều cao của màn hình */
-    object-fit: contain; /* Giữ tỷ lệ khung hình của ảnh */
+    max-height: 100vh;
+    /* Giới hạn chiều cao tối đa là chiều cao của màn hình */
+    object-fit: contain;
+    /* Giữ tỷ lệ khung hình của ảnh */
 }
 
 .sm-img-modal {
     width: 52px;
-    cursor: pointer; /* Thay đổi con trỏ khi hover lên ảnh */
+    cursor: pointer;
+    /* Thay đổi con trỏ khi hover lên ảnh */
 }
 
 /* Spinner hiển thị khi tải trang */
@@ -45,12 +60,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white; /* Nền trắng */
-    z-index: 9999; /* Đảm bảo spinner nằm trên cùng */
+    background-color: white;
+    /* Nền trắng */
+    z-index: 9999;
+    /* Đảm bảo spinner nằm trên cùng */
     display: flex;
     justify-content: center;
     align-items: center;
-    visibility: visible; /* Hiển thị spinner ban đầu */
+    visibility: visible;
+    /* Hiển thị spinner ban đầu */
 }
 
 .box-color {
@@ -60,46 +78,59 @@
     box-shadow: inset 2px -2px 4px rgba(0, 0, 0, 0.6), 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.form-check {
+    padding : 0;
+}
+
 .form-check-label {
-  border: 1px dashed #999999;
-  border-radius: 4px;
-  padding: 10px;
-  color: #999999;
+    width: 100%;
+    border: 1px dashed #999999;
+    border-radius: 4px;
+    padding: 10px;
+    color: #999999;
 }
 
 .border-primary {
-  border-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
 }
 
 .form-check-input {
-  display: none;
+    display: none;
 }
 
-.form-check-input:checked + .form-check-label {
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  border-style: solid;
+.form-check-input:checked+.form-check-label {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-style: solid;
 }
 
 .form-check-input:checked {
-  /* Khi input được chọn, border thành solid */
-  border: 1px solid var(--primary-color);
+    /* Khi input được chọn, border thành solid */
+    border: 1px solid var(--primary-color);
 }
 
 .card-product {
-    width: 50%; /* Mặc định là 100% cho các kích thước nhỏ hơn */
+    width: 50%;
+    /* Mặc định là 100% cho các kích thước nhỏ hơn */
 }
 
-@media (min-width: 768px) { /* Kích thước lg bắt đầu từ 992px */
+@media (min-width: 768px) {
+
+    /* Kích thước lg bắt đầu từ 992px */
     .card-product {
-        width: 33.3%; /* Thiết lập width là 20% cho màn hình lớn */
+        width: 33.3%;
+        /* Thiết lập width là 20% cho màn hình lớn */
     }
 }
 
-@media (min-width: 992px) { /* Kích thước lg bắt đầu từ 992px */
+@media (min-width: 992px) {
+
+    /* Kích thước lg bắt đầu từ 992px */
     .card-product {
-        width: 20%; /* Thiết lập width là 20% cho màn hình lớn */
+        width: 20%;
+        /* Thiết lập width là 20% cho màn hình lớn */
     }
+
     #fullscreenImage {
         width: 600px;
     }
@@ -115,24 +146,28 @@
     color: var(--primary-color);
 }
 
-.link-dropdown:hover, .dropdown-item:hover .link-dropdown {
+.link-dropdown:hover,
+.dropdown-item:hover .link-dropdown {
     color: var(--light-color);
 }
 
 
 .nav-item:hover .dropdown-menu {
-    display: block; /* Hiện dropdown khi hover */
+    display: block;
+    /* Hiện dropdown khi hover */
 }
 
 .submenu {
-    display: none; /* Ẩn submenu mặc định */
-    position: absolute; 
-    left: 100%; 
+    display: none;
+    /* Ẩn submenu mặc định */
+    position: absolute;
+    left: 100%;
     top: 0;
     margin-right: 20px;
     background-color: var(--light-color);
-    border: 1px solid #ccc; /* Đường viền submenu */
-    z-index: 1001; 
+    border: 1px solid #ccc;
+    /* Đường viền submenu */
+    z-index: 1001;
 }
 
 .dropdown-item:hover {
@@ -141,7 +176,8 @@
 }
 
 .dropdown-item:hover .submenu {
-    display: block; /* Hiện submenu khi hover vào item danh mục lv1 */
+    display: block;
+    /* Hiện submenu khi hover vào item danh mục lv1 */
 }
 
 .search-input {
@@ -181,22 +217,28 @@
     display: block;
     transition: calc(0.6s);
 }
-.hover-trigger:hover > img {
+
+.hover-trigger:hover>img {
     opacity: 0.5;
     transition: calc(0.6s);
 }
+
 .title {
-    box-shadow:  5px 4px 2px 0px #084b2c
+    box-shadow: 5px 4px 2px 0px #084b2c
 }
+
 .text-green {
     color: #232323;
 }
+
 .text-green:hover {
     color: #138952;
 }
+
 .text-green-active {
     color: #138952;
 }
+
 .hover-btn-galery-product:hover {
     transition: calc(0.4s);
     background-color: rgb(255, 255, 255);
@@ -216,10 +258,12 @@
     width: 8px;
     /* background: rgb(90, 3, 3); */
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: #13895280;
     /* border-radius: 5px; */
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background-color: #138952;
     border-radius: 8px;

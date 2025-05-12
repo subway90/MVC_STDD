@@ -22,7 +22,7 @@
                     <span class="h6 text-success">Chọn mức giá</span>
                 </div>
                 <div id="panelPrice" class="accordion-collapse collapse show">
-                    <div class="accordion-body">
+                    <div class="accordion-body px-0">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="filterPrice" id="filterPriceAll" value="0" checked>
                             <label class="form-check-label small" for="filterPriceAll">Tất cả mức giá</label>
@@ -46,7 +46,7 @@
                     <span class="h6 text-success">Chọn thương hiệu</span>
                 </div>
                 <div id="panelBrand" class="accordion-collapse collapse">
-                    <div class="accordion-body">
+                    <div class="accordion-body px-0">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="filterBrand" id="filterBrandAll" value="0" checked>
                             <label class="form-check-label small" for="filterBrandAll">Tất cả thương hiệu</label>
@@ -70,7 +70,7 @@
                     <span class="h6 text-success">Chọn màu</span>
                 </div>
                 <div id="panelColor" class="accordion-collapse collapse">
-                    <div class="accordion-body">
+                    <div class="accordion-body px-0">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="filterColor" id="filterColorAll" value="0" checked>
                             <label class="form-check-label small" for="filterColorAll">Tất cả màu</label>
