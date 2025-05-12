@@ -120,7 +120,7 @@ function get_cart($get_type) {
             if($get_voucher['unit_voucher'] === '%') {
                 $value_discount = get_cart('total_cart')/100 * $get_voucher['value_voucher'];
                 // nếu có max value voucher và giá trị discount lớn hơn giá trị max -> so sánh và lấy giá max nếu vượt
-                if($get_voucher['max_value_voucher'] && $get_voucher['max_value_voucher'] < $value_discount) $value_discount = $get_one['max_value_voucher'];
+                if($get_voucher['max_value_voucher'] && $get_voucher['max_value_voucher'] < $value_discount) $value_discount = $get_voucher['max_value_voucher'];
             }
             else $value_discount = $get_voucher['value_voucher'];
         }
