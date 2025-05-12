@@ -95,10 +95,12 @@ if (isset($_GET['callback-momo'])) {
 if($bool_checkout) {
     extract($_SESSION['checkout']);
 
+    // lưu db hoá đơn
     pdo_execute('INSERT INTO invoice (id_invoice,username,id_shipping_address,note_invoice,method_payment)
     VALUES ("'.$id_invoice.'","'.$_SESSION['user']['username'].'",'.$id_shipping_address.',"'.$note_invoice.'","'.$method_payment.'")'
-    ); // hoá đơn
+    );
 
+    // lưu db hoá đơn chi tiết
     foreach (get_cart('list') as $cart) {
         // lưu giá giảm (nếu có)
         if($cart['sale_price_product']) $price_product = $cart['sale_price_product'];
@@ -108,12 +110,24 @@ if($bool_checkout) {
             'INSERT INTO invoice_detail (id_invoice,id_product,quantity_invoice,price_invoice)
             VALUES ("'.$id_invoice.'",'.$cart['id_product'].','.$cart['quantity_product'].','.$price_product.')'
         );
-    } // hoá đơn chi tiết
+    }
+
+    // lưu db voucher - invoice
+    if(!empty($_SESSION['voucher'])) {
+        // lưu db hoá đơn chi tiết
+        foreach ($_SESSION['voucher'] as $code) {
+            pdo_execute(
+                'INSERT INTO voucher_invoice (code_voucher,id_invoice)
+                VALUES ("'.$code.'","'.$id_invoice.'")'
+            );
+        }
+    }
 
     // thông báo thành công và chuyển trang
     toast_create('success','Đơn hàng đã được tạo thành công !');
     unset($_SESSION['cart']); // xoá session giỏ hàng
     unset($_SESSION['checkout']); // xoá session thanh toán
+    unset($_SESSION['voucher']); // xoá session voucher
     route('don-hang/'.$id_invoice); // chuyển đến trang đơn hàng
 }
 
