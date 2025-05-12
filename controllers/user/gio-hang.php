@@ -52,11 +52,14 @@ if(get_action_uri(1) == 'add' && isset($_POST['id_product'])) {
     // lấy ID sản phẩm
     $id_product = clear_input($_POST['id_product']);
     // cập nhật vào session cart
-    update_cart($id_product);
+    $check = update_quantity('plus',$id_product);
     // thông báo toast
-    view_json(200,[
-        'message' => toast('success','Thêm sản phẩm vào giỏ hàng thành công !')
-    ]);    
+    if($check) view_json(200,[
+        'message'=> toast('success','Thêm sản phẩm vào giỏ hàng thành công'),
+    ]);
+    else view_json(403,[
+        'message'=> toast('warning','Đã đạt giới hạn số lượng'),
+    ]);
 }
 
 // tăng số lượng
