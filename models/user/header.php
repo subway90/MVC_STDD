@@ -160,6 +160,24 @@ function list_category_for_menu() {
             ],
             'category_v2' => $list_v2
         ];
-    }
+    }   
     return $result;
+}
+
+
+/**
+ * Trả về class màu background theo trạng thái đơn hàng
+ * @param mixed $status_invoice
+ * @return string
+ */
+function bg_state_invoice($status_invoice) {
+    switch($status_invoice) {
+        case 'chưa xác nhận' : return 'bg-secondary';
+        case 'đã xác nhận' : return 'bg-secondary';
+        case 'đang giao hàng' : return 'bg-warning';
+        case 'hoàn thành' : return 'bg-success';
+        case 'hoàn trả' : return 'bg-info';
+        case 'đã huỷ' : return 'bg-danger';
+        default: return 'text-dark';
+    }
 }

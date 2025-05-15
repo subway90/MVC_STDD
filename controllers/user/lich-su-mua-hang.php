@@ -27,5 +27,7 @@ $data = [
  'list_invoice_history' => get_all_invoice(),
 ];
 
+// test_array(get_all_invoice());
+
 # [RENDER]
 view('user','Lịch sử mua hàng','invoice-history', $data);

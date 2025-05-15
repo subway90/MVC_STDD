@@ -1,5 +1,7 @@
 :root {
     --primary-color: #228654 !important;
+    --primary-color-50: #22865450 !important;
+    --primary-color-00: #22865400 !important;
     /* Tùy chỉnh màu chính */
     --secondary-color: #33c1ff !important;
     /* Tùy chỉnh màu phụ */
@@ -14,9 +16,11 @@
     --light-color: #ffffff !important;
     /* Màu sáng */
     --dark-color: #343a40 !important;
+    --dark-color-80: #343a4080 !important;
     /* Màu tối */
     --orange-color: #fc521d !important;
     /* Màu tối */
+    --muted-color: #888888 !important;
 }
 
 .voucher {
@@ -267,4 +271,49 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: #138952;
     border-radius: 8px;
+}
+
+.nav-link-infomation {
+    padding: 12px 6px;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: calc(0.3s);
+}
+
+.nav-link-infomation:hover {
+    color: var(--light-color);
+    background: linear-gradient(to right, #22865460, #22865409);
+    transition: calc(0.3s);
+}
+
+.nav-link-infomation.active {
+    color: var(--primary-color);
+    background: linear-gradient(to right, #22865460, #22865409);
+}
+
+.bg-green-gradient {
+    background: linear-gradient(45deg, #228654, #22865480);
+}
+
+.btn-status-invoice {
+    font-size: 13px;
+    color: var(--dark-color-80);
+    border: none;
+    background-color: transparent;
+    padding: 8px;
+    border-bottom: 2px solid transparent;
+
+}
+
+.btn-status-invoice:hover {
+    color: var(--dark-color);
+    border-color: var(--primary-color-50);
+}
+
+.btn-status-invoice.active {
+    font-weight: 500;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
