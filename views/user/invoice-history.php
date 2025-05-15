@@ -30,7 +30,7 @@
                 <tr>
                     <th class="text-start"><?=$i+1?></th>
                     <td class="text-start"><?= count($row['detail']) ?> | <?=number_format($row['total'])?> đ</td>
-                    <td class="text-center text-uppercase small fw-semibold">
+                    <td class="d-flex justify-content-center align-items-center text-uppercase small fw-semibold gap-2">
                         <img width="32" src="<?= URL_STORAGE ?>payment-method/<?= $row['method_payment'] ?>.png" alt="<?= $row['method_payment'] ?>">
                         <?= $row['method_payment'] ?>
                     </td>
@@ -39,7 +39,7 @@
                     </td>
                     <td class="text-center"><?=format_time($row['created_at'],'DD/MM lúc hh:mm')?></td>
                     <td class="text-end">
-                        <a href="<?=URL?>lich-su-mua-hang/<?=$id_invoice?>" class="btn btn-sm border-1 btn-outline-success mt-2 mt-lg-0"><i class="fas fa-eye"></i> Xem chi tiết</a>
+                        <a href="<?=URL?>lich-su-mua-hang/<?=$row['id_invoice']?>" class="btn btn-sm border-1 btn-outline-success mt-2 mt-lg-0"><i class="fas fa-eye me-1"></i> Xem chi tiết</a>
                     </td>
                 </tr>
                 <?php endforeach; endif ?>
