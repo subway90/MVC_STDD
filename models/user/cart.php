@@ -23,38 +23,39 @@ function delete_cart($id) {
  */
 function update_quantity($type,$id) {
     // Lặp sản phẩm trong session
-    foreach ($_SESSION['cart'] as $i => $product) {
-        // Nếu ID sản phẩm cập nhật có trong giỏ hàng
-        if($_SESSION['cart'][$i]['id_product'] == $id){
-            // Nếu tăng số lượng
-            if($type == 'plus') {
-                // Lấy tổng số lượng của sản phẩm đó
-                $max_quantity = pdo_query_value('SELECT quantity_product FROM product WHERE id_product ='.$id);
-                // Kiểm tra nếu chưa đạt giới hạn
-                if($_SESSION['cart'][$i]['quantity_product'] < $max_quantity ) {
-                    $_SESSION['cart'][$i]['quantity_product']++; // Thêm số lượng
-                    return true;
+    if(!empty($_SESSION['cart']) && $type == 'plus') {
+        foreach ($_SESSION['cart'] as $i => $product) {
+            // Nếu ID sản phẩm cập nhật có trong giỏ hàng
+            if($_SESSION['cart'][$i]['id_product'] == $id){
+                // Nếu tăng số lượng
+                if($type == 'plus') {
+                    // Lấy tổng số lượng của sản phẩm đó
+                    $max_quantity = pdo_query_value('SELECT quantity_product FROM product WHERE id_product ='.$id);
+                    // Kiểm tra nếu chưa đạt giới hạn
+                    if($_SESSION['cart'][$i]['quantity_product'] < $max_quantity ) {
+                        $_SESSION['cart'][$i]['quantity_product']++; // Thêm số lượng
+                        return true;
+                    }
                 }
-            }
-            // Nếu giảm số lượng
-            else if($type == 'minus') {
-                // Kiểm tra số lượng chưa bé hơn 1 (chưa min)
-                if($_SESSION['cart'][$i]['quantity_product']>1) {
-                    $_SESSION['cart'][$i]['quantity_product']--; // Giảm số lượng
-                    return true;
+                // Nếu giảm số lượng
+                else if($type == 'minus') {
+                    // Kiểm tra số lượng chưa bé hơn 1 (chưa min)
+                    if($_SESSION['cart'][$i]['quantity_product']>1) {
+                        $_SESSION['cart'][$i]['quantity_product']--; // Giảm số lượng
+                        return true;
+                    }
                 }
             }
         }
-        // Nếu chưa có sản phẩm
-        else {
-            // Thêm phần tử sản phẩmm mới vào mảng Cart
-            $_SESSION['cart'][] = [
-                'id_product' => $id,
-                'quantity_product' => 1,
-            ];
-            return true;
-        }
-
+    }
+    // Nếu chưa có sản phẩm
+    else {
+        // Thêm phần tử sản phẩmm mới vào mảng Cart
+        $_SESSION['cart'][] = [
+            'id_product' => $id,
+            'quantity_product' => 1,
+        ];
+        return true;
     }
     return false;
 }
