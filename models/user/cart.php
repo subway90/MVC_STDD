@@ -23,7 +23,7 @@ function delete_cart($id) {
  */
 function update_quantity($type,$id) {
     // Lặp sản phẩm trong session
-    if(!empty($_SESSION['cart']) && $type == 'plus') {
+    if(!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $i => $product) {
             // Nếu ID sản phẩm cập nhật có trong giỏ hàng
             if($_SESSION['cart'][$i]['id_product'] == $id){
