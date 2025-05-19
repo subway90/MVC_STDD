@@ -5,6 +5,16 @@ model('user','invoice');
 
 # [HANDLE]
 
+// Xem danh sách đơn theo trạng thái
+
+if(isset($_POST['get-list-invoice']) && $_POST['state']) {
+    $state = clear_input($_POST['state']);
+    
+    view_json(200,[
+        'list_invoice_history' => render_list_invoice_history(get_list_invoice($state)),
+    ]);
+}
+
 // Xem chi tiết
 if(get_action_uri(1)) {
     // input
@@ -24,7 +34,7 @@ if(get_action_uri(1)) {
 
 # [DATA]
 $data = [
- 'list_invoice_history' => get_all_invoice(),
+
 ];
 
 // test_array(get_all_invoice());

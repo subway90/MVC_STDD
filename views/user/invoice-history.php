@@ -1,3 +1,6 @@
+<!-- JS Custom -->
+<script src="<?= URL ?>assets/js/invoice.js"></script>
+
 <div class="container mt-3 bg-light rounded pt-3 pb-1">
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -51,83 +54,29 @@
         <div class="col-12 col-lg-9 px-0 px-lg-3 pe-lg-0 mt-3 mt-lg-0">
             <div class="">
                 <div class="bg-light rounded-3 p-3 d-flex justify-content-between justify-content-lg-start gap-2 mb-3">
-                    <button id="tat_ca" class="btn-status-invoice active">
+                    <button id="tat-ca" class="btn-status-invoice active">
                         Tất cả
                     </button>
-                    <button id="chua_xac_nhan" class="btn-status-invoice">
+                    <button id="chưa xác nhận" class="btn-status-invoice">
                         Chưa xác nhận
                     </button>
-                    <button id="da" class="btn-status-invoice">
+                    <button id="đã xác nhận" class="btn-status-invoice">
                         Đã xác nhận
                     </button>
-                    <button id="dang_giao_hang" class="btn-status-invoice">
+                    <button id="đang giao hàng" class="btn-status-invoice">
                         Đang giao hàng
                     </button>
-                    <button id="da" class="btn-status-invoice">
+                    <button id="đã giao hàng" class="btn-status-invoice">
                         Đã giao hàng
                     </button>
-                    <button id="hoan_tra" class="btn-status-invoice">
+                    <button id="hoàn trả" class="btn-status-invoice">
                         Hoàn trả
                     </button>
-                    <button id="da_huy" class="btn-status-invoice">
+                    <button id="đã huỷ" class="btn-status-invoice">
                         Đã huỷ
                     </button>
                 </div>
-                <div class="d-flex flex-column px-3">
-                    <?php if(empty($list_invoice_history)) : ?>
-                            <div class="text-center py-3">Bạn chưa có hóa đơn nào.</div>
-                    <?php else :
-                        foreach ($list_invoice_history as $i => $row) :
-                    ?>
-                    <div class="row py-3 mb-3 bg-light p-3 rounded-3">
-                        <div class="col-12 p-0 d-flex justify-content-between">
-                            <span class="fw-semi small">
-                                <i class="bi bi-clock text-success me-2"></i><small><?= format_time($row['created_at'],'hh giờ mm phút - DD/MM/YYYY') ?></small>
-                            </span>
-                            <div class="px-3 small rounded-3 text-light <?= bg_state_invoice($row['status_order']) ?> bg-opacity-50">
-                                <span class="small fw-semi">
-                                    <?= $row['status_order'] ?>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-12 p-0">
-                            <table class="table table-hover mt-2">
-                                <thead>
-                                    <th class="fw-normal small">Tên sản phẩm</th>
-                                    <th class="fw-normal small text-end">Giá</th>
-                                    <th class="fw-normal small text-end">Số lượng</th>
-                                    <th class="fw-normal small text-end">Thành tiền</th>
-                                </thead>
-                                <tbody>
-                                <?php foreach ($row['detail'] as $product) : ?>
-                                    <tr class="align-middle">
-                                        <td class="fw-light d-flex align-items-center small">
-                                            <img class="me-2" width="45" src="<?= URL_STORAGE . $product['path_product_image'] ?>" alt="">
-                                            <a href="<?= URL . 'chi-tiet/' . $product['slug_product'] ?>" class="nav-link text-green small text-decoration-underline">
-                                                <?= $product['name_product'] ?>
-                                            </a>
-                                        </td>
-                                        <td class="fw-light small text-end"><?= number_format($product['price_invoice'],0,0,'.') ?> vnđ</td>
-                                        <td class="fw-light small text-end"><?= $product['quantity_invoice'] ?></td>
-                                        <td class="fw-light small text-end"><?= number_format($product['price_invoice']*$product['quantity_invoice'],0,0,'.') ?> vnđ</td>
-                                    </tr>
-                                <?php endforeach ?>
-                                </tbody>
-                                <tfoot>
-                                    <td colspan="4" class="fw-bold small text-end"><?= number_format($row['total'],0,0,'.') ?> vnđ</td>
-                                </tfoot>
-                            </table>
-                            <div class="d-flex justify-content-lg-end gap-1">
-                                <a href="gio-hang/<?= $row['id_invoice'] ?>" class="col-6 col-lg-2 btn btn-sm rounded-pill btn-outline-success px-3">
-                                    <i class="bi bi-bag-check-fill me-1"></i> Mua lại
-                                </a>
-                                <a href="lich-su-mua-hang/<?= $row['id_invoice'] ?>" class="col-6 col-lg-2 btn btn-sm rounded-pill btn-success px-3">
-                                    <i class="bi bi-eye me-1"></i> Xem chi tiết
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; endif ?>
+                <div id="result-list-invoice" class="d-flex flex-column px-3">
                 </div>
             </div>
         </div>

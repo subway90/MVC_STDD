@@ -23,7 +23,7 @@
                     </tr>
                     <tr class="align-middle">
                         <td class="text-start fw-bold"> Trạng thái đơn </td>
-                        <td> <?= $status_order ?> </td>
+                        <td> <?= $status_invoice ?> </td>
                     </tr>
                     <tr class="align-middle">
                         <td class="text-start fw-bold"> Số sản phẩm </td>
