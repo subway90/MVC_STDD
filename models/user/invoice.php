@@ -144,13 +144,13 @@ function render_list_invoice_history($data) {
         $total_invoice = number_format($row['total'],0,0,'.');
 
         // row detail
+        $render_row_detail = '';
         foreach ($row['detail'] as $product) {
             // format
             $path_product_image = URL_STORAGE . $product['path_product_image'];
             $url_product = URL . 'chi-tiet/' . $product['slug_product'];
             $price = number_format($product['price_invoice'],0,0,'.');
             $total = number_format($product['price_invoice']*$product['quantity_invoice'],0,0,'.');
-            $render_row_detail = '';
             $render_row_detail .= <<<HTML
                 <tr class="align-middle">
                     <td class="fw-light d-flex align-items-center small">
