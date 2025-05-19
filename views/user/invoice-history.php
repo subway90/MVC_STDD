@@ -84,8 +84,8 @@
                             <span class="fw-semi small">
                                 <i class="bi bi-clock text-success me-2"></i><small><?= format_time($row['created_at'],'hh giờ mm phút - DD/MM/YYYY') ?></small>
                             </span>
-                            <div class="px-3 small fw-normal rounded-3 text-light <?= bg_state_invoice($row['status_order']) ?> bg-opacity-75">
-                                <span class="small">
+                            <div class="px-3 small rounded-3 text-light <?= bg_state_invoice($row['status_order']) ?> bg-opacity-50">
+                                <span class="small fw-semi">
                                     <?= $row['status_order'] ?>
                                 </span>
                             </div>
