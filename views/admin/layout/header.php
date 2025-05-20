@@ -45,7 +45,7 @@
                 <div class="sa-sidebar__header">
                     <a class="sa-sidebar__logo" href="<?= URL_ADMIN ?>">
                         <!-- logo -->
-                        <div class="sa-sidebar-logo text-center text-muted">
+                        <div class="sa-sidebar-logo text-center text-light">
                             <img width="40" src="<?= WEB_LOGO ?>" alt="">
                             <?= WEB_NAME ?>
                         </div>
@@ -54,34 +54,26 @@
                 </div>
                 <div class="sa-sidebar__body bg-light bg-opacity-10" data-simplebar="">
                     <ul class="sa-nav sa-nav--sidebar" data-sa-collapse="">
+
                         <li class="sa-nav__section">
+                            <div class="sa-nav__section-title"><span>thống kê</span></div>
                             <ul class="sa-nav__menu sa-nav__menu--root">
-                                <!-- Project Case -->
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>tong-quan"
+                                        class="sa-nav__link <?= ($page == 'overview') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-chart-pie"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Tổng quan</span>
+                                    </a>
+                                </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>thong-ke"
                                         class="sa-nav__link <?= ($page == 'dashboard') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
-                                            <i class="fas fa-tachometer-alt"></i>
+                                            <i class="far fa-chart-bar"></i>
                                         </span>
-                                        <span class="sa-nav__title">Thống kê</span>
-                                    </a>
-                                </li>
-                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>quan-li-danh-muc"
-                                        class="sa-nav__link <?= ($page == 'category') ? 'bg-dark' : '' ?>">
-                                        <span class="sa-nav__icon">
-                                            <i class="fas fa-boxes"></i>
-                                        </span>
-                                        <span class="sa-nav__title">Quản lí danh mục</span>
-                                    </a>
-                                </li>
-                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>quan-li-san-pham"
-                                        class="sa-nav__link <?= ($page == 'product') ? 'bg-dark' : '' ?>">
-                                        <span class="sa-nav__icon">
-                                            <i class="fas fa-box"></i>
-                                        </span>
-                                        <span class="sa-nav__title">Quản lí sản phẩm</span>
+                                        <span class="sa-nav__title">Doanh thu</span>
                                     </a>
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
@@ -95,6 +87,115 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="sa-nav__section">
+                            <div class="sa-nav__section-title"><span>sản phẩm</span></div>
+                            <ul class="sa-nav__menu sa-nav__menu--root">
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
+                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-tags"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Thương hiệu</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
+                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-tint"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Bảng màu</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
+                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-th-list"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Danh mục</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-danh-muc"
+                                        class="sa-nav__link <?= ($page == 'category') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-boxes"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Seris</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-san-pham"
+                                        class="sa-nav__link <?= ($page == 'product') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-box"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Chi tiết</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="sa-nav__section">
+                            <div class="sa-nav__section-title"><span>chương trình</span></div>
+                            <ul class="sa-nav__menu sa-nav__menu--root">
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>thong-ke"
+                                        class="sa-nav__link <?= ($page == 'flashsale') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-bolt"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Flashsale</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
+                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-ticket-alt"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Voucher</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sa-nav__section">
+                            <div class="sa-nav__section-title"><span>hiển thị</span></div>
+                            <ul class="sa-nav__menu sa-nav__menu--root">
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-danh-muc"
+                                        class="sa-nav__link <?= ($page == 'category') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-adjust"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Giao diện</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-san-pham"
+                                        class="sa-nav__link <?= ($page == 'product') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-images"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Slide banner</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
+                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-sliders-h"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Chung</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -136,7 +237,7 @@
                             <li>
                                 <a class="dropdown-item" href="<?= URL ?>">Trang chủ</a>
                                 <form action="<?= URL ?>dang-xuat" method="post">
-                                    <button name="logout" type="submit" class="dropdown-item text-danger" href="<?= URL . "dang-xuat" ?>">Thoát</button>
+                                    <button name="logout" type="submit" class="dropdown-item text-danger" href="<?= URL . "dang-xuat" ?>">Đăng xuất</button>
                                 </form>
                             </li>
                         </ul>
