@@ -124,10 +124,10 @@ function view_error($code)
  * Lồng layout vào trong một view
  * 
  * @param string $type Folder layout [user,admin]
+ * @param array | null $data Dữ liệu truyền vào layout
  * @param string $layout Tên layout
  */
-function layout($type, $layout, $data = null)
-{
+function layout($type, $layout, $data = null) {
     if ($type != 'admin' && $type != 'user') die(_s_me_error . 'Type khai báo <strong>' . $type . '</strong> không phù hợp trong mảng [user,admin] ' . _e_me_error);
     if (file_exists('views/' . $type . '/layout' . '/' . $layout . '.php')) {
         if (!empty($data)) extract($data);
