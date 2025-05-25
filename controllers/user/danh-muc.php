@@ -3,6 +3,7 @@
 # [MODEL]
 model('user','category');
 model('admin','brand');
+model('admin','color');
 
 # [VARIABLE]
 $result = '';
