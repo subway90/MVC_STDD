@@ -1,25 +1,5 @@
 <?php
 
-/**
- * Lấy tất cả thương hiệu
- * @return array
- */
-function get_all_brand() {
-    return pdo_query(
-        'SELECT * FROM brand WHERE deleted_at IS NULL'
-    );
-}
-
-/**
- * Lấy tất cả màu
- * @return array
- */
-function get_all_color() {
-    return pdo_query(
-        'SELECT * FROM color WHERE deleted_at IS NULL'
-    );
-}
-
 function render_card_product($data) {
     $url_storage = URL_STORAGE;
     // giải nén
