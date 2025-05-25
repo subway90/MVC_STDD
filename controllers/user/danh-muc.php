@@ -90,7 +90,7 @@ if(isset($_GET['filter'])) {
 
 $data = [
     'list_brand' => get_all_brand(true), // danh sách thương hiệu
-    'list_color' => get_all_color(), // danh sách thương hiệu
+    'list_color' => get_all_color(true), // danh sách thương hiệu
 ];
 
 # [RENDER]
