@@ -28,10 +28,8 @@
     <!-- cdn google -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Summernote CSS - CDN Link -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <!-- //Summernote CSS - CDN Link -->
-
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <?= toast_show();//dùng toast ?>
 </div>
@@ -78,11 +76,20 @@
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
-                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                        class="sa-nav__link <?= ($page == 'invoice') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-file-invoice-dollar"></i>
                                         </span>
                                         <span class="sa-nav__title">Quản lí hoá đơn</span>
+                                    </a>
+                                </li>
+                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
+                                        class="sa-nav__link <?= ($page == 'account') ? 'bg-dark' : '' ?>">
+                                        <span class="sa-nav__icon">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                        <span class="sa-nav__title">Quản lí tài khoản</span>
                                     </a>
                                 </li>
                             </ul>
@@ -128,8 +135,8 @@
                                     </a>
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>quan-li-san-pham"
-                                        class="sa-nav__link <?= ($page == 'product') ? 'bg-dark' : '' ?>">
+                                    <a href="<?= URL_ADMIN ?>danh-sach-san-pham"
+                                        class="sa-nav__link <?= ($page == 'product-list') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-box"></i>
                                         </span>
