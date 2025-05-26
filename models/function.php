@@ -361,29 +361,75 @@ function clear_input($input)
  * Lưu ý: Nếu để false $encrypt_bool, thì file trùng tên sẽ thêm hậu tố -copy
  * 
  * @param bool $encrypt_bool Có cần mã hoá tên hay không
- * @param string $folder Thư mục lưu file ( tiền tố assets/file/ )
- * @param mixed $file File cần lưu
- * @return string Trả về đường dẫn đã lưu nếu lưu thành công, trả về 0 nếu lưu thất bại
+ * @param string $folder Tên thư mục lưu cần lưu file
+ * @param array $file File cần lưu
+ * @param int $size Kích thước tối đa, theo đơn vị byte
+ * @param string | array $type Loại file cần lưu, Nếu để giá trị là "all" là cho tất cả, hoặc mảng file
+ * @return array [code : int | message : string ] Code 0 : Thất bại | Code 1 : Thành công
  */
-function save_file($bool_encrypt, $folder, $file)
-{
-    // Kiểm tra thư mục tồn tại chưa
-    if (!is_dir('assets/file/' . $folder))
-        die(_s_me_error . 'Thư mục asset/file/' . $folder . ' chưa được tạo khi dùng hàm save_file' . _e_me_error);
-    if ($bool_encrypt) {
-        // Mã hoá tên file
-        $file['name'] = uniqid() . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
-    } else {
-        // Kiểm tra file đã tồn tại chưa, nếu có thì thêm hậu tố -copy
-        if (file_exists('assets/file/' . $folder . '/' . $file["name"]))
-            $file['name'] = pathinfo($file['name'], PATHINFO_FILENAME) . '-copy.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+function save_file($bool_encrypt, $folder, $file, $size, $type){
+    # Kiểm tra thư mục tồn tại chưa
+    if(!is_dir('assets/file/' . $folder)) return [
+        'code' => 0,
+        'message' => 'Thư mục asset/file/' . $folder . ' chưa được tạo',
+    ];
+
+    # Kiểm tra kích thước
+    $invalid_type = false; // Bool báo lỗi
+    // Nếu là chuỗi
+    if(is_string($type)){
+        // Nếu không phải là cho phép tất cả
+        if($type !== 'all') if($type !== $file['type']) $invalid_type = true;  // Kiểm tra type
     }
-    // Tiến hành lưu
+    // Nếu là mảng
+    else {
+        // Nếu type không hợp lệ trong mảng type điều kiện
+        if(!in_array($file['type'],$type)) $invalid_type = true;
+    }
+
+    // Báo lỗi type nếu tồn tại lỗi
+    if($invalid_type) return [
+        'code' => 0,
+        'message' => 'File không đúng định dạng yêu cầu',
+    ];
+
+    # Kiểm tra kích thước
+    // valid input
+    if($size < 0 ) return [
+        'code' => 0,
+        'message' => 'Kích thước tối đa yêu cầu phải lớn hơn 0',
+    ];
+    // compare (so sánh ở kích thước byte)
+    if($file['size'] > $size ) return [
+        'code' => 0,
+        'message' => 'Kích thước đã vượt mức quy định, tối đa là '. $size/1024 .' kB (kilobyte)',
+    ];
+
+    # Mã hoá tên file
+    if($bool_encrypt) $file['name'] = uniqid() . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+
+    // Không mã hoá -> Check file đã tồn tại chưa, nếu có -> thêm hậu tố "-copy"
+    else{
+        // Kiểm tra file đã tồn tại chưa, nếu có thì thêm hậu tố -copy
+        if(file_exists('assets/file/' . $folder . '/' . $file["name"])) {
+            $file['name'] = pathinfo($file['name'], PATHINFO_FILENAME) . '-copy.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+        }
+    }
+
+    # Tiến hành lưu
     $check = move_uploaded_file($file["tmp_name"], 'assets/file/' . $folder . '/' . basename($file["name"]));
-    // Trả về path đã lưu
-    if ($check)
-        return $folder . '/' . $file['name'];
-    return 0;
+
+    // Thông báo lưu thàng công
+    if($check) return [
+        'code' => 1,
+        'message' => $folder . '/' . $file['name'],
+    ];
+
+    // Thông báo lưu thất bại
+    return [
+        'code' => 0,
+        'message' => 0,
+    ];
 }
 
 /**
