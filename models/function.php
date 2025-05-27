@@ -433,15 +433,23 @@ function save_file($bool_encrypt, $folder, $file, $size, $type){
 }
 
 /**
- * Hàm này dùng để xoá file theo PATH
+ * Hàm này dùng để xoá file theo đường dẫn của file
  * @param mixed $path Đường dẫn file cần xoá
+ * @return array [code : int | message : string ] Code 0 : Thất bại | Code 1 : Thành công
  */
 function delete_file($path)
 {
-    if (file_exists('assets/file/' . $path))
-        (unlink('assets/file/' . $path));
-    else
-        die(_s_me_error . ' File không được tìm thấy để xoá. Path file: ' . 'assets/file/' . $path . _e_me_error);
+    if (file_exists('assets/file/' . $path)) {
+        unlink('assets/file/' . $path);
+        return [
+            'code' => 1,
+            'message' => 'Xoá thành công',
+        ];
+
+    }else return [
+        'code' => 0,
+        'message' => 'File không được tìm thấy để xoá | path file: assets/file/'.$path,
+    ];
 }
 
 /**
