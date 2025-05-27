@@ -34,6 +34,32 @@ function pdo_execute($sql)
         unset($conn);
     }
 }
+
+
+/**
+ * Hàm dùng để INSERT, UPDATE, DELETE
+ * 
+ * Hàm được nâng cấp để tránh SQL Injection
+ * 
+ * @param mixed $sql Câu lệnh SQL
+ * @param array $args Tham số truyền vào
+ * @return void
+ */
+function pdo_execute_new($sql, ...$args)
+{
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($args);
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
+    }
+}
+
+
+
 /**
  * Thực thi câu lệnh sql truy vấn dữ liệu (SELECT)
  * @param string $sql câu lệnh sql
