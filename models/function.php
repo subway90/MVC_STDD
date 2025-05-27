@@ -275,12 +275,13 @@ function toast_show(){
         $type = $_SESSION['toast'][0];
         $message = $_SESSION['toast'][1];
         $duration = TOAST_TIME;
+        $time = TOAST_TIME/1000;
         echo 
         <<<HTML
             <style>
             .line-bar {
                 height: 2px;
-                animation: lmao ' . (TOAST_TIME / 1000) . 's linear forwards;
+                animation: lmao {$time}s linear forwards;
             }
             @keyframes lmao {
                 from {
