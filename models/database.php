@@ -59,6 +59,65 @@ function pdo_execute_new($sql, ...$args)
 }
 
 
+/**
+ * Hàm dùng để SELECT trả về nhiều dòng
+ * @return array
+ */
+function pdo_query_new($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
+    }
+}
+
+/**
+ * Hàm dùng để SELECT trả về 1 dòng
+ * @return array
+ */
+function pdo_query_one_new($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
+    }
+}
+
+/**
+ * Hàm dùng để SELECT trả về giá trị
+ * @return string | int
+ */
+function pdo_query_value_new($sql)
+{
+    $sql_args = array_slice(func_get_args(), 1);
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($sql_args);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row ? array_values($row)[0] : null; // Trả về null nếu không có bản ghi
+    } catch (PDOException $e) {
+        throw $e;
+    } finally {
+        unset($conn);
+    }
+}
 
 /**
  * Thực thi câu lệnh sql truy vấn dữ liệu (SELECT)
