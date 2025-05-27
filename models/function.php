@@ -17,18 +17,12 @@ function author($type){
     // kiểm tra đã đăng nhập chưa
     if(!empty($_SESSION['user'])) {
         // tạo thành mảng nếu là chuỗi
-        if(!is_array($type))
-            $array_type[] = $type;
-        else
-            $array_type = $type;
+        if(!is_array($type)) $array_type[] = $type;
+        else $array_type = $type;
         // so sánh phần tử của mảng author yêu cầu với author hiện tại của user
-        foreach ($array_type as $type) {
-            if($_SESSION['user']['name_role'] == $type)
-                $author = true;
-        }
+        foreach ($array_type as $type) if($_SESSION['user']['name_role'] == $type) $author = true;
     }
-    if (!$author)
-        view_error(401);
+    if(!$author) view_error(401);
 }
 
 /**
