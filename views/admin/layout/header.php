@@ -31,7 +31,9 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
-<?= toast_show();//dùng toast ?>
+
+<div class="">
+    <?= toast_show();//dùng toast ?>
 </div>
 
 <body>
@@ -221,7 +223,7 @@
                         </button>
                     </div>
                     <div class="sa-toolbar__item">
-                        Hệ thống quản lí Bống Béo Bread
+                        Hệ thống quản lí <?= WEB_NAME ?>
                     </div>
                     <div class="mx-auto"></div>
 
