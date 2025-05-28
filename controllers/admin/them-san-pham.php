@@ -98,11 +98,21 @@ if(isset($_POST['btn_add_product'])) {
 			);	
 		}
 
+		// lưu attribute_product
+		foreach($_SESSION['temp_attribute_product'] as $attribute) {
+			pdo_execute_new(
+				'INSERT INTO product_attribute (id_product, name_attribute, value_attribute)
+					VALUES (?, ?, ?)',
+					$id_product,$attribute['name'],$attribute['value']
+			);
+		}
+
 		// // huỷ session
 		unset($_SESSION['selected_product_category']);
 		unset($_SESSION['name_series']);
 		unset($_SESSION['id_model']);
 		unset($_SESSION['temp_image_product']);
+		unset($_SESSION['temp_attribute_product']);
 
 		// thông báo và chuyển route
 		toast_create('success','Thêm sản phẩm thành công');

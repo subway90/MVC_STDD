@@ -16,7 +16,7 @@
     });
 </script>
 
-<span id="messageImage"></span>
+<span id="messageToast"></span>
 
 <form action="" method="post">
     <div id="top" class="sa-app__body">
@@ -187,8 +187,8 @@
                                         <table class="sa-table mt-5">
                                             <thead>
                                                 <tr>
-                                                    <th class="w-min">Thuộc tính</th>
-                                                    <th class="w-min">Giá trị</th>
+                                                    <th class="w-min-5x">Thông số</th>
+                                                    <th class="w-min-5x">Giá trị</th>
                                                     <th class="w-min text-end">Xoá</th>
                                                 </tr>
                                             </thead>
@@ -196,7 +196,7 @@
                                                 <?php if(!empty($_SESSION['temp_attribute_product'])) : ?>
                                                     <tr class="align middle">
                                                         <td colspan="3" class="text-muted text-center small fst-italic">
-                                                            Chưa có thuộc tính nào
+                                                            Chưa có thông số nào
                                                         </td>
                                                     </tr>
                                                 <?php endif ?>
@@ -210,7 +210,7 @@
                                             data-bs-target="#modalAddAttribute"
                                             data-bs-toggle="modal">
                                             <i class="bi bi-plus-square-dotted me-2"></i>
-                                            Thêm thuộc tính mới
+                                            Thêm thông số mới
                                         </button>
                                     </div>
                                 </div>
@@ -228,18 +228,18 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm thuộc tính</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Thêm thông số</h5>
                 <button type="button" class="sa-close sa-close--modal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post">
+            <form method="post" id="attributeForm">
             <div class="modal-body row px-5">
                 <div class="col-6 mb-5">
-                    <label class="form-label" for="name_attribute">Tên thuộc tính</label>
-                    <input oninput="checkInputs()" name="name_attribute" value="" type="text" class="form-control" id="name_attribute" placeholder="Nhập tên thuộc tính">
+                    <label class="form-label" for="name_attribute">Tên thông số</label>
+                    <input oninput="checkInputs()" name="name_attribute" value="" type="text" class="form-control" id="name_attribute" placeholder="Nhập tên thông số">
                 </div>
                 <div class="col-6 mb-5">
-                    <label class="form-label" for="value_attribute">Giá trị thuộc tính</label>
-                    <input oninput="checkInputs()" name="value_attribute" value="" type="text" class="form-control" id="value_attribute" placeholder="Nhập giá trị thuộc tính">
+                    <label class="form-label" for="value_attribute">Giá trị thông số</label>
+                    <input oninput="checkInputs()" name="value_attribute" value="" type="text" class="form-control" id="value_attribute" placeholder="Nhập giá trị thông số">
                 </div>
             </div>
             <div class="modal-footer">

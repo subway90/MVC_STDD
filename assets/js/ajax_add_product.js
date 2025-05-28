@@ -67,7 +67,7 @@ $(document).ready(function() {
                     processData: false,
                     contentType: false,
                     success: function(response) {
-                        $('#messageImage').html(response.message);
+                        $('#messageToast').html(response.message);
                         $('#dataImage').html(response.data);
                     },
                     error: function(xhr, status, error) {
@@ -114,6 +114,89 @@ $(document).ready(function() {
             success: function(response) {
                 $('#messageImage').html(response.message);
                 $('#dataImage').html(response.data);
+            },
+            error: function(xhr, status, error) {
+                console.error('Lỗi:', error);
+            }
+        });
+    });
+
+    // Kiểm tra các input và bật/tắt nút thêm
+    window.checkInputs = function() {
+        const nameAttribute = $('#name_attribute').val();
+        const valueAttribute = $('#value_attribute').val();
+        if (nameAttribute && valueAttribute) {
+            $('#addAttribute').removeClass('disabled').prop('disabled', false);
+        } else {
+            $('#addAttribute').addClass('disabled').prop('disabled', true);
+        }
+    };
+
+    // Gửi yêu cầu AJAX khi form được gửi
+    $('#attributeForm').submit(function(event) {
+        event.preventDefault(); // Ngăn chặn gửi form mặc định
+
+        const nameAttribute = $('#name_attribute').val();
+        const valueAttribute = $('#value_attribute').val();
+
+        $.ajax({
+            url: '/admin/attribute-product',
+            type: 'POST',
+            data: {
+                add: true,
+                name_attribute: nameAttribute,
+                value_attribute: valueAttribute
+            },
+            success: function(response) {
+                // Gán dữ liệu trả về vào các phần tử tương ứng
+                $('#messageToast').html(response.message);
+                $('#dataAttribute').html(response.data);
+                // Làm trống input
+                $('#name_attribute').val('');
+                $('#value_attribute').val('');
+                // Đặt lại trạng thái nút "Thêm"
+                $('#addAttribute').addClass('disabled').prop('disabled', true);
+                // Đóng modal sau khi thêm thành công
+                $('#modalAddAttribute').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                console.error('Lỗi:', error);
+            }
+        });
+    });
+
+    // Lấy thông số
+    function getAttribute() {
+        $.ajax({
+            url: '/admin/attribute-product',
+            type: 'POST',
+            data: { load: true },
+            success: function(response) {
+                $('#dataAttribute').html(response.data);
+            },
+            error: function(xhr, status, error) {
+                console.error('Lỗi:', error);
+            }
+        });
+    }
+
+    getAttribute();
+
+    // Xóa thông số sản phẩm
+    $(document).on('click', '.deleteAttribute', function(event) {
+        event.stopPropagation();
+        var order = $(this).closest('form').find('input[name="orderAttribute"]').val();
+
+        $.ajax({
+            url: '/admin/attribute-product',
+            type: 'POST',
+            data: {
+                delete: true,
+                order: order
+            },
+            success: function(response) {
+                $('#messageToast').html(response.message);
+                $('#dataAttribute').html(response.data);
             },
             error: function(xhr, status, error) {
                 console.error('Lỗi:', error);
