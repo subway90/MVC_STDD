@@ -4,6 +4,18 @@
     }
 </style>
 
+<script src="<?= URL ?>assets/js/ajax_add_product.js"></script>
+
+<!-- Use Editor Summernote -->
+<script>
+    $(document).ready(function() {
+        $('#description_product').summernote({
+            placeholder: 'Nhập nội dung mô tả',
+            height: 400,
+        });
+    });
+</script>
+
 <span id="messageImage"></span>
 
 <form action="" method="post">
@@ -168,6 +180,41 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card mt-5">
+                                <div class="mt-n5">
+                                    <div class="sa-divider"></div>
+                                    <div class="table-responsive">
+                                        <table class="sa-table mt-5">
+                                            <thead>
+                                                <tr>
+                                                    <th class="w-min">Thuộc tính</th>
+                                                    <th class="w-min">Giá trị</th>
+                                                    <th class="w-min text-end">Xoá</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="dataAttribute">
+                                                <?php if(!empty($_SESSION['temp_attribute_product'])) : ?>
+                                                    <tr class="align middle">
+                                                        <td colspan="3" class="text-muted text-center small fst-italic">
+                                                            Chưa có thuộc tính nào
+                                                        </td>
+                                                    </tr>
+                                                <?php endif ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="sa-divider"></div>
+                                    <div class="px-5 py-4 my-auto">
+                                        <button class="btn btn-sa-muted btn-sm mx-n3"
+                                            type="button"
+                                            data-bs-target="#modalAddAttribute"
+                                            data-bs-toggle="modal">
+                                            <i class="bi bi-plus-square-dotted me-2"></i>
+                                            Thêm thuộc tính mới
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -177,177 +224,29 @@
 </form>
 
 
-
-<!-- Use Editor Summernote -->
-<script>
-    $(document).ready(function() {
-        $('#description_product').summernote({
-            placeholder: 'Nhập nội dung mô tả',
-            height: 400,
-        });
-    });
-</script>
-
-<!-- AJAX Render List V2 -->
-<script>
-    $(document).ready(function() {
-        // Hàm gửi yêu cầu AJAX
-        function fetchData(id_category_v1) {
-            $.ajax({
-                url: '/admin/choose-v1',
-                type: 'POST',
-                data: {
-                    id_category_v1: id_category_v1
-                },
-                success: function(response) {
-                    // Gán dữ liệu trả về vào #render_option_v2
-                    $('#v2').html(response.data);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Lỗi:', error);
-                }
-            });
-        }
-
-        // Gửi yêu cầu với id_category_v1 mặc định là 0 khi trang được tải
-        fetchData('none');
-
-        // Lắng nghe sự kiện thay đổi trên dropdown
-        $('#v1').change(function() {
-            var id_category_v1 = $(this).val(); // Lấy value của option đã chọn
-            fetchData(id_category_v1); // Gửi yêu cầu với name_v1 mới
-        });
-    });
-</script>
-
-<!-- AJAX Render List Model -->
-<script>
-    $(document).ready(function() {
-        // Hàm gửi yêu cầu AJAX
-        function chooseSeries(name_series) {
-            $.ajax({
-                url: '/admin/choose-series',
-                type: 'POST',
-                data: {
-                    name_series: name_series
-                },
-                success: function(response) {
-                    $('#model').html(response.data);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Lỗi:', error);
-                }
-            });
-        }
-
-        // Gửi yêu cầu với name_series mặc định là 0 khi trang được tải
-        chooseSeries('none');
-
-        // Lắng nghe sự kiện thay đổi trên dropdown
-        $('#series').change(function() {
-            var name_series = $(this).val(); // Lấy value của option đã chọn
-            chooseSeries(name_series); // Gửi yêu cầu với name_series mới
-        });
-    });
-</script>
-
-
-<!-- AJAX add image product -->
-<script>
-    $(document).ready(function() {
-        $('#addImage').click(function() {
-            // Tạo một input file ẩn
-            var fileInput = $('<input type="file" accept=".jpg,.jpeg,.png,.webp" style="display: none;">');
-            $('body').append(fileInput);
-
-            // Mở hộp thoại chọn file
-            fileInput.click();
-
-            // Khi chọn file
-            fileInput.on('change', function(event) {
-                var file = event.target.files[0];
-                if (file) {
-                    // Tạo FormData để gửi file
-                    var formData = new FormData();
-                    formData.append('add', true);
-                    formData.append('file', file);
-
-                    // Gửi AJAX POST request
-                    $.ajax({
-                        url: '/admin/image-product',
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function(response) {
-                            $('#messageImage').html(response.message);
-                            $('#dataImage').html(response.data);
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('Lỗi:', error);
-                        }
-                    });
-                }
-            });
-
-            // Xóa input file sau khi sử dụng
-            fileInput.on('remove', function() {
-                $(this).remove();
-            });
-        });
-    });
-</script>
-
-<!-- AJAX get image product -->
-<script>
-    $(document).ready(function() {
-        // Hàm gửi yêu cầu AJAX
-        function getImage() {
-            $.ajax({
-                url: '/admin/image-product',
-                type: 'POST',
-                data: {
-                    load: true
-                },
-                success: function(response) {
-                    $('#dataImage').html(response.data);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Lỗi:', error);
-                }
-            });
-        }
-
-        getImage();
-    });
-</script>
-
-<!-- AJAX delete image product -->
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.deleteImage', function(event) {
-            event.stopPropagation();
-            console.log('Nút xóa đã được nhấn');
-
-            var pathImage = $(this).closest('form').find('input[name="pathImage"]').val();
-            console.log('Đường dẫn ảnh:', pathImage);
-
-            $.ajax({
-                url: '/admin/image-product',
-                type: 'POST',
-                data: {
-                    delete: true,
-                    path: pathImage
-                },
-                success: function(response) {
-                    console.log('Phản hồi:', response);
-                    $('#messageImage').html(response.message);
-                    $('#dataImage').html(response.data);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Lỗi:', error);
-                }
-            });
-        });
-    });
-</script>
+<div class="modal fade" id="modalAddAttribute" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm thuộc tính</h5>
+                <button type="button" class="sa-close sa-close--modal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post">
+            <div class="modal-body row px-5">
+                <div class="col-6 mb-5">
+                    <label class="form-label" for="name_attribute">Tên thuộc tính</label>
+                    <input oninput="checkInputs()" name="name_attribute" value="" type="text" class="form-control" id="name_attribute" placeholder="Nhập tên thuộc tính">
+                </div>
+                <div class="col-6 mb-5">
+                    <label class="form-label" for="value_attribute">Giá trị thuộc tính</label>
+                    <input oninput="checkInputs()" name="value_attribute" value="" type="text" class="form-control" id="value_attribute" placeholder="Nhập giá trị thuộc tính">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                <button id="addAttribute" value="<?=$id?>" type="submit" class="btn btn-primary disabled">Thêm</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

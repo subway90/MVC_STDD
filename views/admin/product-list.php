@@ -43,7 +43,7 @@
                             <?php }else{ ?>
                                 <th class="min-w-5x">Ngày xoá</th>
                             <?php }?>
-                            <th class="min-w-10x" data-orderable="false">Hành động</th>
+                            <th class="min-w-5x text-end" data-orderable="false">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,20 +86,17 @@
                             <?php }?>
                             </td>
                             <td class="small">
-                                <div class="d-flex gap-3">
+                                <div class="d-flex justify-content-end gap-3">
                                     <?php if($status_page): ?>
                                     <a href="<?=URL_ADMIN?>sua-san-pham/<?=$id_product?>" class="btn btn-sm btn-warning shadow small d-flex align-items-center gap-3">
                                         <i class="fa fas fa-edit"></i>
-                                        <span class="small">Sửa</span>
                                     </a>
                                     <button name="delete" value="<?=$id_product?>" type="submit" class="btn btn-sm btn-danger shadow small d-flex align-items-center gap-3">
                                         <i class="fa fas fa-trash"></i>
-                                        <span class="small">Xoá</span>
                                     </button>
                                     <?php else: ?>
                                     <button name="restore" value="<?=$id_product?>" type="submit" class="btn btn-sm btn-outline-dark shadow small d-flex align-items-center gap-3">
                                         <i class="fa fas fa-trash-restore"></i>
-                                        <span class="small">Khôi phục</span>
                                     </button>
                                     <?php endif ?>
                                 </div>
