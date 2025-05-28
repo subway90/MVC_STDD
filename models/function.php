@@ -83,9 +83,7 @@ function model($type, $name_model){
 
 
 /**
- * Hàm này dùng để hiển thị lỗi trạng tháu
- * 
- * Lưu ý : Hiện tại chỉ có 2 mã lỗi [401,404] là hoạt động
+ * Hàm này dùng để hiển thị lỗi trạng thái
  * 
  * @param int $code Mã trạng thái trang 
  * @return void

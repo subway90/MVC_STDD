@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?= WEB_FAVICON ?>" type="image/x-icon">
-    <title><?= WEB_NAME ?> | 404 Not Found</title>
+    <title><?= WEB_NAME ?> | 400 Bad Request</title>
     <style>
         body {
             background-color :rgba(0, 0, 0, 0.95);
@@ -50,9 +50,9 @@
 </head>
 <body>
     <div class="box">
-        <div class="error">404 Not Found</div>
+        <div class="error">400 Bad Request</div>
         <div class="">
-            <p>Đường dẫn bạn đang truy cập không được tìm thấy.</p>
+            <p>Đường dẫn này chưa đúng định dạng, vui lòng thử lại.</p>
         </div>
     </div>
     <a href="/">Quay lại trang chủ</a>

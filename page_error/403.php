@@ -1,5 +1,5 @@
 <?php
-    require_once '../config.php';
+    require_once './config.php';
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +38,14 @@
         p {
             font-size: 14px;
         }
+        a {
+            margin-top: 10px;
+            color : white;
+            text-decoration : none;
+        }
+        a:hover {
+            text-decoration : underline;
+        }
     </style>
 </head>
 <body>
@@ -47,5 +55,6 @@
             <p>Bạn không có quyền truy cập vào đường dẫn này.</p>
         </div>
     </div>
+    <a href="/">Quay lại trang chủ</a>
 </body>
 </html>
