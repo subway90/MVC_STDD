@@ -5,11 +5,21 @@ model('admin','category');
 
 # [VARIABLE]
 $status_page = true;
-$id_v1_open = -1;
+$id_v1_open = -1; // id mở accordion v1
 
 # [HANDLE]
 // Nếu xem danh sách xoá
 if(get_action_uri(2) === 'danh-sach-xoa') $status_page = false;
+
+// Nếu load lấy danh sách
+if(isset($_POST['load']) && isset($_POST['state_page'])) {
+    // input
+    if($_POST['state_page'] === 'false') $status_page = false;
+    // response
+    view_json(200,[
+        'data' => render_category($status_page,$id_v1_open),
+    ]);
+}
 
 // Nếu xoá
 if(isset($_POST['delete']) && $_POST['delete']) {

@@ -1,4 +1,4 @@
-<script src="<?= URL ?>assets/js/ajax_add_category.js"></script>
+<script src="<?= URL ?>assets/js/ajax_list_category.js"></script>
 
 <span id="messageToast"></span>
 
@@ -32,111 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <?php if(empty($list_category)) : ?>
-                    <div class="text-muted text-center small fst-italic py-4">
-                        Danh sách trống
-                    </div>
-                <?php else : ?>
-                    <div class="accordion card" id="accordion-1">
-                        <?php foreach ($list_category as $i => $row) : extract($row) ?>
-                        <div class="sa-divider"></div>
-                        <form action="" method="post" id="formActionV2">
-                        <input type="hidden" name="id_category_v1" value="<?= $id_category_v1 ?>">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header d-flex">
-                                <button class="accordion-button sa-hover-area <?= ($id_v1_open == $i) ? '' : 'collapsed' ?>" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#tab<?=$i?>" aria-expanded="true">
-                                    <span class="accordion-sa-icon"></span>
-                                    <img height="30" class="me-3" src="<?= URL_STORAGE.$logo_category_v1 ?>" alt="<?= $logo_category_v1 ?>">
-                                    <?= $name_category_v1 ?>
-                                </button>
-                            </h2>
-                            <div id="tab<?=$i?>" class="accordion-collapse collapse <?= ($id_v1_open == $i) ? 'show' : '' ?>"
-                                data-bs-parent="#accordion-1">
-                                <div class="accordion-body mb-5">
-                                    <div class="sa-divider"></div>
-                                    <div class="table-responsive">
-                                        <table class="sa-table mt-5">
-                                            <thead>
-                                                <tr>
-                                                    <th class="w-min-5x">Danh mục con</th>
-                                                    <th class="w-min-5x text-center">Số lượng sản phẩm</th>
-                                                    <th class="w-min text-end">Xoá</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="dataCategoryV2">
-                                                <?php if(empty($list_v2)) : ?>
-                                                    <tr class="align middle">
-                                                        <td colspan="3" class="text-muted text-center small fst-italic">
-                                                            Chưa có danh mục con nào
-                                                        </td>
-                                                    </tr>
-                                                <?php else : ?>
-                                                <?php foreach ($list_v2 as $v2) : extract($v2) ?>
-                                                    <tr>
-                                                        <td class="small">
-                                                            <?= $name_category_v2 ?>
-                                                        </td>
-                                                        <td class="small text-center">
-                                                            <?= $count_product ?>
-                                                        </td>
-                                                        <td class="text-end">
-                                                            <form class="formDeleteAttribute">
-                                                                <button class="deleteV2 btn btn-sa-muted text-danger btn-sm mx-n3"
-                                                                    type="button" aria-label="Delete Attribute"
-                                                                    data-bs-toggle="tooltip"
-                                                                    data-bs-placement="bottom"
-                                                                    data-value-id="<?= $id_category_v2 ?>"
-                                                                    title="Xoá danh mục con này">
-                                                                    <i class="bi bi-x-circle"></i>
-                                                                </button>
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach ?>
-                                                <?php endif ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="sa-divider"></div>
-                                    <div class="d-flex align-items-center justify-content-between gap-5 py-3">
-                                        <div class="d-flex align-items-center gap-5">
-                                            <button class="btn btn-sa-muted btn-sm mx-n3"
-                                                type="button"
-                                                data-bs-target="#modalAddV2"
-                                                data-value-id="<?= $id_category_v1 ?>"
-                                                data-bs-toggle="modal">
-                                                <i class="bi bi-plus-square-dotted me-2"></i>
-                                                Thêm danh mục con mới
-                                            </button>
-                                            <label class="form-check form-switch" >
-                                                <input type="checkbox" class="form-check-input" />
-                                                <span class="form-check-label small">Hiển thị danh mục nổi bật</span >
-                                            </label>
-                                        </div>
-                                        <div class="d-flex align-items-center gap-3">
-                                            <?php if(!$deleted_at) : ?>
-                                            <button name="delete" type="submit" value="<?= $id_category_v1 ?>" class="btn btn-sm btn-danger shadow d-flex align-items-center gap-3" data-value-id="<?= $id_category_v1 ?>">
-                                                <i class="bi bi-trash bi fs-6"></i> Xoá danh mục
-                                            </button>
-                                            <a href="<?= URL_ADMIN ?>sua-danh-muc/<?= $id_category_v1 ?>" type="button" class="btn btn-sm btn-warning shadow d-flex align-items-center gap-3" data-value-id="<?= $id_category_v1 ?>">
-                                                <i class="bi bi-pencil-square bi fs-6"></i> Sửa danh mục
-                                            </a>
-                                            <?php else : ?>
-                                            <button name="restore" type="submit" value="<?= $id_category_v1 ?>" class="btn btn-sm btn-outline-dark shadow d-flex align-items-center gap-3" data-value-id="<?= $id_category_v1 ?>">
-                                                <i class="bi bi-trash-restore bi fs-6"></i> Khôi phục danh mục
-                                            </button>
-                                            <?php endif ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </form>
-                        <?php endforeach ?>
-                    </div>
-                <?php endif ?>
+            <div id="dataCategory" class="card">
             </div>
         </div>
     </div>
@@ -154,7 +50,7 @@
                 <div class="col-12 mb-5">
                     <label class="form-label" for="name_category_v2">Tên danh mục con</label>
                     <input name="name_category_v2" value="" type="text" class="form-control" id="name_category_v2" placeholder="Nhập tên danh mục con">
-                    <input type="hidden" name="id_category_v1" value="">
+                    <input type="hidden" name="id_v1" value="">
                 </div>
             </div>
             <div class="modal-footer">

@@ -30,7 +30,7 @@ if(isset($_POST['add']) && isset($_POST['id_category_v1']) && isset($_POST['name
         // reponse
         view_json(200,[
             'message' => toast('success','Thêm danh mục con thành công'),
-            'data' => 'process...',
+            'data' => render_category(true,$id_category_v1),
         ]);
     }
 
@@ -38,6 +38,35 @@ if(isset($_POST['add']) && isset($_POST['id_category_v1']) && isset($_POST['name
     // reponse error
     view_json(200,[
         'message' => toast('danger',$list_error[0]),
-        'data' => 'process...',
+        'data' => render_category(true,$id_category_v1),
     ]);
 }
+
+// Nếu xoá danh mục v2
+if(isset($_POST['delete'])) {
+    // input
+    $id_v1 = $_POST['id_v1'];
+    $id_v2 = $_POST['id_v2'];
+    
+    //validate
+    if(!check_exist_one('category_v2',$id_v2)) view_json(200,[
+        'message' => toast('danger','Danh mục này không tồn tại'),
+        'data' => render_category(true,$id_v1),
+    ]);
+
+    if(check_cate_v2_for_delete($id_v2)) view_json(200,[
+        'message' => toast('danger','Danh mục này đang có sản phẩm, không thể xoá'),
+        'data' => render_category(true,$id_v1),
+    ]);
+    // xoá cứng
+    delete_force_one('category_v2',$id_v2);
+    
+    // reponse
+    view_json(200,[
+        'message' => toast('success','Xoá thành công danh mục'),
+        'data' => render_category(true,$id_v1),
+    ]);
+}
+
+# [RENDER]
+view_error(404);
