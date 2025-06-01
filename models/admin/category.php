@@ -191,45 +191,43 @@ function render_category($status_page,$id_v1_open) {
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="sa-divider"></div>
-                            <div class="d-flex align-items-center justify-content-between gap-5 py-3">
-                                <div class="d-flex align-items-center gap-5">
-                                    <button class="btn btn-sa-muted btn-sm mx-n3"
-                                        type="button"
-                                        data-bs-target="#modalAddV2"
-                                        data-value-id="{$id_category_v1}"
-                                        data-bs-toggle="modal">
-                                        <i class="bi bi-plus-square-dotted me-2"></i>
-                                        Thêm danh mục con mới
-                                    </button>
-                                    <label class="form-check form-switch" >
-                                        <input type="checkbox" class="form-check-input" />
-                                        <span class="form-check-label small">Hiển thị danh mục nổi bật</span >
-                                    </label>
-                                </div>
-                                <div class="d-flex align-items-center gap-3">
+                            <div class="sa-divider"></div>                                
             HTML;
             // format button with state
             if(!$deleted_at) $data_render .= 
             <<<HTML
+                            <div class="d-flex align-items-center justify-content-between gap-5 py-3">
+                                <button class="btn btn-sa-muted btn-sm mx-n3"
+                                    type="button"
+                                    data-bs-target="#modalAddV2"
+                                    data-value-id="{$id_category_v1}"
+                                    data-bs-toggle="modal">
+                                    <i class="bi bi-plus-square-dotted me-2"></i>
+                                    Thêm danh mục con mới
+                                </button>
+                                <div class="d-flex align-items-center gap-3">
                                     <button name="delete" type="submit" value="{$id_category_v1}" class="btn btn-sm btn-danger shadow d-flex align-items-center gap-3" data-value-id="{$id_category_v1}">
                                         <i class="bi bi-trash bi fs-6"></i> Xoá danh mục
                                     </button>
                                     <a href="{$url_admin}sua-danh-muc/{$id_category_v1}" type="button" class="btn btn-sm btn-warning shadow d-flex align-items-center gap-3" data-value-id="{$id_category_v1}">
                                         <i class="bi bi-pencil-square bi fs-6"></i> Sửa danh mục
                                     </a>
+                                </div>
+                            </div>
             HTML;
             else $data_render .= 
             <<<HTML
+                            <div class="d-flex align-items-center justify-content-end gap-5 py-3">
+                                <div class="d-flex align-items-center gap-3">
                                     <button name="restore" type="submit" value="{$id_category_v1}" class="btn btn-sm btn-outline-dark shadow d-flex align-items-center gap-3" data-value-id="{$id_category_v1}">
                                         <i class="bi bi-trash-restore bi fs-6"></i> Khôi phục danh mục
                                     </button>
+                                </div>
+                            </div>
             HTML;
                                             
             $data_render .= 
         <<<HTML
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -253,7 +251,7 @@ function render_category($status_page,$id_v1_open) {
 /**
  * Trả về số lượng sản phẩm đã được sử dụng id cate_v2
  * @param mixed $id_v2
- * @return int
+ * @return int|string
  */
 function check_cate_v2_for_delete($id_v2) {
     return pdo_query_value_new(
