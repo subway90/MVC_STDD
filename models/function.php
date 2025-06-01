@@ -177,7 +177,7 @@ function create_slug($input){
     );
     $input = preg_replace($search, $replace, $input);
     $input = preg_replace('/(-)+/', '-', $input);
-    return $input;
+    return strtolower($input);
 }
 
 /**
