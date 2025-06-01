@@ -1,6 +1,6 @@
 <div class="container mt-lg-5">
     <div class="row">
-        <div class="col-12 col-md-12 col-lg-7 p-0 bg-success-subtle text-center pt-4">
+        <div class="col-12 col-md-12 col-lg-7 p-0 bg-success-subtle text-center d-flex align-items-center justify-content-center">
             <img class="w-75" src="<?= URL_STORAGE ?>system/hello.gif" alt="<?= URL_STORAGE ?>system/hello.gif">
         </div>
 
@@ -22,14 +22,14 @@
                             <label for="floatingInput">Mật khẩu</label>
                         </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-between">
-                        <a class="nav-link text-success" href="#"><i class="fas fa-user-plus"></i> Đăng ký tài khoản</a>
-                        <a class="nav-link text-danger" href="#"><i class="fas fa-question-circle"></i> Quên mật khẩu</a>
-                    </div>
-                    <div class="col-12 text-center d-flex justify-content-center mt-4">
-                        <button name="login" type="submit" class="btn btn-outline-success">
+                    <div class="col-12 text-center d-flex justify-content-center mt-2 mb-4">
+                        <button name="login" type="submit" class="btn btn-outline-success w-100">
                             Đăng nhập
                         </button>
+                    </div>
+                    <div class="col-12 d-flex justify-content-between">
+                        <a class="nav-link text-success" href="<?= URL ?>dang-ky"><i class="fas fa-user-plus"></i> Đăng ký tài khoản</a>
+                        <a class="nav-link text-danger" href="<?= URL ?>quen-mat-khau"><i class="fas fa-question-circle"></i> Quên mật khẩu</a>
                     </div>
                 </form>
         </div>
