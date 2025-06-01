@@ -82,8 +82,8 @@
                             <?php }?>
                             </td>
                             <td class="small">
+                            <form action="" method="post">
                                 <div class="d-flex justify-content-end gap-3">
-                                    <form action="" method="post">
                                     <?php if($status_page): ?>
                                     <a href="<?=URL_ADMIN?>sua-thuong-hieu/<?=$id_brand?>" class="btn btn-sm btn-warning shadow small d-flex align-items-center gap-3">
                                         <i class="fa fas fa-edit"></i>
@@ -96,8 +96,8 @@
                                         <i class="fa fas fa-trash-restore"></i>
                                     </button>
                                     <?php endif ?>
-                                    </form>
                                 </div>
+                            </form>
                             </td>
                         </tr>
                     <?php
