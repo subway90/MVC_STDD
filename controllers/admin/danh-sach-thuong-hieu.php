@@ -32,7 +32,7 @@ if(isset($_POST['restore']) && $_POST['restore']) {
         // delete
         restore_one('brand',$id_brand);
         // thông báo
-        toast_create('success','Xoá thành công thương hiệu');
+        toast_create('success','Khôi phục thành công thương hiệu');
     } else toast_create('danger','Không tồn tại thương hiệu này ở danh sách xoá');
     
 }
