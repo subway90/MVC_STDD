@@ -34,7 +34,7 @@
                     <thead>
                         <tr>
                             <th class="w-min">ID</th>
-                            <th class="min-w-10x">Thương hiệu</th>
+                            <th class="min-w-10x">Logo | Tên thương hiệu</th>
                             <th class="min-w-5x">Số lượng sản phẩm</th>
                             <th class="min-w-5x">Ngày tạo</th>
                             <?php if($status_page) {?>
@@ -59,12 +59,13 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!-- <img class="thumbnail" width="50" src="<?= URL_STORAGE . $path_product_image ?>" alt="<?= $path_product_image ?>"> -->
-                                    <div class="thumbnail-container">
-                                        <img class="thumbnail me-3" width="50" src="<?= URL_STORAGE . $logo_brand ?>" alt="<?= $logo_brand ?>">
+                                    <div class="thumbnail-container d-flex align-items-center">
+                                        <img class="thumbnail me-3" height="18" src="<?= URL_STORAGE . $logo_brand ?>" alt="<?= $logo_brand ?>">
+                                        <span class="text-muted">-</span>
                                         <div class="hover-text text-light"><i class="bi bi-zoom-in"></i></div>
                                     </div>  
                                     <div class="ms-3">
-                                        <a class="text-dark" href="<?=URL_ADMIN?>sua-san-pham/<?=$id_brand?>"><strong><?= $name_brand ?></strong></a>
+                                        <a class="text-dark" href="<?=URL_ADMIN?>sua-thuong-hieu/<?=$id_brand?>"><strong><?= $name_brand ?></strong></a>
                                     </div>
                                 </div>
                             </td>
