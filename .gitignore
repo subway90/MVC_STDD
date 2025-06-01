@@ -6,6 +6,7 @@
 !/assets/admin/vendor/
 !/assets/admin/css/
 !/assets/admin/js/
+!/assets/file/system/
 
 # Không ẩn các file trong các thư mục trên
 !/assets/admin/css/**
