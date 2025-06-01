@@ -196,8 +196,9 @@ function pdo_query_value($sql)
  * @return void
  */
 function delete_one($table_name,$id_record) {
-    pdo_execute(
-        'UPDATE '.$table_name.' SET deleted_at = current_timestamp WHERE id_'.$table_name.' = '.$id_record
+    pdo_execute_new(
+        'UPDATE '.$table_name.' SET deleted_at = current_timestamp WHERE id_'.$table_name.' = ?',
+        $id_record
     );
 }
 
@@ -208,8 +209,9 @@ function delete_one($table_name,$id_record) {
  * @return void
  */
 function restore_one($table_name,$id_record) {
-    pdo_execute(
-        'UPDATE '.$table_name.' SET deleted_at = NULL WHERE id_'.$table_name.' = '.$id_record
+    pdo_execute_new(
+        'UPDATE '.$table_name.' SET deleted_at = NULL WHERE id_'.$table_name.' = ?',
+        $id_record
     );
 }
 
@@ -222,7 +224,9 @@ function restore_one($table_name,$id_record) {
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one($table_name,$id_record) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE id_'.$table_name.' = '.$id_record.' AND deleted_at IS NULL'
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE id_'.$table_name.' = ? AND deleted_at IS NULL',
+        $id_record
     )) return true;
     return false;
 }
@@ -236,7 +240,24 @@ function check_exist_one($table_name,$id_record) {
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one_in_trash($table_name,$id_record) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE id_'.$table_name.' = '.$id_record.' AND deleted_at')) return true;
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE id_'.$table_name.' = ? AND deleted_at'
+        ,$id_record
+    )) return true;
+    return false;
+}
+
+/**
+ * Kiểm tra một record có tồn tại trong bảng hay không, bao gồm cả xoá mềm
+ * 
+ * @param mixed $table_name Tên bảng cần kiểm tra
+ * @param mixed $id_record ID cần kiểm tra
+ * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
+ */
+function check_exist_one_with_trash($table_name,$id_record) {
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE id_'.$table_name.' = ?',
+        $id_record)) return true;
     return false;
 }
 
@@ -249,7 +270,9 @@ function check_exist_one_in_trash($table_name,$id_record) {
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one_by_name($table_name,$name_record) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE name_'.$table_name.' = "'.$name_record.'" AND deleted_at IS NULL'
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE name_'.$table_name.' = ? AND deleted_at IS NULL',
+        $name_record
     )) return true;
     return false;
 }
@@ -263,7 +286,9 @@ function check_exist_one_by_name($table_name,$name_record) {
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one_by_name_except_id($table_name,$name_record,$id_record) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE name_'.$table_name.' = "'.$name_record.'" AND id_'.$table_name.' != '.$id_record.' AND deleted_at IS NULL'
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE name_'.$table_name.' = ? AND id_'.$table_name.' != '.$id_record.' AND deleted_at IS NULL',
+        $name_record
     )) return true;
     return false;
 }
@@ -277,7 +302,9 @@ function check_exist_one_by_name_except_id($table_name,$name_record,$id_record) 
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one_by_name_in_trash($table_name,$name_record) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE name_'.$table_name.' = "'.$name_record.'" AND deleted_at'
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE name_'.$table_name.' = ? AND deleted_at',
+        $name_record
     )) return true;
     return false;
 }
@@ -292,7 +319,9 @@ function check_exist_one_by_name_in_trash($table_name,$name_record) {
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one_by_slug($table_name,$slug) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE slug_'.$table_name.' = "'.$slug.'" AND deleted_at IS NULL'
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE slug_'.$table_name.' = ? AND deleted_at IS NULL',
+        $slug
     )) return true;
     return false;
 }
@@ -307,7 +336,9 @@ function check_exist_one_by_slug($table_name,$slug) {
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one_by_slug_in_trash($table_name,$slug) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE slug_'.$table_name.' = "'.$slug.'" AND deleted_at'
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE slug_'.$table_name.' = ?',
+        $slug
     )) return true;
     return false;
 }
@@ -321,7 +352,9 @@ function check_exist_one_by_slug_in_trash($table_name,$slug) {
  * @return bool Trả về true nếu có tồn tại, trả về false nếu không tồn tại
  */
 function check_exist_one_by_slug_with_trash($table_name,$slug) {
-    if(pdo_query_value('SELECT id_'.$table_name.' FROM '.$table_name.' WHERE slug_'.$table_name.' = "'.$slug.'"'
+    if(pdo_query_value_new(
+        'SELECT id_'.$table_name.' FROM '.$table_name.' WHERE slug_'.$table_name.' = ?',
+        $slug
     )) return true;
     return false;
 }
@@ -333,7 +366,8 @@ function check_exist_one_by_slug_with_trash($table_name,$slug) {
  * @return void
  */
 function delete_force_one($table_name,$id_record) {
-    pdo_execute(
-        'DELETE FROM '.$table_name.' WHERE id_'.$table_name.' = '.$id_record
+    pdo_execute_new(
+        'DELETE FROM '.$table_name.' WHERE id_'.$table_name.' = ?',
+        $id_record
     );
 }
