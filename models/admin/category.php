@@ -61,3 +61,19 @@ function get_all_category($state) {
 
     return $data;
 }
+
+/**
+ * Kiểm tra xem danh mục v2 đã tồn tại hay chưa
+ * @param mixed $name_category_v2
+ * @param mixed $id_category_v1
+ * @return int|string
+ */
+function check_name_category_v2_exist($name_category_v2,$id_category_v1) {
+    return pdo_query_value_new(
+        'SELECT id_category_v2
+        FROM category_v2
+        WHERE name_category_v2 = ?
+        AND id_category_v1 = ?',
+        $name_category_v2,$id_category_v1
+    );
+}

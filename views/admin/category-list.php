@@ -1,4 +1,7 @@
 <script src="<?= URL ?>assets/js/ajax_add_category.js"></script>
+
+<span id="messageToast"></span>
+
 <!-- sa-app__body -->
 <div id="top" class="sa-app__body">
     <div class="mx-sm-2 px-2 px-sm-3 px-xxl-4 pb-6">
@@ -84,7 +87,7 @@
                                                                     type="button" aria-label="Delete Attribute"
                                                                     data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
-                                                                    data-vallue-id="<?= $id_category_v2 ?>"
+                                                                    data-value-id="<?= $id_category_v2 ?>"
                                                                     title="Xoá danh mục con này">
                                                                     <i class="bi bi-x-circle"></i>
                                                                 </button>
@@ -148,18 +151,15 @@
             </div>
             <form method="post" id="categoryV2Form">
             <div class="modal-body row px-5">
-                <div class="col-6 mb-5">
+                <div class="col-12 mb-5">
                     <label class="form-label" for="name_category_v2">Tên danh mục con</label>
-                    <input oninput="checkInputs()" name="name_category_v2" value="" type="text" class="form-control" id="name_category_v2" placeholder="Nhập tên thông số">
-                </div>
-                <div class="col-6 mb-5">
-                    <label class="form-label" for="logo_category_v2">Ảnh danh mục con</label>
-                    <input oninput="checkInputs()" name="logo_category_v2" value="" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" id="logo_category_v2" placeholder="Nhập giá trị thông số">
+                    <input name="name_category_v2" value="" type="text" class="form-control" id="name_category_v2" placeholder="Nhập tên danh mục con">
+                    <input type="hidden" name="id_category_v1" value="">
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                <button id="addAttribute" value="<?=$id?>" type="submit" class="btn btn-primary disabled">Thêm</button>
+                <button id="addCateV2" type="submit" class="btn btn-primary disabled">Thêm</button>
             </div>
             </form>
         </div>
