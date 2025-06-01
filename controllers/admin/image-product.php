@@ -6,11 +6,11 @@
  * Hàm này dùng để render giao diện ảnh khi gọi AJAX
  * @return string
  */
-function render_temp_image_product() {
+function render_temp_image_product($data_path) {
     $data_render = '';
     // Nếu có ảnh tạm
-    if(!empty($_SESSION['temp_image_product'])) {
-        foreach($_SESSION['temp_image_product'] as $path) {
+    if(!empty($data_path)) {
+        foreach($data_path as $path) {
             $url_path = URL_STORAGE . $path;
             $data_render .= <<<HTML
                 <tr>
@@ -65,20 +65,32 @@ if(isset($_POST['add']) && isset($_FILES['file'])) {
         // thông báo
         view_json(200,[
             'message' => toast('success','Thêm ảnh thành công'),
-            'data' => render_temp_image_product(),
+            'data' => render_temp_image_product($_SESSION['temp_image_product']),
         ]);
     }
 
     view_json(200,[
         'message' => toast('danger',$check['message']),
-        'data' => render_temp_image_product(),
+        'data' => render_temp_image_product($_SESSION['temp_image_product']),
     ]);
 }
 
 // load ảnh
 if(isset($_POST['load'])) {
+
+    if(isset($_POST['edit'])) {
+        $query = pdo_query_new(
+            'SELECT path_product_image
+            FROM product_image
+            WHERE id_product = ?',
+            $_POST['id_product']
+        );
+        // custom lại data từ sql
+        if(!empty($query)) foreach ($query as $row) $data_path[] = $row['path_product_image'];
+    }else $data_path = $_SESSION['temp_image_product'];
+
     view_json(200,[
-        'data' => render_temp_image_product(),
+        'data' => render_temp_image_product($data_path),
     ]);
 }
 
@@ -100,13 +112,13 @@ if(isset($_POST['delete']) && isset( $_POST['path'])) {
         // Thông báo xoá thành công
         view_json(200,[
             'message' => toast('success',$check['message']),
-            'data' => render_temp_image_product(),
+            'data' => render_temp_image_product($_SESSION['temp_image_product']),
         ]);
     }
 
     // Thông báo lỗi
     view_json(200,[
         'message' => toast('danger',$check['message']),
-        'data' => render_temp_image_product(),
+        'data' => render_temp_image_product($_SESSION['temp_image_product']),
     ]);
 }
