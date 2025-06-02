@@ -257,7 +257,7 @@
     </div>
 </div>
 
-<?php elseif($status_invoice == 'giao hàng') : // Nếu đang giao hàng ?>
+<?php elseif($status_invoice == 'đang giao') : // Nếu đang giao hàng ?>
 <!-- Modal hoàn thành -->
 <div class="modal fade" id="modalDoneOrder" tabindex="-1" aria-labelledby="modalDoneOrder" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
