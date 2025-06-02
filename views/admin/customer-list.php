@@ -51,20 +51,20 @@
                         <tr>
                             <td class="d-flex align-items-center gap-5">
                                 <img width="40" src="<?= DEFAULT_AVATAR ?>" alt="">
-                                <div class="d-flex flex-column gap-3">
-                                    <div class="d-flex mb-3">
+                                <div class="d-flex flex-column gap-1">
+                                    <div class="d-flex">
                                         <span class="text-primary"><i class="bi bi-person-circle"></i></span>
                                         <div class="ms-4 small">
                                             <a class="text-muted text-decoration-underline" href="<?=URL_ADMIN?>chi-tiet-tai-khoan/<?=$username?>"><strong><?= $full_name ?></strong></a>
                                         </div>
                                     </div>
-                                    <div class="d-flex mb-3">
+                                    <div class="d-flex">
                                         <span class="text-primary"><i class="bi bi-telephone"></i></span>
                                         <div class="ms-4 small">
                                             <?= $username ?>
                                         </div>
                                     </div>
-                                    <div class="d-flex mb-3">
+                                    <div class="d-flex">
                                         <span class="text-primary"><i class="bi bi-envelope"></i></span>
                                         <div class="ms-4 small">
                                             <?= $email ?>
