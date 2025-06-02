@@ -318,3 +318,19 @@
     color: var(--primary-color);
     border-color: var(--primary-color);
 }
+
+
+.otp-input {
+  outline: none; /* Ẩn outline mặc định */
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 24px;
+  margin: 2px;
+  border: 1px dashed var(--muted-color);
+  border-radius: 5px;
+}
+.otp-input:focus {
+  border-style: solid;
+  border-color: var(--primary-color); /* Màu viền khi focus */
+}

@@ -7,8 +7,9 @@
  * @return boolean TRUE nếu tồn tại, ngược lại FALSE khi không tồn tại
  */
 function check_one_exist_in_user_with_field($field,$value) {
-    $result = pdo_query_one(
-        'SELECT username FROM user WHERE '.$field.' ="'.$value.'" AND deleted_at IS NULL'
+    $result = pdo_query_value_new(
+        'SELECT username FROM user WHERE '.$field.' = ? AND deleted_at IS NULL'
+        ,$value
     );
     if($result) return 1;
     return 0;
@@ -37,8 +38,9 @@ function check_valid_username($input) {
  */
 function create_user($token_remember,$full_name,$gender,$email,$username,$password,$id_role) {
     try{
-        pdo_execute(
-            'INSERT INTO user (token_remember,full_name,gender,email,username,password,id_role) VALUES ("'.$token_remember.'","'.$full_name.'",'.$gender.',"'.$email.'","'.$username.'","'.md5($password).'",'.$id_role.')'
+        pdo_execute_new(
+            'INSERT INTO user (token_remember,full_name,gender,email,username,password,id_role) VALUES (?,?,?,?,?,?,?)'
+            ,$token_remember,$full_name,$gender,$email,$username,md5($password),$id_role
         );
     }catch(PDOException $e) {
         die(_s_me_error.$e->getMessage()._e_me_error);
