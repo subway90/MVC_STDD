@@ -501,7 +501,7 @@ function toast($type, $message)
         <style>
         .line-bar {
             height: 2px;
-            animation: lmao {$second} linear forwards;
+            animation: lmao {$second}s linear forwards;
         }
         @keyframes lmao {
             from {
