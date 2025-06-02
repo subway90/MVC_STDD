@@ -87,7 +87,7 @@
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>danh-sach-tai-khoan"
-                                        class="sa-nav__link <?= ($page == 'account-list') ? 'bg-dark' : '' ?>">
+                                        class="sa-nav__link <?= ($page == 'customer-list') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-user"></i>
                                         </span>
@@ -152,8 +152,8 @@
                             <div class="sa-nav__section-title"><span>chương trình</span></div>
                             <ul class="sa-nav__menu sa-nav__menu--root">
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>thong-ke"
-                                        class="sa-nav__link <?= ($page == 'flashsale') ? 'bg-dark' : '' ?>">
+                                    <a href="<?= URL_ADMIN ?>flash-sale"
+                                        class="sa-nav__link <?= ($page == 'flash-sale') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-bolt"></i>
                                         </span>
@@ -161,8 +161,8 @@
                                     </a>
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
-                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                    <a href="<?= URL_ADMIN ?>danh-sach-voucher"
+                                        class="sa-nav__link <?= ($page == 'voucher-list') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-ticket-alt"></i>
                                         </span>
@@ -176,8 +176,8 @@
                             <div class="sa-nav__section-title"><span>hiển thị</span></div>
                             <ul class="sa-nav__menu sa-nav__menu--root">
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>quan-li-danh-muc"
-                                        class="sa-nav__link <?= ($page == 'category') ? 'bg-dark' : '' ?>">
+                                    <a href="<?= URL_ADMIN ?>giao-dien"
+                                        class="sa-nav__link <?= ($page == 'appearance') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-adjust"></i>
                                         </span>
@@ -185,8 +185,8 @@
                                     </a>
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>quan-li-san-pham"
-                                        class="sa-nav__link <?= ($page == 'product') ? 'bg-dark' : '' ?>">
+                                    <a href="<?= URL_ADMIN ?>danh-sach-slide"
+                                        class="sa-nav__link <?= ($page == 'slide') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-images"></i>
                                         </span>
@@ -194,8 +194,8 @@
                                     </a>
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>quan-li-hoa-don"
-                                        class="sa-nav__link <?= ($page == 'order') ? 'bg-dark' : '' ?>">
+                                    <a href="<?= URL_ADMIN ?>cai-dat-chung"
+                                        class="sa-nav__link <?= ($page == 'setting') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-sliders-h"></i>
                                         </span>
