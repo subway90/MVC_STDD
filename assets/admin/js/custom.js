@@ -54,8 +54,8 @@
     */
     (function() {
         $.fn.DataTable.ext.pager.numbers_length = 5;
-        $.fn.DataTable.defaults.oLanguage.sInfo = 'Showing _START_ to _END_ of _TOTAL_';
-        $.fn.DataTable.defaults.oLanguage.sLengthMenu = 'Rows per page _MENU_';
+        $.fn.DataTable.defaults.oLanguage.sInfo = 'Từ _START_ đến _END_ / _TOTAL_';
+        $.fn.DataTable.defaults.oLanguage.sLengthMenu = 'Tổng số dòng _MENU_';
 
         const template = '' +
             '<"sa-datatables"' +
@@ -179,6 +179,10 @@
             const values = data.map(function(item) { return item.value; });
             const canvas = $(this).find('canvas')[0];
 
+            function formatToThousand(value) {
+                return new Intl.NumberFormat('vi-VN').format(value);
+            }
+
             new Chart(canvas.getContext('2d'), {
                 type: 'bar',
                 data: {
@@ -209,7 +213,7 @@
                                 fontSize: 13,
                                 fontColor: '#828f99',
                                 callback: function (value) {
-                                    return '$' + value;
+                                    return formatToThousand(value) + ' vnđ';
                                 },
                             },
                             gridLines: {
