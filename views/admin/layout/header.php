@@ -186,7 +186,7 @@
                                 </li>
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>danh-sach-slide"
-                                        class="sa-nav__link <?= ($page == 'slide') ? 'bg-dark' : '' ?>">
+                                        class="sa-nav__link <?= ($page == 'slide-list') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-images"></i>
                                         </span>
