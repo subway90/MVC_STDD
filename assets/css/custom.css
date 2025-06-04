@@ -252,6 +252,15 @@
 
 .carousel-indicators [data-bs-target] {
     background-color: #084b2c;
+    border: 1px solid transparent;
+    height: 6px !important;
+    border-radius: 4px !important;
+    width: 12px !important;
+}
+
+.carousel-indicators .active {
+    background-color: #084b2c;
+    width: 36px !important;
 }
 
 .text-flashsale {

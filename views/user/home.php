@@ -1,32 +1,23 @@
 <!-- JS Custom -->
 <script src="<?= URL ?>assets/js/countdown-time.js"></script>
 
-<div class="container p-0 mt-3">
-    <!-- Courasel Start -->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="4000">
-                <img src="<?= URL_STORAGE ?>carousel/a55.jpg" class="d-block w-100" alt="a55.jpg">
-            </div>
-            <div class="carousel-item" data-bs-interval="4000">
-                <img src="<?= URL_STORAGE ?>carousel/acer-3-01.png" class="d-block w-100" alt="acer-3-01.png">
-            </div>
-            <div class="carousel-item" data-bs-interval="4000">
-                <img src="<?= URL_STORAGE ?>carousel/digital-freeclip-web.jpg" class="d-block w-100"
-                    alt="digital-freeclip-web.jpg">
-            </div>
+ <!-- Courasel Start -->
+<div id="carousel_slide" class="container-fluid px-0 carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <?php foreach ($list_slide as $i => $slide) : ?>
+        <div class="carousel-item <?= ($i == 0) ? 'active' : '' ?>" data-bs-interval="<?= TIME_LOAD_SLIDE ?>">
+            <img src="<?= URL_STORAGE . $slide['path_slide'] ?>" class="d-block w-100" alt="<?= $slide['path_slide'] ?>">
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <?php endforeach ?>
     </div>
+    <div class="carousel-indicators position-relative mt-3">
+        <?php for ($i=0;$i<count($list_slide);$i++) : ?>
+        <button type="button" data-bs-target="#carousel_slide" data-bs-slide-to="<?= $i ?>" class="<?= ($i == 0) ? 'active' : '' ?>" aria-current="true" aria-label="Slide <?= $i+1 ?>"></button>
+        <?php endfor ?>
+    </div>
+</div>
+
+<div class="container p-0">
     <!-- Box Small Start -->
     <div class="row mt-2">
         <div class="col-6 col-md-3 col-lg-3 py-2">

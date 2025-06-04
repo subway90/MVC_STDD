@@ -1,5 +1,18 @@
 <?php
 
-# [RENDER VIEW]
+# [MODEL]
+model('admin','slide');
 
-view('user','Trang chủ','home',null);
+# [HANDLE]
+
+
+
+# [DATA]
+$data = [
+    'list_slide' => get_all_slide(true),
+];
+
+// test_array($data);
+
+# [RENDER]
+view('user','Trang chủ','home',$data);
