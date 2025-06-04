@@ -84,7 +84,7 @@
                                         <i class="fas fa-arrow-down"></i>
                                     </button>
 
-                                    <a href="<?=URL_ADMIN?>sua-thuong-hieu/<?=$id_slide?>" class="btn btn-sm btn-warning shadow small d-flex align-items-center gap-3">
+                                    <a href="<?=URL_ADMIN?>sua-slide/<?=$id_slide?>" class="btn btn-sm btn-warning shadow small d-flex align-items-center gap-3">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
