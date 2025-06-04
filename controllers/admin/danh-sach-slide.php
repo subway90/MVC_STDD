@@ -34,6 +34,34 @@ if(isset($_POST['order_down']) && ($_POST['order_down'])) {
     }
 }
 
+// Nếu xoá
+if(isset($_POST['delete']) && $_POST['delete']) {
+    // input
+    $id_slide = $_POST['delete'];
+    // validate
+    if(check_exist_one('slide',$id_slide)) {
+        // delete
+        delete_one('slide',$id_slide);
+        // thông báo
+        toast_create('success','Xoá thành công slide');
+    }else toast_create('danger','Không tồn tại slide này');
+}
+
+// Nếu khôi phục
+if(isset($_POST['restore']) && $_POST['restore']) {
+    // input
+    $id_slide = $_POST['restore'];
+    // validate
+    if(check_exist_one_in_trash('slide',$id_slide)){
+        // delete
+        restore_one('slide',$id_slide);
+        // thông báo
+        toast_create('success','Khôi phục thành công slide');
+    } else toast_create('danger','Không tồn tại slide này ở danh sách xoá');
+    
+}
+
+
 
 # [DATA]
 $data = [
