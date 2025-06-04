@@ -12,6 +12,28 @@ $error_valid = [];
 // Xem danh sách xoá
 if(isset($_arrayURL[1]) && $_arrayURL[1] == 'danh-sach-xoa') $status_page = false;
 
+// Nếu đổi vị trí (up) 
+if(isset($_POST['order_up']) && ($_POST['order_up'])) {
+    // thực hiện
+    $check = swap_order('up',$_POST['order_up']);
+    if($check['code']) {
+        toast_create('success','Thay đổi vị trí thành công');
+    }else {
+        toast_create('danger',$check['message']);
+    }
+}
+
+// Nếu đổi vị trí (down) 
+if(isset($_POST['order_down']) && ($_POST['order_down'])) {
+    // thực hiện
+    $check = swap_order('down',$_POST['order_down']);
+    if($check['code']) {
+        toast_create('success','Thay đổi vị trí thành công');
+    }else {
+        toast_create('danger',$check['message']);
+    }
+}
+
 
 # [DATA]
 $data = [
