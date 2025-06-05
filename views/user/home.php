@@ -5,8 +5,10 @@
 <div id="carousel_slide" class="container-fluid px-0 carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <?php foreach ($list_slide as $i => $slide) : ?>
-        <div class="carousel-item <?= ($i == 0) ? 'active' : '' ?>" data-bs-interval="<?= TIME_LOAD_SLIDE ?>">
-            <img src="<?= URL_STORAGE . $slide['path_slide'] ?>" class="d-block w-100" alt="<?= $slide['path_slide'] ?>">
+        <div class="carousel-item <?= ($i == 0) ? 'active' : '' ?>" data-bs-interval="<?= ($i==0) ? TIME_LOAD_SLIDE + 1500 : TIME_LOAD_SLIDE ?>">
+            <a href="<?= ($slide['link_slide']) ? $slide['link_slide'] : '#' ?>" title="Nhấn để chuyển trang đến chương trình">
+                <img src="<?= URL_STORAGE . $slide['path_slide'] ?>" class="d-block w-100" alt="<?= $slide['path_slide'] ?>">
+            </a>
         </div>
         <?php endforeach ?>
     </div>
