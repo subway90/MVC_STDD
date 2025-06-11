@@ -68,7 +68,8 @@
                         ?>
                             <div class="dropdown-item position-relative">
                                 <a class="link-dropdown" href="<?= URL.'danh-muc/'.$category_v1['slug'] ?>">
-                                    <div class="my-1">
+                                    <div class="my-1 py-1 d-flex align-items-center gap-2">
+                                        <img width="24" src="<?= URL_STORAGE . $category_v1['logo'] ?>" alt="<?= $category_v1['logo'] ?>">
                                         <?= $category_v1['name'] ?>
                                     </div>
                                 </a>
@@ -80,8 +81,7 @@
                                     <?php }else{
                                         foreach ($category_v2 as $item) { extract($item);
                                     ?>
-                                    <a class="me-5 dropdown-item d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
-                                        <img width="20" class="me-2" src="<?= DEFAULT_IMAGE ?>" alt="<?= $logo ?>">
+                                    <a class="me-5 py-2 dropdown-item d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
                                         <?= $name ?>
                                     </a>
                                     <?php }} ?>
