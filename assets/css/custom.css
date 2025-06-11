@@ -18,8 +18,17 @@
     /* Màu sáng */
     --dark-color: #343a40 !important;
     --dark-color-80: #343a4080 !important;
-    /* Màu tối */
-    --orange-color: #fc521d !important;
+    /* Màu cam */
+    --orange-color: #f86234 !important;
+    --orange-color-active: #ff3c00 !important;
+    /* Màu cam 20 */
+    --orange-color-20: #f8623420 !important;
+    /* Màu cam 40 */
+    --orange-color-40: #f8623440 !important;
+    /* Màu cam 80 */
+    --orange-color-80: #f8623480 !important;
+    /* Màu cam 60 */
+    --orange-color-60: #f8623460 !important;
     /* Màu tối */
     --muted-color: #888888 !important;
 }
@@ -266,6 +275,60 @@
 .text-flashsale {
     color: var(--orange-color)
 }
+
+.bg-flashsale {
+    background-color: var(--orange-color)
+}
+
+.box-time-flashsale {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-color);
+    background-color: var(--orange-color-60);
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-flashsale {
+    background-color: var(--light-color);
+    border: 1px dashed var(--orange-color);
+    border-radius: 8px;
+}
+
+.btn-flashsale:hover {
+    background: linear-gradient(to right,var(--orange-color-20),var(--orange-color-60));
+}
+
+.btn-flashsale.active {
+    background: linear-gradient(to bottom,var(--orange-color-20),var(--orange-color-80));
+}
+
+.btn-flashsale.active .box-time-flashsale {
+    background-color: var(--orange-color);
+    color: var(--light-color) !important;
+}
+
+.btn-buy-flashsale {
+    background-color: var(--orange-color);
+    color: var(--light-color) !important;
+}
+
+.btn-buy-flashsale:hover {
+    background-color: var(--orange-color-active) !important;
+}
+
+.btn-outline-buy-flashsale {
+    color: var(--orange-color) !important;
+    border-color: var(--orange-color) !important;
+}
+
+.btn-outline-buy-flashsale:hover {
+    background-color: var(--orange-color) !important;
+    color: var(--light-color) !important;
+}
+
+
 
 /* custom scrollbar */
 ::-webkit-scrollbar {
