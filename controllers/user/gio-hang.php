@@ -62,6 +62,17 @@ if(get_action_uri(1) == 'add' && isset($_POST['id_product'])) {
     ]);
 }
 
+// mua ngay
+if(isset($_POST['buy_now']) && $_POST['buy_now']) {
+    // lấy ID sản phẩm
+    $id_product = $_POST['buy_now'];
+    // cập nhật vào session cart
+    $check = update_quantity('plus',$id_product);
+    // thông báo toast
+    if($check) route('gio-hang');
+    else route();
+}
+
 // tăng số lượng
 if(get_action_uri(1) == 'plus' && isset($_POST['id_product'])) {
     // lấy ID sản phẩm

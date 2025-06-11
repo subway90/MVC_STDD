@@ -63,12 +63,11 @@ function render_card_product($data) {
                                 {$content_sale}
                             </div>
                         </a>
-                        <form method="post" action="gio-hang">
+                        <form method="post" action="/gio-hang">
                             <div class="d-flex justify-content-between mt-2">
                                 <input type="hidden" class="idProduct" value="{$id_product}">
-                                <button type="button" class="btn btn-sm btn-success rounded-0 flex-grow-1"><i class="bi bi-cart-check me-2"></i><small>Mua ngay</small></button>
-                                <button type="button" class="btn btn-sm btn-outline-success rounded-0 ms-1"><i class="bi bi-heart"></i></button>
-                                <button type="button" id="addCartBtn" class="btn btn-sm btn-outline-success rounded-0 ms-1"><i class="bi bi-cart-plus"></i></button>
+                                <button type="submit" name="buy_now" value="{$id_product}" class="btn btn-sm btn-success rounded-0 flex-grow-1"><i class="bi bi-cart-check me-2"></i><small>Mua ngay</small></button>
+                                <button type="button" id="addCartBtn" class="btn btn-sm btn-outline-success rounded-0 ms-1"><i class="bi bi-cart-plus me-2"></i><small>Thêm</small></button>
                             </div>
                         </form>
                     </div>
