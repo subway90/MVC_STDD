@@ -140,10 +140,10 @@ function render_show_flashsale($type) {
                                         <div class="text-flashsale fw-bold me-1">{$price_flashsale} vnđ</div>
                                     </div>
                                 </a>
-                                <form method="post" action="gio-hang">
+                                <form method="post" action="/gio-hang">
                                     <div class="d-flex justify-content-between mt-2">
                                         <input type="hidden" class="idProduct" value="{$id_product}">
-                                        <button type="button" class="btn btn-sm btn-buy-flashsale rounded-0 flex-grow-1"><i class="bi bi-cart-check me-2"></i><small>Mua ngay</small></button>
+                                        <button type="submit" name=buy_now value="{$id_product}" class="btn btn-sm btn-buy-flashsale rounded-0 flex-grow-1"><i class="bi bi-cart-check me-2"></i><small>Mua ngay</small></button>
                                         <button type="button" id="addCartBtn" class="btn btn-sm btn-outline-buy-flashsale rounded-0 ms-1"><i class="bi bi-cart-plus"></i></button>
                                     </div>
                                 </form>
