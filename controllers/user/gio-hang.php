@@ -50,7 +50,7 @@ if(get_action_uri(1) == 'get_list') {
 // thêm sản phẩm vào giỏ hàng
 if(get_action_uri(1) == 'add' && isset($_POST['id_product'])) {
     // lấy ID sản phẩm
-    $id_product = clear_input($_POST['id_product']);
+    $id_product = $_POST['id_product'];
     // cập nhật vào session cart
     $check = update_quantity('plus',$id_product);
     // thông báo toast
@@ -76,7 +76,7 @@ if(isset($_POST['buy_now']) && $_POST['buy_now']) {
 // tăng số lượng
 if(get_action_uri(1) == 'plus' && isset($_POST['id_product'])) {
     // lấy ID sản phẩm
-    $id_product = clear_input($_POST['id_product']);
+    $id_product = $_POST['id_product'];
     // cập nhật số lượng
     $check = update_quantity('plus',$id_product);
     // trả về json
@@ -91,7 +91,7 @@ if(get_action_uri(1) == 'plus' && isset($_POST['id_product'])) {
 // giảm số lượng
 if(get_action_uri(1) == 'minus' && isset($_POST['id_product'])) {
     // lấy ID sản phẩm
-    $id_product = clear_input($_POST['id_product']);
+    $id_product = $_POST['id_product'];
     // cập nhật số lượng
     $check = update_quantity('minus',$id_product);
     // trả về json
@@ -106,7 +106,7 @@ if(get_action_uri(1) == 'minus' && isset($_POST['id_product'])) {
 // Xoá sản phẩm khỏi giỏ hàng
 if(get_action_uri(1) == 'delete' && isset($_POST['id_product'])) {
     // Lấy ID sản phẩm
-    $id_product = clear_input($_POST['id_product']);
+    $id_product = $_POST['id_product'];
     // thực hiện xoá
     delete_cart($id_product);
     // trả về json

@@ -22,42 +22,41 @@ function delete_cart($id) {
  * @return bool trả về TRUE nếu cập nhật số lượng thành công, ngược lại trả về FALSE nếu đã đạt giới hạn
  */
 function update_quantity($type,$id) {
+    // check product
+    if(!check_exist_one('product',$id)) return false;
     // Lặp sản phẩm trong session
     if(!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $i => $product) {
             // Nếu ID sản phẩm cập nhật có trong giỏ hàng
             if($_SESSION['cart'][$i]['id_product'] == $id){
                 // Nếu tăng số lượng
-                if($type == 'plus') {
+                if($type === 'plus') {
                     // Lấy tổng số lượng của sản phẩm đó
-                    $max_quantity = pdo_query_value('SELECT quantity_product FROM product WHERE id_product ='.$id);
+                    $max_quantity = pdo_query_value_new('SELECT quantity_product FROM product WHERE id_product ='.$id);
                     // Kiểm tra nếu chưa đạt giới hạn
                     if($_SESSION['cart'][$i]['quantity_product'] < $max_quantity ) {
                         $_SESSION['cart'][$i]['quantity_product']++; // Thêm số lượng
                         return true;
-                    }
+                    }else return false;
                 }
                 // Nếu giảm số lượng
-                else if($type == 'minus') {
+                else if($type === 'minus') {
                     // Kiểm tra số lượng chưa bé hơn 1 (chưa min)
                     if($_SESSION['cart'][$i]['quantity_product']>1) {
                         $_SESSION['cart'][$i]['quantity_product']--; // Giảm số lượng
                         return true;
-                    }
+                    }else return false;
                 }
             }
         }
     }
     // Nếu chưa có sản phẩm
-    else {
-        // Thêm phần tử sản phẩmm mới vào mảng Cart
-        $_SESSION['cart'][] = [
-            'id_product' => $id,
-            'quantity_product' => 1,
-        ];
-        return true;
-    }
-    return false;
+    // Thêm phần tử sản phẩmm mới vào mảng Cart
+    $_SESSION['cart'][] = [
+        'id_product' => $id,
+        'quantity_product' => 1,
+    ];
+    return true;
 }
 
 /**
