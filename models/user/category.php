@@ -70,23 +70,6 @@ function render_card_product($data) {
 HTML;
 }
 
-function render_paginate_product() {
-    return
-    <<<HTML
-        <div class="col-12">
-            <div class="d-flex justify-content-center mt-3">
-                <a href="product.html" class="disabled btn btn-small btn-outline-success mx-1">Trước</a>
-                <a href="product.html" class="active btn btn-small btn-outline-success mx-1">1</a>
-                <a href="product.html" class="btn btn-small btn-outline-success mx-1">2</a>
-                <a href="product.html" class="btn btn-small btn-outline-success mx-1">3</a>
-                <a href="product.html" class="btn btn-small btn-outline-success mx-1">4</a>
-                <a href="product.html" class="btn btn-small btn-outline-success mx-1">5</a>
-                <a href="product.html" class="btn btn-small btn-outline-success mx-1">Sau</a>
-            </div>
-        </div>
-    HTML;
-}
-
 function render_row_card_empty() {
     $url_storage = URL_STORAGE;
     return
