@@ -3,6 +3,7 @@
 
 # [MODEL]
 model('user','checkout');
+model('user','mailer');
 model('user','header');
 model('user','momo');
 model('user','vnpay');
@@ -17,9 +18,9 @@ $bool_checkout = false;
 # [HANDLE]
 if(isset($_POST['create_invoice'])) {
     // lấy dữ liệu
-    $input_method_payment = clear_input($_POST['input_method_payment']);
-    $input_id_shipping_address = clear_input($_POST['input_id_shipping_address']);
-    $input_note_invoice = clear_input($_POST['input_note_invoice']);
+    $input_method_payment = $_POST['input_method_payment'];
+    $input_id_shipping_address = $_POST['input_id_shipping_address'];
+    $input_note_invoice = $_POST['input_note_invoice'];
 
     // xử lí validate
     if(!$input_id_shipping_address) $error_valid[] = 'Vui lòng chọn địa chỉ giao hàng';
@@ -93,11 +94,14 @@ if (isset($_GET['callback-momo'])) {
 
 // lưu database
 if($bool_checkout) {
-    extract($_SESSION['checkout']);
 
+    // giải nén session để tạo biến
+    extract($_SESSION['checkout']);
+    
     // lưu db hoá đơn
-    pdo_execute('INSERT INTO invoice (id_invoice,username,id_shipping_address,note_invoice,method_payment)
-    VALUES ("'.$id_invoice.'","'.$_SESSION['user']['username'].'",'.$id_shipping_address.',"'.$note_invoice.'","'.$method_payment.'")'
+    pdo_execute_new('INSERT INTO invoice (id_invoice,username,id_shipping_address,note_invoice,method_payment)
+    VALUES (?,?,?,?,?)'
+    ,$id_invoice,auth('username'),$id_shipping_address,$note_invoice,$method_payment
     );
 
     // lưu db hoá đơn chi tiết
@@ -106,9 +110,10 @@ if($bool_checkout) {
         if($cart['sale_price_product']) $price_product = $cart['sale_price_product'];
         else $price_product = $cart['price_product'];
         
-        pdo_execute(
+        pdo_execute_new(
             'INSERT INTO invoice_detail (id_invoice,id_product,quantity_invoice,price_invoice)
-            VALUES ("'.$id_invoice.'",'.$cart['id_product'].','.$cart['quantity_product'].','.$price_product.')'
+            VALUES (?,?,?,?)'
+            ,$id_invoice,$cart['id_product'],$cart['quantity_product_in_cart'],$price_product
         );
     }
 
@@ -116,12 +121,27 @@ if($bool_checkout) {
     if(!empty($_SESSION['voucher'])) {
         // lưu db hoá đơn chi tiết
         foreach ($_SESSION['voucher'] as $code) {
-            pdo_execute(
+            pdo_execute_new(
                 'INSERT INTO voucher_invoice (code_voucher,id_invoice)
-                VALUES ("'.$code.'","'.$id_invoice.'")'
+                VALUES (?,?)'
+                ,$code,$id_invoice
             );
         }
     }
+
+    // tạo nội dung gửi mail
+    $data_checkout = [
+        'id_invoice' => $id_invoice,
+        'note_invoice' => $note_invoice ? $note_invoice : '(trống)',
+        'address_invoice' => get_name_shipping_address_by_id($id_shipping_address),
+        'method_payment' => $method_payment,
+        'total_cart' => get_cart('total_checkout'),
+        'list_cart' => get_cart('list'),
+    ];
+
+    // gửi mail
+    send_mail($_SESSION['user']['email'],'Đơn hàng '.$id_invoice,render_mail_checkout($data_checkout));
+
 
     // thông báo thành công và chuyển trang
     toast_create('success','Đơn hàng đã được tạo thành công !');

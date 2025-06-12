@@ -102,3 +102,18 @@ function get_all_invoice_by_username($username) {
     return $result;
 
 }
+
+/**
+ * Lấy tên của một ID địa chỉ giao hàng
+ * @param mixed $id ID địa chỉ cần lấy
+ * @return string
+ */
+function get_name_shipping_address_by_id($id) {
+    return pdo_query_value_new(
+        'SELECT name_shipping_address
+        FROM shipping_address
+        WHERE id_shipping_address = ?
+        AND deleted_at IS NULL'
+        ,$id
+    );
+}

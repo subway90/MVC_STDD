@@ -108,7 +108,7 @@ function get_cart($get_type) {
     if($get_type == 'list') return $list;
     elseif($get_type == 'count') return $count;
     elseif($get_type == 'total_cart') return $total_cart;
-    elseif($get_type == 'all') return ['count' => $count,'total' => $total,'list' => $list];
+    elseif($get_type == 'all') return ['count' => $count,'total_cart' => $total_cart,'list' => $list];
     elseif($get_type == 'array_id') return $array_id;
     elseif($get_type == 'total_checkout') {
         
