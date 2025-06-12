@@ -89,7 +89,7 @@
                  </h5>
                  <div class="input-group input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">
-                        <i class="bi bi-person-circle"></i>
+                        <i class="bi bi-person"></i>
                     </span>
                     <input readonly type="text" class="form-control" value="<?= auth('full_name') ?>" placeholder="Họ và tên người nhận">
                 </div>
@@ -98,6 +98,12 @@
                         <i class="bi bi-telephone"></i>
                     </span>
                     <input readonly type="text" class="form-control" value="<?= auth('username') ?>" placeholder="Số điện thoại người nhận">
+                </div>
+                <div class="input-group input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-envelope"></i>
+                    </span>
+                    <input readonly type="text" class="form-control" value="<?= auth('email') ?>" placeholder="Họ và tên người nhận">
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="chooseShippingAddress">
@@ -111,7 +117,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-text">
-                        <i class="bi bi-pen"></i>
+                        <i class="bi bi-chat"></i>
                     </span>
                     <textarea name="input_note_invoice" class="form-control" placeholder="Nội dung ghi chú (nếu cần)"><?= $input_note_invoice ?></textarea>
                 </div>
