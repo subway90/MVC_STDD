@@ -31,6 +31,7 @@
 
 <body class="bg-secondary bg-opacity-10">
 
+    <?php if(BOOL_SPINNER) : ?>
     <div id="spinner">
         <div  style="width: 8px; height: 8px;" class="spinner-grow text-danger" role="status">
         </div>
@@ -43,6 +44,7 @@
         <div  style="width: 24px; height: 24px;" class="spinner-grow text-warning" role="status">
         </div>
     </div>
+    <?php endif ?>
 
     <div id="messageCart"></div>
 
