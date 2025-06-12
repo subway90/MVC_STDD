@@ -67,5 +67,5 @@ function render_card_product_search($data) {
                 </div>
             </div>
         </div>
-HTML;
+    HTML;
 }

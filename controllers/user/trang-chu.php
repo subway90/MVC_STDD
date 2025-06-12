@@ -1,7 +1,10 @@
 <?php
 
 # [MODEL]
+model('user','home');
+model('user','search');
 model('admin','slide');
+model('user','product');
 model('admin','flashsale');
 
 # [HANDLE]
@@ -17,6 +20,7 @@ if(isset($_POST['flashsale'])) {
 # [DATA]
 $data = [
     'list_slide' => get_all_slide(true),
+    'section_product' => get_all_section(),
 ];
 
 // test_array($data);
