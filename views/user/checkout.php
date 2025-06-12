@@ -53,26 +53,26 @@
                         </tr>
                         <?php endforeach ?>
                         <tr>
-                            <td class="text-start fw-semibold">
+                            <td colspan="3" class="text-start text-lg-end pe-lg-4 fw-semibold">
                                 Tiền sản phẩm
                             </td>
-                            <td colspan="3">
+                            <td>
                                 <?= format_currency(get_cart('total_cart')) ?>
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-start fw-semibold">
+                            <td colspan="3" class="text-start text-lg-end pe-lg-4 fw-semibold">
                                 Giảm khuyến mãi
                             </td>
-                            <td colspan="3">
+                            <td>
                                 <?= format_currency(get_cart('value_discount')) ?>
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-start fw-semibold">
+                            <td colspan="3" class="text-start text-lg-end pe-lg-4 fw-semibold text-danger">
                                 Tổng thanh toán
                             </td>
-                            <td colspan="3">
+                            <td class="text-danger">
                                 <?= format_currency(get_cart('total_checkout')) ?>
                             </td>
                         </tr>
