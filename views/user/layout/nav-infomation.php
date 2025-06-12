@@ -7,19 +7,12 @@
             <div class="fw-bold mb-4">
                 <?= auth('full_name') ?>
             </div>
-            <div class="fw-semi">
-                <span class="small me-1">Hạng thành viên :</span>
-                <span class="fw-bold">Thường</span>
+            <div class="fw-semi small">
+                <?= auth('username') ?>
             </div>
-            <div class="fw-semi">
-                <span class="small me-1">Điểm thưởng tích luỹ :</span>
-                <span class="fw-bold">16.500 điểm</span>
+            <div class="fw-semi small">
+                <?= auth('email') ?>
             </div>
-        </div>
-        <div class="mt-1 text-end small">
-            <a class="nav-link text-green fw-semi" href="#">
-                <i class="bi bi-patch-question small fs-6 me-1"></i> Xem thể lệ
-            </a>
         </div>
         <div class="d-flex flex-column mt-3">
             <a href="/lich-su-mua-hang" class="nav-link-infomation <?= ($page !== 'invoice-history') ?: 'active' ?>">
@@ -31,8 +24,8 @@
             <a href="/dia-chi-giao-hang" class="nav-link-infomation <?= ($page !== 'shipping-address') ?: 'active' ?>">
                 <i class="bi bi-geo-alt me-1"></i> Địa chỉ giao hàng
             </a>
-            <a href="/doi-diem-thuong" class="nav-link-infomation <?= ($page !== 'change-gift') ?: 'active' ?>">
-                <i class="bi bi-gift me-1"></i> Đổi điểm thưởng
+            <a href="/doi-mat-khau" class="nav-link-infomation <?= ($page !== 'change-password') ?: 'active' ?>">
+                <i class="bi bi-key me-1"></i> Đổi mật khẩu
             </a>
         </div>
     </div>
