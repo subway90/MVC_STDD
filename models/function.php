@@ -541,3 +541,10 @@ function get_action_uri($order){
     }
     return false;
 }
+
+/**
+ * Format lại tiền tệ theo đơn vị VNĐ
+ */
+function format_currency($input) {
+    return number_format($input,0,',','.').' vnđ';
+}

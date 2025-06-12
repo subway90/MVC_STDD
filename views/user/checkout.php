@@ -43,8 +43,8 @@
                                 </div>
                             </td>
                             <td class="lh-1">
-                                <div class="text-decoration-line-through small text-muted"><?= number_format($price_product,0,',','.') ?> vnđ</div>
-                                <div><?= number_format($sale_price_product,0,',','.') ?> vnđ</div>
+                                <div class="text-decoration-line-through small text-muted"><?= format_currency($price_product) ?></div>
+                                <div><?= format_currency($sale_price_product) ?></div>
                             </td>
                             <td class="text-center">
                                 <span class="mx-2"><?= $quantity_product_in_cart ?></span>
@@ -52,6 +52,30 @@
                             <td class="text-end"><?= number_format($quantity_product_in_cart * $sale_price_product,'0',',','.') ?> vnđ</td>
                         </tr>
                         <?php endforeach ?>
+                        <tr>
+                            <td class="text-start fw-semibold">
+                                Tiền sản phẩm
+                            </td>
+                            <td colspan="3">
+                                <?= format_currency(get_cart('total_cart')) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-start fw-semibold">
+                                Giảm khuyến mãi
+                            </td>
+                            <td colspan="3">
+                                <?= format_currency(get_cart('value_discount')) ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-start fw-semibold">
+                                Tổng thanh toán
+                            </td>
+                            <td colspan="3">
+                                <?= format_currency(get_cart('total_checkout')) ?>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

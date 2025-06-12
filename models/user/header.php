@@ -29,6 +29,8 @@ function showCanvas() {
  * 
  * - total_checkout : Tổng tiền trong giỏ hàng (đã áp dụng voucher)
  * 
+ * - value_discount : Số tiền giảm trong hoá đơn khi sử dụng voucher, nếu không có sẽ trả về null
+ * 
  * - count : Số lượng
  * 
  * - list : Danh sách sản phẩm
@@ -42,7 +44,7 @@ function showCanvas() {
  */
 function get_cart($get_type) {
     // Khai báo
-    $type = ['total_cart','total_checkout','list','count','array_id','all']; // Loại cần lấy
+    $type = ['total_cart','total_checkout','value_discount','list','count','array_id','all']; // Loại cần lấy
     $list = [];
     $total_cart = 0;
     $total_checkout = 0;
@@ -127,6 +129,27 @@ function get_cart($get_type) {
         }
 
         return $total_cart - $value_discount;
+
+    }
+    elseif($get_type == 'value_discount') {
+        
+        if(!empty($_SESSION['voucher'])) {
+            foreach ($_SESSION['voucher'] as $code) {
+                $get_voucher = get_one_voucher($code);
+                if(!empty($get_voucher) && $get_voucher['type_voucher'] === 'giảm tiền hoá đơn') break;
+            }
+        }else return null;
+
+        if($get_voucher) {
+            if($get_voucher['unit_voucher'] === '%') {
+                $value_discount = get_cart('total_cart')/100 * $get_voucher['value_voucher'];
+                // nếu có max value voucher và giá trị discount lớn hơn giá trị max -> so sánh và lấy giá max nếu vượt
+                if($get_voucher['max_value_voucher'] && $get_voucher['max_value_voucher'] < $value_discount) $value_discount = $get_voucher['max_value_voucher'];
+            }
+            else $value_discount = $get_voucher['value_voucher'];
+        }
+
+        return $value_discount;
 
     }
 
