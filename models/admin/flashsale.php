@@ -182,3 +182,29 @@ function render_show_flashsale($type) {
     HTML;
     return $render;
 }
+
+/**
+ * Lấy tất cả thương hiệu
+ * @param $state Trạng thái cần lấy, TRUE : lấy danh sách hoạt động, FALSE : lấy danh sách xoá
+ * @return array
+ */
+function get_all_flashsale($state) {
+    if($state) {
+        $query = 'IS NULL';
+        $order = 'f.created_at';
+    }
+    else {
+        $query = 'IS NOT NULL';
+        $order = 'f.deleted_at';
+    }
+
+    return pdo_query(
+        'SELECT f.*, COUNT(p.id_product) count_product
+        FROM flashsale f
+        LEFT JOIN flashsale_product fp ON f.id_flashsale = fp.id_flashsale
+        LEFT JOIN product p ON p.id_product = fp.id_product
+        WHERE f.deleted_at '.$query.'
+        GROUP BY f.id_flashsale
+        ORDER BY '.$order.' DESC'
+    );
+}

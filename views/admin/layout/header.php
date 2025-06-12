@@ -152,8 +152,8 @@
                             <div class="sa-nav__section-title"><span>chương trình</span></div>
                             <ul class="sa-nav__menu sa-nav__menu--root">
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
-                                    <a href="<?= URL_ADMIN ?>flash-sale"
-                                        class="sa-nav__link <?= ($page == 'flash-sale') ? 'bg-dark' : '' ?>">
+                                    <a href="<?= URL_ADMIN ?>danh-sach-flashsale"
+                                        class="sa-nav__link <?= ($page == 'flashsale-listx') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-bolt"></i>
                                         </span>
