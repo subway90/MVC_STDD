@@ -239,7 +239,7 @@
                     đánh giá
                 </span>
                 <hr class="border border-2 border-success m-0 mt-1">
-                <div class="d-flex flex-column gap-2 p-2">
+                <div class="d-flex flex-column gap-2     p-2">
                     
                     <div class="d-flex align-items-center">
                         <div class="text-muted small">
@@ -309,7 +309,7 @@
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
                         </div>
                         <!-- Content Feedback -->
                         <div class="py-1 text-muted small">
