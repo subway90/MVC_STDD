@@ -220,11 +220,121 @@
         </div>
         <?php endif ?>
 
-        <div class="col-12 col-md-6 col-lg-4 mt-5">
-            <span class="text-uppercase text-success h6">
-                sản phẩm liên quan
-            </span>
-            <hr class="border border-2 border-success m-0 mt-1">
+       <div class="col-12 d-flex flex-column flex-lg-row py-3">
+            <!-- Description -->
+            <div class="col-12 col-lg-7 py-3">
+                <div class="w-100 mb-4">
+                <span class="text-uppercase text-success h6">
+                    mô tả
+                </span>
+                <hr class="border border-2 border-success m-0 mt-1">
+            </div>
+                <?= $detail_product['description_product'] ?>
+            </div>
+            
+            <!-- Feedback -->
+            <div class="col-12 col-lg-5 py-3 ps-lg-5">
+                <div class="w-100 mb-4">
+                <span class="text-uppercase text-success h6">
+                    đánh giá
+                </span>
+                <hr class="border border-2 border-success m-0 mt-1">
+                <div class="d-flex flex-column gap-2 p-2">
+                    
+                    <div class="d-flex align-items-center">
+                        <div class="text-muted small">
+                            Có 2 lượt đánh giá
+                        </div>
+                        <i class="bi bi-dot mx-1"></i>
+                        <small>
+                            <span class="text-muted me-1">
+                                4.5 / 5
+                            </span>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </small>
+                    </div>
+                    
+                    <!-- Card Feedback -->
+                    <div class="bg-light border-3 p-3">
+                        <!-- Info User -->
+                        <div class="d-flex align-items-center gap-2 pb-3">
+                            <img class="rounded-circle" width="48" src="<?= DEFAULT_AVATAR ?>" alt="avatar">
+                            <div class="small">
+                                <div class="fw-bold small">
+                                    Name User
+                                </div>
+                                <div class="small text-muted">
+                                    <i class="far fa-clock small me-1"></i>
+                                    <?= date('H:i d/m/Y') ?>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Point Star -->
+                        <div class="d-flex gap-1">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                        </div>
+                        <!-- Content Feedback -->
+                        <div class="py-1 text-muted small">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid dicta amet ducimus quasi animi rerum officia molestias distinctio dolorum quibusdam expedita excepturi, sunt odio vero accusamus culpa vitae quia cum.
+                        </div>
+                        <!-- Image Feedback -->
+                         <div class="thumbnail-container">
+                            <img class="thumbnail" width="50" src="<?= DEFAULT_IMAGE ?>" alt="hình ảnh đánh giá">
+                            <div class="hover-text text-light"><i class="bi bi-zoom-in"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Feedback -->
+                    <div class="bg-light border-3 p-3">
+                        <!-- Info User -->
+                        <div class="d-flex align-items-center gap-2 pb-3">
+                            <img class="rounded-circle" width="48" src="<?= DEFAULT_AVATAR ?>" alt="avatar">
+                            <div class="small">
+                                <div class="fw-bold small">
+                                    Name User
+                                </div>
+                                <div class="small text-muted">
+                                    <i class="far fa-clock small me-1"></i>
+                                    <?= date('H:i d/m/Y') ?>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Point Star -->
+                        <div class="d-flex gap-1">
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                            <i class="bi bi-star text-warning"></i>
+                        </div>
+                        <!-- Content Feedback -->
+                        <div class="py-1 text-muted small">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid dicta amet ducimus quasi animi rerum officia molestias distinctio dolorum quibusdam expedita excepturi, sunt odio vero accusamus culpa vitae quia cum.
+                        </div>
+                        <!-- Image Feedback -->
+                         <div class="thumbnail-container">
+                            <img class="thumbnail" width="50" src="<?= DEFAULT_IMAGE ?>" alt="hình ảnh đánh giá">
+                            <div class="hover-text text-light"><i class="bi bi-zoom-in"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+            
+       </div>
+
+        <div class="w-100">
+            <div class="col-12 col-md-6 col-lg-4 mt-5">
+                <span class="text-uppercase text-success h6">
+                    sản phẩm liên quan
+                </span>
+                <hr class="border border-2 border-success m-0 mt-1">
+            </div>
         </div>
 
         <div class="col-12 mt-4">
@@ -279,4 +389,6 @@
 
         </div>
     </div>
-</div>r
+</div>
+
+<?= layout('user','large-image') ?>
