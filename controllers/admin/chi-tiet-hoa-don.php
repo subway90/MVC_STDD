@@ -20,11 +20,13 @@ if(get_action_uri(2)) {
 // xoá hoá đơn
 if(isset($_POST['close_invoice'])) {
     // xoá mềm
-    delete_one('invoice','"'.$id.'"');
+    delete_one('invoice',$id);
     // cập nhật lí do hoá đơn bị xoá
     add_reason_close_invoice($id,$_POST['reason_close_invoice']);
+    // thông báo
+    toast_create('success','Xoá hoá đơn thành công');
     // cập nhật lại route
-    route('admin/chi-tiet-hoa-don/'.$id);
+    route('admin/danh-sach-hoa-don');
 }
 
 // thay đổi trạng thái đơn hàng đã xác nhận
