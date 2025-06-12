@@ -2,6 +2,7 @@
 
 
 # [MODEL]
+model('user','infomation');
 model('user','checkout');
 model('user','mailer');
 model('user','header');

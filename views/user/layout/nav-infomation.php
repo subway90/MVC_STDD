@@ -25,7 +25,7 @@
             <a href="/lich-su-mua-hang" class="nav-link-infomation <?= ($page !== 'invoice-history') ?: 'active' ?>">
                 <i class="bi bi-receipt me-1"></i> Đơn hàng của tôi
             </a>
-            <a href="/thong-tin-ca-nhan" class="nav-link-infomation <?= ($page !== 'update-infomation') ?: 'active' ?>">
+            <a href="/thong-tin-ca-nhan" class="nav-link-infomation <?= ($page !== 'infomation') ?: 'active' ?>">
                 <i class="bi bi-person-vcard me-1"></i> Thông tin cá nhân
             </a>
             <a href="/dia-chi-giao-hang" class="nav-link-infomation <?= ($page !== 'shipping-address') ?: 'active' ?>">

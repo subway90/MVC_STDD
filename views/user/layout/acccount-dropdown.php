@@ -8,8 +8,8 @@
         <?php if(auth('name_role') === 'admin') : ?>
         <li><a class="dropdown-item text-danger" href="<?= URL_ADMIN ?>"><i class="bi bi-gear me-2"></i> Hệ thống quản lí</a></li>
         <?php endif ?>
-        <!-- <li><a class="dropdown-item" href="<?= URL ?>cap-nhat-thong-tin"><i class="bi bi-person-circle me-2"></i> Cập nhật thông tin</a></li> -->
-        <li><a class="dropdown-item" href="<?= URL ?>lich-su-mua-hang"><i class="bi bi-clock-history me-2"></i> Lịch sử mua hàng</a></li>
+        <li><a class="dropdown-item" href="<?= URL ?>thong-tin-ca-nhan"><i class="bi bi-person-vcard me-2"></i>Thông tin cá nhân</a></li>
+        <li><a class="dropdown-item" href="<?= URL ?>lich-su-mua-hang"><i class="bi bi-receipt me-2"></i>Đơn hàng của tôi</a></li>
         <!-- <li><a class="dropdown-item" href="<?= URL ?>dia-chi-giao-hang"><i class="bi bi-geo-alt me-2"></i> Địa chỉ giao hàng</a></li> -->
         <!-- <li><a class="dropdown-item" href="<?= URL ?>doi-diem-thuong"><i class="bi bi-gift me-2"></i> Điểm đổi thưởng</a></li> -->
         <!-- <li><a class="dropdown-item" href="<?= URL ?>yeu-thich"><i class="bi bi-heart me-2"></i> Sản phẩm yêu thích</a></li> -->

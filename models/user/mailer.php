@@ -88,7 +88,8 @@ function render_mail_checkout($data_checkout)
                     padding: 20px;
                 }
                 .header {
-                    background-color:#19af69; /* Màu vàng cam */
+                    border: 1px solid #cccccc;
+                    background-color: #ffffff;
                     padding: 20px 20%;
                     border-radius: 5px;
                     text-align: center;

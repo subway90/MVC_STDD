@@ -1,19 +1,6 @@
 <?php
 
 /**
- * Lấy danh sách địa chỉ giao hàng theo username
- * @return array
- */
-function get_all_shipping_address() {
-    return pdo_query(
-        'SELECT * 
-        FROM shipping_address 
-        WHERE username = "'.auth('username').'"
-        AND deleted_at IS NULL'
-    );
-}
-
-/**
  * Hàm này dùng để lấy thông tin hoá đơn và hoá đơn chi tiết theo mã hoá đơn
  * @param mixed $id_invoice mã hoá đơn cần lấy
  * @return array
@@ -101,19 +88,4 @@ function get_all_invoice_by_username($username) {
 
     return $result;
 
-}
-
-/**
- * Lấy tên của một ID địa chỉ giao hàng
- * @param mixed $id ID địa chỉ cần lấy
- * @return string
- */
-function get_name_shipping_address_by_id($id) {
-    return pdo_query_value_new(
-        'SELECT name_shipping_address
-        FROM shipping_address
-        WHERE id_shipping_address = ?
-        AND deleted_at IS NULL'
-        ,$id
-    );
 }
