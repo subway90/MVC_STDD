@@ -1,6 +1,7 @@
 <?php
 
 model('user','voucher');
+$keyword = '';
 
 /**
  * Dùng để hiển thị Canvas giỏ hàng nếu $_SESSION['showCanvasCart'] TRUE

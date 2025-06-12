@@ -90,12 +90,14 @@
                         <?php } ?>
                         </div>
                     </li>
+                    <form action="/tim-kiem" method="get">
                     <li class="nav-item input-group">
-                        <input type="text" name="search_product" id="" class="form-control rounded-end-0 rounded-5 search-input ps-3" placeholder="Bạn muốn tìm gì ?">
-                        <button class="btn btn-small btn-light rounded-start-0 rounded-5 pe-3 text-success search-btn">
+                        <input type="text" name="keyword" value="<?= isset($keyword_old) ? $keyword_old : '' ?>" class="form-control rounded-end-0 rounded-5 search-input ps-3" placeholder="Bạn muốn tìm gì ?">
+                        <button type="submit" class="btn btn-small btn-light rounded-start-0 rounded-5 pe-3 text-success search-btn">
                             <i class="bi fs-5 bi-search"></i>
                         </button>
                     </li>
+                    </form>
                 </ul>
                 <a href="<?= URL ?>gio-hang" class="btn btn-outline-light position-relative rounded-circle me-2">
                     <i class="bi bi-cart fs-5"></i>
