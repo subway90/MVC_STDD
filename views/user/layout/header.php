@@ -64,10 +64,7 @@
                             <span class="fw-semibold">Danh mục</span>
                         </button>
                         <div class="dropdown-menu py-3">
-                        <?php
-                            foreach (list_category_for_menu() as $item) {
-                                extract($item);
-                        ?>
+                        <?php foreach (list_category_for_menu() as $item) : extract($item) ?>
                             <div class="dropdown-item position-relative">
                                 <a class="link-dropdown" href="<?= URL.'danh-muc/'.$category_v1['slug'] ?>">
                                     <div class="my-1 py-1 d-flex align-items-center gap-2">
@@ -76,20 +73,20 @@
                                     </div>
                                 </a>
                                 <div class="submenu p-1">
-                                    <?php if(empty($category_v2)) { ?>
+                                    <?php if(empty($category_v2)) : ?>
                                     <a class="me-5 dropdown-item d-flex align-items-center disabled fst-italic" href="#">
                                         (Chưa có danh mục)
                                     </a>
-                                    <?php }else{
-                                        foreach ($category_v2 as $item) { extract($item);
-                                    ?>
-                                    <a class="me-5 py-2 dropdown-item d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
-                                        <?= $name ?>
-                                    </a>
-                                    <?php }} ?>
+                                    <?php else : ?>
+                                        <?php  foreach ($category_v2 as $item) : extract($item) ?>
+                                        <a class="me-5 py-2 dropdown-item d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
+                                            <?= $name ?>
+                                        </a>
+                                        <?php endforeach ?>
+                                    <?php endif ?>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php endforeach ?>
                         </div>
                     </li>
                     <form action="/tim-kiem" method="get">
