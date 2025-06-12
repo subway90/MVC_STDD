@@ -28,7 +28,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
+        background:#00000090;
         z-index: 999;
     }
     .thumbnail-container {
@@ -46,8 +46,8 @@
     }
 
     .thumbnail-container:hover {
-        background: rgba(0, 0, 0, 0.3); /* Nền màu đen với độ mờ */
-        border: 1px dashed rgba(0, 0, 0, 0.5); /* Viền đứt nét */
+        background: #00000025; /* Nền màu đen với độ mờ */
+        border: 1px dashed #00000050; /* Viền đứt nét */
     }
 
     .hover-text {
