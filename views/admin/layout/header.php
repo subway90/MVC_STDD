@@ -127,7 +127,7 @@
                                         <span class="sa-nav__title">Danh mục</span>
                                     </a>
                                 </li>
-                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                <!-- <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>danh-sach-series"
                                         class="sa-nav__link <?= ($page == 'series-list') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
@@ -135,7 +135,7 @@
                                         </span>
                                         <span class="sa-nav__title">Seris</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>danh-sach-san-pham"
                                         class="sa-nav__link <?= ($page == 'product-list') ? 'bg-dark' : '' ?>">
