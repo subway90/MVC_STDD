@@ -62,7 +62,7 @@ function render_show_flashsale($type) {
         </button>
         <button type="submit" class="btn-flashsale p-2 p-lg-3 d-flex flex-column align-items-center gap-lg-2">
             <h6 class="text-flashsale">
-                ????? ???? ??? ? ?? ? ?
+                Sale đặc biệt cuối tuần
             </h6>
             <div class="d-flex align-items-center flex-column flex-lg-row">
                 <div class="text-flashsale small mb-2 mb-lg-0 me-lg-2">
@@ -70,7 +70,7 @@ function render_show_flashsale($type) {
                 </div>
                 <div class="d-flex align-items-center gap-1">
                     <span class="box-time-flashsale">
-                        08/06
+                        15/06
                     </span>
                     <span class="text-flashsale small mx-1">
                         lúc
