@@ -41,15 +41,8 @@ function render_card_product($data) {
     <<<HTML
         <div class="card-product p-1 pt-lg-0 pb-lg-2">
             <div style="min-height: 100%;" class="card rounded-0">
-                <div class="position-relative hover-trigger">
-                    <img src="{$path_product_image}" class="card-img img-product" alt="{$path_product_image}">
-                    <span class="show-hover position-absolute end-0 bottom-0 w-100">
-                        <div class="d-flex justify-content-center align-items-center text-success">
-                            Nhấn để phóng to <i class="bi bi-zoom-in ms-2"></i>
-                        </div>
-                    </span>
-                </div>
-                <div class="mx-2 d-flex">
+                <img src="{$path_product_image}" alt="{$path_product_image}">
+                <div class="m-2 d-flex">
                     <a href="#" class="border border-success text-muted fw-semibold rounded-5 small px-2 text-decoration-none d-flex align-items-center me-1 gap-1">
                         <img height="14" src="{$url_storage}{$logo_brand}" alt="{$logo_brand}">
                         {$name_brand}

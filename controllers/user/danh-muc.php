@@ -24,7 +24,7 @@ if(get_action_uri(1)) {
 // lấy slug danh mục v2
 if(get_action_uri(2)) {
     // lấy slug
-    $slug_request_category_v2 = clear_input(get_action_uri(2));
+    $slug_request_category_v2 = get_action_uri(2);
     // kiểm tra tồn tại
     if(!check_exist_one_by_slug('category_v2',$slug_request_category_v2)) view_error(404);
     // tạo câu truy vấn
@@ -35,9 +35,9 @@ if(get_action_uri(2)) {
 if(isset($_GET['filter'])) {
     
     // lấy điều kiện lọc
-    if(isset($_GET['price']) && $_GET['price']) $request_price = clear_input($_GET['price']);
-    if(isset($_GET['brand']) && $_GET['brand']) $request_brand = clear_input($_GET['brand']);
-    if(isset($_GET['color']) && $_GET['color']) $request_color = clear_input($_GET['color']);
+    if(isset($_GET['price']) && $_GET['price']) $request_price = $_GET['price'];
+    if(isset($_GET['brand']) && $_GET['brand']) $request_brand = $_GET['brand'];
+    if(isset($_GET['color']) && $_GET['color']) $request_color = $_GET['color'];
     // lấy câu truy vấn lọc theo giá
     if($request_price) {
         foreach (LIST_FILTER_PRICE as $item) {
@@ -52,7 +52,7 @@ if(isset($_GET['filter'])) {
     if($request_color) $query_color = ' = '.$request_color;
 
     // truy vấn
-    $query = pdo_query(
+    $query = pdo_query_new(
         'SELECT p.*, b.name_brand, b.slug_brand, b.logo_brand, pi.*
         FROM product p
         LEFT JOIN brand b ON  p.id_brand = b.id_brand
@@ -77,8 +77,6 @@ if(isset($_GET['filter'])) {
         foreach ($query as $item) {
             $result .= render_card_product($item);
         }
-        // phần trang
-        $result .= render_paginate_product();
     }
     
     
