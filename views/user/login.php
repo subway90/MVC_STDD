@@ -27,9 +27,9 @@
                             Đăng nhập
                         </button>
                     </div>
-                    <div class="col-12 d-flex justify-content-between">
-                        <a class="nav-link text-success" href="<?= URL ?>dang-ky"><i class="fas fa-user-plus"></i> Đăng ký tài khoản</a>
-                        <a class="nav-link text-danger" href="<?= URL ?>quen-mat-khau"><i class="fas fa-question-circle"></i> Quên mật khẩu</a>
+                    <div class="col-12 d-flex justify-content-center">
+                        Bạn chưa có tài khoản ? <a class="nav-link text-success ms-1" href="<?= URL ?>dang-ky">Đăng ký tài khoản</a>
+                        <!-- <a class="nav-link text-danger" href="<?= URL ?>quen-mat-khau"><i class="fas fa-question-circle"></i> Quên mật khẩu</a> -->
                     </div>
                 </form>
         </div>

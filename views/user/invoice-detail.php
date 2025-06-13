@@ -39,7 +39,13 @@
                     </tr>
                     <tr class="align-middle">
                         <td class="text-start fw-bold"> Phương thức thanh toán </td>
-                        <td> <?= $method_payment ?> </td>
+                        <td>
+                            <?= $method_payment === 'cod' ? '<div class="badge bg-dark">Tiền mặt (COD)</div>' : 
+                            ($method_payment === 'vnpay' ? '<div class="badge bg-info">Ví điện tử VNPAY</div>' :
+                            '<div class="badge bg-danger">Ví điện tử MOMO</div>'
+                            )
+                            ?>
+                        </td>
                     </tr>
                 </table>
             </div>

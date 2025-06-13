@@ -142,7 +142,7 @@
                                         <span class="sa-nav__icon">
                                             <i class="fas fa-box"></i>
                                         </span>
-                                        <span class="sa-nav__title">Chi tiết</span>
+                                        <span class="sa-nav__title">Sản phẩm</span>
                                     </a>
                                 </li>
                             </ul>
@@ -160,7 +160,7 @@
                                         <span class="sa-nav__title">Flashsale</span>
                                     </a>
                                 </li>
-                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                <!-- <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>danh-sach-voucher"
                                         class="sa-nav__link <?= ($page == 'voucher-list') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
@@ -168,14 +168,14 @@
                                         </span>
                                         <span class="sa-nav__title">Voucher</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
 
                         <li class="sa-nav__section">
                             <div class="sa-nav__section-title"><span>hiển thị</span></div>
                             <ul class="sa-nav__menu sa-nav__menu--root">
-                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                <!-- <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>giao-dien"
                                         class="sa-nav__link <?= ($page == 'appearance') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
@@ -183,7 +183,7 @@
                                         </span>
                                         <span class="sa-nav__title">Giao diện</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>danh-sach-slide"
                                         class="sa-nav__link <?= ($page == 'slide-list') ? 'bg-dark' : '' ?>">
@@ -193,7 +193,7 @@
                                         <span class="sa-nav__title">Slide banner</span>
                                     </a>
                                 </li>
-                                <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
+                                <!-- <li class="sa-nav__menu-item sa-nav__menu-item--has-icon">
                                     <a href="<?= URL_ADMIN ?>cai-dat-chung"
                                         class="sa-nav__link <?= ($page == 'setting') ? 'bg-dark' : '' ?>">
                                         <span class="sa-nav__icon">
@@ -201,7 +201,7 @@
                                         </span>
                                         <span class="sa-nav__title">Chung</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
 

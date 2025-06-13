@@ -73,8 +73,8 @@
                                         Loại thanh toán:
                                     </div>
                                     <div class="">
-                                        <?= $method_payment == 1 ? '<div class="badge badge-sa-secondary">Tiền mặt (COD)</div>' : (
-                                        $method_payment == 2 ? '<div class="badge badge-sa-primary">Ví điện tử VNPAY</div>' :
+                                        <?= $method_payment === 'cod' ? '<div class="badge badge-sa-secondary">Tiền mặt (COD)</div>' : (
+                                        $method_payment === 'vnpay' ? '<div class="badge badge-sa-primary">Ví điện tử VNPAY</div>' :
                                         '<div class="badge badge-sa-danger">Ví điện tử MOMO</div>')
                                         ?>
                                     </div>

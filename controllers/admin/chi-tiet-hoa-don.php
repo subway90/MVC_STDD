@@ -24,6 +24,12 @@ if(isset($_POST['close_invoice'])) {
     delete_one('invoice',$id);
     // cập nhật lí do hoá đơn bị xoá
     add_reason_close_invoice($id,$_POST['reason_close_invoice']);
+    // gửi thông báo đến user
+    create_notify_with_update_state(
+        $id,
+        'Cập nhật trạng thái đơn hàng '.$id,
+        'Đơn hàng của bạn đã bị huỷ ! Lí do : '.$_POST['reason_close_invoice']
+    );
     // thông báo
     toast_create('success','Xoá hoá đơn thành công');
     // cập nhật lại route
@@ -36,6 +42,12 @@ if(isset($_POST['check_invoice'])) {
     update_state_invoice($id,'đã xác nhận');
     // thông báo
     toast_create('success','Thay đổi trạng thái thành công');
+    // gửi thông báo đến user
+    create_notify_with_update_state(
+        $id,
+        'Cập nhật trạng thái đơn hàng '.$id,
+        'Đơn hàng của bạn đã được xác nhận ! Vui lòng đợi chúng tôi sẽ sắp xếp giao hàng !'
+    );
     // cập nhật lại route
     route('admin/chi-tiet-hoa-don/'.$id);
 }
@@ -55,6 +67,12 @@ if(isset($_POST['delivery_invoice'])) {
     }
     // thông báo
     toast_create('success','Thay đổi trạng thái thành công');
+    // gửi thông báo đến user
+    create_notify_with_update_state(
+        $id,
+        'Cập nhật trạng thái đơn hàng '.$id,
+        'Đơn hàng của bạn đang được vận chuyển. Shipper sẽ liên lạc cho bạn khi được giao tới nhé !'
+    );
     // cập nhật lại route
     route('admin/chi-tiet-hoa-don/'.$id);
 }
@@ -79,6 +97,12 @@ if(isset($_POST['refund_invoice'])) {
     update_state_invoice($id,'hoàn trả');
     // cập nhật lí do hoá đơn bị hoàn trả
     add_reason_close_invoice($id,$reason_close_invoice);
+    // gửi thông báo đến user
+    create_notify_with_update_state(
+        $id,
+        'Cập nhật trạng thái đơn hàng '.$id,
+        'Đơn hàng của bạn đã được hoàn trả. Lí do :'.$reason_close_invoice
+    );
     // cập nhật lại route
     route('admin/chi-tiet-hoa-don/'.$id);
 }
@@ -87,6 +111,12 @@ if(isset($_POST['refund_invoice'])) {
 if(isset($_POST['restore_refund_invoice'])) {
     // cập nhật trạng thái
     update_state_invoice($id,'chưa xác nhận');
+    // gửi thông báo đến user
+    create_notify_with_update_state(
+        $id,
+        'Cập nhật trạng thái đơn hàng '.$id,
+        'Đơn hàng của bạn đã được khôi phục về trạng thái chưa xác nhận.:'
+    );
     // xoá lí do hoá đơn bị hoàn trả
     delete_reason_close_invoice($id);
     // cập nhật lại route

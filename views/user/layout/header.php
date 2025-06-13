@@ -101,14 +101,18 @@
                     <li class="nav-item mx-lg-1">
                         <button type="button" class="btn btn-outline-light py-1 rounded-5 d-none d-lg-flex align-items-center text-nowrap position-relative">
                             <i class="bi bi-bell fs-4"></i>
-                            <?php if(count(get_all_notify()) > 0) : ?>
+                            <?php $count_notify = count(get_all_notify()) ?>
+                            <?php if($count_notify > 0) : ?>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?= count(get_all_notify()) ?>
+                                <?= $count_notify ?>
                             </span>
                             <?php endif ?>
                         </button>
                         <div class="dropdown-menu p-2">
-                        <?php if(count(get_all_notify())> 0) : ?>
+                        <?php if($count_notify > 0) : ?>
+                            <div class="p-1 small">
+                                <span class="text-muted small">Có <span class="text-danger fw-semibold"><?= $count_notify ?></span> thông báo chưa đọc </strong></span>
+                            </div>
                         <?php foreach (get_all_notify() as $notify) : extract($notify) ?>
                             <div class="dropdown-item notify bg-opacity-25 position-relative p-0 px-1 rounded-2">
                                 <button type="submit" name="get_notify" value="<?= $id_notify ?>" class="nav-link small text-start" href="<?= $link_action_notify ?>">

@@ -190,7 +190,12 @@ function list_category_for_menu() {
 
 function get_all_notify() {
     return pdo_query_new(
-        'SELECT * FROM notify WHERE username = ? AND state_view_notify IS NULL AND deleted_at IS NULL'
+        'SELECT * 
+        FROM notify 
+        WHERE username = ? 
+        AND state_view_notify IS NULL 
+        AND deleted_at IS NULL
+        ORDER BY created_at DESC'
         ,auth('username')
     );
 }

@@ -41,7 +41,7 @@ function render_show_flashsale($type) {
             <h6 class="text-flashsale fw-bold">
                 {$get_flashsale['name_flashsale']}
             </h6>
-            <div class="d-flex flex-column flex-lg-row align-items-center">
+            <!-- <div class="d-flex flex-column flex-lg-row align-items-center">
                 <div class="text-flashsale small fw-bold mb-2 mb-lg-0 me-lg-2">
                     Bắt đầu sau
                 </div>
@@ -58,13 +58,13 @@ function render_show_flashsale($type) {
                         59
                     </span>
                 </div>
-            </div>
+            </div> -->
         </button>
         <button type="submit" class="btn-flashsale p-2 p-lg-3 d-flex flex-column align-items-center gap-lg-2">
             <h6 class="text-flashsale">
                 Sale đặc biệt cuối tuần
             </h6>
-            <div class="d-flex align-items-center flex-column flex-lg-row">
+            <!-- <div class="d-flex align-items-center flex-column flex-lg-row">
                 <div class="text-flashsale small mb-2 mb-lg-0 me-lg-2">
                     Diễn ra ngày
                 </div>
@@ -79,7 +79,7 @@ function render_show_flashsale($type) {
                         12 giờ 00 phút
                     </span>
                 </div>
-            </div>
+            </div> -->
         </button>
     </div>
     HTML;
