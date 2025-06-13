@@ -97,6 +97,44 @@
                         </button>
                     </li>
                     </form>
+                    <form action="/thong-bao" method="post">
+                    <li class="nav-item mx-lg-1">
+                        <button type="button" class="btn btn-outline-light py-1 rounded-5 d-none d-lg-flex align-items-center text-nowrap position-relative">
+                            <i class="bi bi-bell fs-4"></i>
+                            <?php if(count(get_all_notify()) > 0) : ?>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <?= count(get_all_notify()) ?>
+                            </span>
+                            <?php endif ?>
+                        </button>
+                        <div class="dropdown-menu p-2">
+                        <?php if(count(get_all_notify())> 0) : ?>
+                        <?php foreach (get_all_notify() as $notify) : extract($notify) ?>
+                            <div class="dropdown-item notify bg-opacity-25 position-relative p-0 px-1 rounded-2">
+                                <button type="submit" name="get_notify" value="<?= $id_notify ?>" class="nav-link small text-start" href="<?= $link_action_notify ?>">
+                                    <div class="d-flex flex-column">
+                                        <div class="fw-bold small">
+                                            <?= $title_notify ?>
+                                        </div>
+                                        <div class="small text-wrap">
+                                            <?= $content_notify ?>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        <?php endforeach ?>
+                        <?php else : ?>
+                            <div class="dropdown-item notify bg-opacity-25 position-relative p-0 px-1 rounded-2">
+                                <button type="submit" name="get_notify" value="<?= $id_notify ?>" class="nav-link small text-start" href="<?= $link_action_notify ?>">
+                                    <div class="d-flex flex-column">
+                                        <small>Chưa có thông báo nào</small>
+                                    </div>
+                                </button>
+                            </div>
+                        <?php endif ?>
+                        </div>
+                    </li>
+                    </form>
                 </ul>
                 <a href="<?= URL ?>gio-hang" class="btn btn-outline-light position-relative rounded-circle me-2">
                     <i class="bi bi-cart fs-5"></i>

@@ -187,3 +187,10 @@ function list_category_for_menu() {
     }   
     return $result;
 }
+
+function get_all_notify() {
+    return pdo_query_new(
+        'SELECT * FROM notify WHERE username = ? AND state_view_notify IS NULL AND deleted_at IS NULL'
+        ,auth('username')
+    );
+}

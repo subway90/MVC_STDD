@@ -189,6 +189,10 @@
     color: var(--light-color);
 }
 
+.dropdown-item:hover.notify {
+    background-color: #cccccc60;
+}
+
 .dropdown-item:hover .submenu {
     display: block;
     /* Hiện submenu khi hover vào item danh mục lv1 */

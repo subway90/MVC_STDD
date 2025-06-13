@@ -1,6 +1,7 @@
 <?php
 # [MODEL]
 model('admin','invoice');
+model('admin','feedback');
 
 # [VARIABLE]
 $status_page = true;
@@ -62,8 +63,10 @@ if(isset($_POST['delivery_invoice'])) {
 if(isset($_POST['done_invoice'])) {
     // cập nhật trạng thái
     update_state_invoice($id,'hoàn thành');
+    // tạo đánh giá
+    create_feedback($id);
     // thông báo
-    toast_create('success','Thay đổi trạng thái thành công');
+    toast_create('success','Thay đổi trạng thái thành công');    
     // cập nhật lại route
     route('admin/chi-tiet-hoa-don/'.$id);
 }
