@@ -39,7 +39,7 @@ function render_card_product($data) {
 
     return
     <<<HTML
-        <div class="card-product p-1 pt-lg-0 pb-lg-2">
+        <div class="col-6 col-md-4 col-lg-2 p-1 pt-lg-0 pb-lg-2">
             <div style="min-height: 100%;" class="card rounded-0">
                 <img src="{$path_product_image}" alt="{$path_product_image}">
                 <div class="m-2 d-flex">

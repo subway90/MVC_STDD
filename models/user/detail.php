@@ -32,7 +32,7 @@ function get_product_detail($slug) {
         AND p.deleted_at IS NULL
         GROUP BY p.id_product
         ORDER BY p.price_product ASC
-        LIMIT 5'
+        LIMIT 6'
     );
 
     // lấy mảng ảnh

@@ -82,7 +82,7 @@
         </div>
 
         <div class="col-12 col-md-12 col-lg-5">
-            <form action="@" method="post">
+            <form action="/gio-hang" method="post">
                 <div class="row">
                     <div class="col-12 fw-semibold fs-4 mb-2">
                         <?= $detail_product['name_product'] ?>
@@ -138,19 +138,9 @@
                     <!-- [MUA - TRẢ GÓP - GIỎ HÀNG] -->
                     <div class="col-12 mt-3">
                         <div class="row">
-                            <div class="col-6 col-lg-8 px-1">
-                                <button name="addProduct" type="submit" class="w-100 btn btn-success bg-gradient">
+                            <div class="col-12 col-lg-10 px-1">
+                                <button name="buy_now" type="submit" value="<?=$detail_product['id_product']?>" class="w-100 btn btn-success bg-gradient">
                                     MUA NGAY
-                                </button>
-                            </div>
-                            <div class="col-3 col-lg-2 px-1">
-                                <button class="w-100 btn btn-outline-success">
-                                    <i class="far fa-heart" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <div class="col-3 col-lg-2 px-1">
-                                <button class="w-100 btn btn-outline-success">
-                                    <i class="fas fa-cart-plus" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -261,7 +251,7 @@
                             <img class="rounded-circle" width="48" src="<?= DEFAULT_AVATAR ?>" alt="avatar">
                             <div class="small">
                                 <div class="fw-bold small">
-                                    Name User
+                                    Nguyễn Hữu Đức
                                 </div>
                                 <div class="small text-muted">
                                     <i class="far fa-clock small me-1"></i>
@@ -279,7 +269,7 @@
                         </div>
                         <!-- Content Feedback -->
                         <div class="py-1 text-muted small">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid dicta amet ducimus quasi animi rerum officia molestias distinctio dolorum quibusdam expedita excepturi, sunt odio vero accusamus culpa vitae quia cum.
+                            Mới ra mắt liền múc liền luôn, sản phẩm quá đẹp !
                         </div>
                         <!-- Image Feedback -->
                          <div class="thumbnail-container">
@@ -295,7 +285,7 @@
                             <img class="rounded-circle" width="48" src="<?= DEFAULT_AVATAR ?>" alt="avatar">
                             <div class="small">
                                 <div class="fw-bold small">
-                                    Name User
+                                    Nguyễn Quốc Huy
                                 </div>
                                 <div class="small text-muted">
                                     <i class="far fa-clock small me-1"></i>
@@ -313,7 +303,7 @@
                         </div>
                         <!-- Content Feedback -->
                         <div class="py-1 text-muted small">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid dicta amet ducimus quasi animi rerum officia molestias distinctio dolorum quibusdam expedita excepturi, sunt odio vero accusamus culpa vitae quia cum.
+                            Giao hàng nhanh, giá vừa, sẽ ủng hộ cho shop lần sau
                         </div>
                         <!-- Image Feedback -->
                          <div class="thumbnail-container">
@@ -345,7 +335,7 @@
         </div>
 
         <!-- Bình luận -->
-        <div class="col-12">
+        <!-- <div class="col-12">
             <form method="post">
                 <div class="mt-5 d-flex justify-content-between align-items-center">
                     <div class="me-2">
@@ -387,7 +377,7 @@
                 <button class="btn btn-outline-success text-center">Tải thêm bình luận</button>
             </div>
 
-        </div>
+        </div> -->
     </div>
 </div>
 
