@@ -73,11 +73,11 @@ if(isset($_POST['btn_edit_product'])) {
 
 	// validate
 	if(!$name_product) $list_error[] = 'Vui lòng nhập tên sản phẩm';
-	elseif(check_exist_one_by_name('product',$name_product)) $list_error[] = 'Tên sản phẩm này đã tồn tại';
+	elseif(check_exist_one_by_name_except_id('product',$name_product,$id_product)) $list_error[] = 'Tên sản phẩm này đã tồn tại';
 	if(!$id_brand) $list_error[] = 'Vui lòng chọn thương hiệu';
 	if(!$id_color) $list_error[] = 'Vui lòng chọn màu sắc';
-	if(!$_SESSION['selected_product_category']['v1']) $list_error[] = 'Vui lòng chọn danh mục chính';
-	elseif(!$_SESSION['selected_product_category']['v2']) $list_error[] = 'Vui lòng chọn danh mục phụ';
+	if(!$_SESSION['selected_product_category_edit']['v1']) $list_error[] = 'Vui lòng chọn danh mục chính';
+	elseif(!$_SESSION['selected_product_category_edit']['v2']) $list_error[] = 'Vui lòng chọn danh mục phụ';
 	if(!$description_product) $list_error[] = 'Vui lòng nhập mô tả';
 	if(!$price_product) $list_error[] = 'Vui lòng nhập giá sản phẩm';
 	elseif($price_product < 0) $list_error[] = 'Giá sản phẩm phải từ 0 trở lên';
@@ -96,9 +96,8 @@ if(isset($_POST['btn_edit_product'])) {
 
 		// lưu product
 		pdo_execute_new(
-		'INSERT INTO product (id_brand, id_color, id_model, name_product, slug_product, description_product, price_product, sale_price_product, quantity_product)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-			$id_brand, $id_color, $_SESSION['id_model'], $name_product, create_slug($name_product), $description_product, $price_product, $sale_price_product, $quantity_product
+		'UPDATE product SET id_brand = ? , id_color = ?, id_model = ?, name_product = ?, slug_product = ?, description_product = ?, price_product = ?, sale_price_product = ?, quantity_product = ? WHERE id_product = ?',
+			$id_brand, $id_color, $_SESSION['id_model'], $name_product, create_slug($name_product), $description_product, $price_product, $sale_price_product, $quantity_product, $id_product
 		);
 
 		// lấy id
@@ -108,42 +107,41 @@ if(isset($_POST['btn_edit_product'])) {
 		);
 
 		// lưu category_product
-		foreach($_SESSION['selected_product_category']['v2'] as $id_product_v2) {
-			pdo_execute_new(
-				'INSERT INTO product_category (id_product, id_category_v2)
-					VALUES (?, ?)',
-					$id_product,$id_product_v2
-			);
-		}
+		// foreach($_SESSION['selected_product_category_edit']['v2'] as $id_product_v2) {
+		// 	pdo_execute_new(
+		// 		'UPDATE product_category SET id_category_v2 = ?',
+		// 			$id_product,$id_product_v2
+		// 	);
+		// }
 
 		// lưu ảnh
-		foreach ($_SESSION['temp_image_product'] as $path) {
-			pdo_execute_new(
-				'INSERT INTO product_image (id_product, path_product_image)
-					VALUES (?, ?)',
-					$id_product,$path
-			);	
-		}
+		// foreach ($_SESSION['temp_image_product'] as $path) {
+		// 	pdo_execute_new(
+		// 		'INSERT INTO product_image (id_product, path_product_image)
+		// 			VALUES (?, ?)',
+		// 			$id_product,$path
+		// 	);	
+		// }
 
 		// lưu attribute_product
-		foreach($_SESSION['temp_attribute_product'] as $attribute) {
-			pdo_execute_new(
-				'INSERT INTO product_attribute (id_product, name_attribute, value_attribute)
-					VALUES (?, ?, ?)',
-					$id_product,$attribute['name'],$attribute['value']
-			);
-		}
+		// foreach($_SESSION['temp_attribute_product_edit'] as $attribute) {
+		// 	pdo_execute_new(
+		// 		'INSERT INTO product_attribute (id_product, name_attribute, value_attribute)
+		// 			VALUES (?, ?, ?)',
+		// 			$id_product,$attribute['name'],$attribute['value']
+		// 	);
+		// }
 
 		// // huỷ session
-		unset($_SESSION['selected_product_category']);
+		unset($_SESSION['selected_product_category_edit']);
 		unset($_SESSION['name_series']);
 		unset($_SESSION['id_model']);
 		unset($_SESSION['temp_image_product']);
-		unset($_SESSION['temp_attribute_product']);
+		unset($_SESSION['temp_attribute_product_edit']);
 
 		// thông báo và chuyển route
-		toast_create('success','Thêm sản phẩm thành công');
-		route('/admin/danh-sach-san-pham');
+		toast_create('success','Cập nhật sản phẩm thành công');
+		route('/admin/sua-san-pham/'.$id_product);
 	}
 }
 

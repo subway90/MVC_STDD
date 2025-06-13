@@ -28,8 +28,8 @@
                             <h1 class="h3 m-0">Sửa sản phẩm</h1>
                         </div>
                         <div class="col-auto d-flex">
-                            <a href="#" class="btn btn-secondary me-3">Huỷ</a>
-                            <button name="btn_add_product" type="submit" class="btn btn-primary">Lưu</button>
+                            <a href="<?= URL_ADMIN ?>/danh-sach-san-pham" class="btn btn-secondary me-3">Huỷ</a>
+                            <button name="btn_edit_product" type="submit" class="btn btn-primary">Lưu</button>
                         </div>
                         
                         <div class="col-12">
