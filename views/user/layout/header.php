@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <!-- CDN JQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <?php if(auth('username') !== 'admin') :?>
+    <!-- Chative -->
+    <script src="https://messenger.svc.chative.io/static/v1.0/channels/sdf134656-9da4-4ef5-8497-bcc949bda598/messenger.js?mode=livechat" defer="defer"></script>
+    <?php endif ?>
     <!-- CSS Custom -->
     <link rel="stylesheet" href="<?= URL ?>assets/css/custom.css">
     <!-- JS Custom -->
