@@ -4,7 +4,7 @@ model('user','user');
 model('user','stringee');
 
 # [VARIABLE]
-$full_name = $gender = $username = $email = $password = $password_confirm = ''; //biến khai báo cho form đăng kí
+$full_name = $gender = $username = $email = $password = $address = $password_confirm = ''; //biến khai báo cho form đăng kí
 $error = []; // nội dung mảng lỗi
 $return_checkout_page = false; // trạng thái quay lại trang thanh toán
 
@@ -17,6 +17,7 @@ if(isset($_POST['register'])) {
     # input     
     $full_name = clear_input($_POST['full_name']);
     $email = clear_input($_POST['email']);
+    $address = clear_input($_POST['address']);
     $gender = clear_input($_POST['gender']);
     $username = clear_input($_POST['username']); 
     $password = clear_input($_POST['password']);
@@ -33,6 +34,8 @@ if(isset($_POST['register'])) {
     else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) $error[] = 'Email không hợp lệ';
     // Kiểm tra email đã tồn tại chưa
     else if(check_one_exist_in_user_with_field('email',$email)) $error[] = 'Email này đã được đăng kí';
+    // Address
+    if(!$address) $error[] = 'Vui lòng nhập Địa chỉ';
     // Username (số điện thoại)
     if(!$username) $error[] = 'Vui lòng nhập số điện thoại';
     else if(!preg_match('/^0[0-9]{9}$/',$username)) $error[] = 'Số điện thoại không hợp lệ';
@@ -54,6 +57,7 @@ if(isset($_POST['register'])) {
             'full_name' => $full_name,
             'gender' => $gender,
             'email' => $email,
+            'address' => $address,
             'password' => md5($password),
             'otp' => random_int(100000,999999),
             'expried' => time() + TIME_RELOAD_VOICE_PHONE,
@@ -91,7 +95,7 @@ if(isset($_POST['verify_user'])) {
         // lưu cookie token remember
         setcookie('token_remember', $token_remember, time() + (86400 * 30));
         // lưu database
-        create_user($token_remember,$full_name,$gender,$email,$username,$password,2);
+        create_user($token_remember,$full_name,$gender,$email,$username,$password,2,$address);
         // tự động đăng nhập -> bỏ dữ liệu user vào session
         $_SESSION['user'] = get_one_user_by_username($username);
         // thông báo
@@ -117,6 +121,7 @@ $data = [
     'full_name' => $full_name,
     'username' => $username,
     'email' => $email,
+    'address' => $address,
     'gender' => $gender,
     'error' => $error,
     'password' => $password,

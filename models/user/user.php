@@ -34,13 +34,18 @@ function check_valid_username($input) {
  * @param string $username Username
  * @param string $password Mật khẩu
  * @param int $id_role ID role
+ * @param string $address Địa chỉ giao hàng
  * @return int
  */
-function create_user($token_remember,$full_name,$gender,$email,$username,$password,$id_role) {
+function create_user($token_remember,$full_name,$gender,$email,$username,$password,$id_role,$address) {
     try{
         pdo_execute_new(
             'INSERT INTO user (token_remember,full_name,gender,email,username,password,id_role) VALUES (?,?,?,?,?,?,?)'
             ,$token_remember,$full_name,$gender,$email,$username,md5($password),$id_role
+        );
+        pdo_execute_new(
+            'INSERT INTO shipping_address (username,name_shipping_address) VALUES(?,?)'
+            ,$username,$address
         );
     }catch(PDOException $e) {
         die(_s_me_error.$e->getMessage()._e_me_error);

@@ -28,20 +28,24 @@
                             <label for="gender">Giới tính</label>
                         </div>
                         <div class="form-floating p-0 mb-3">
-                            <input name="email" value="<?=$email?>" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email</label>
+                            <input name="email" value="<?=$email?>" type="text" class="form-control" id="Email" placeholder="name@example.com">
+                            <label for="Email">Email</label>
                         </div>
                         <div class="form-floating p-0 mb-3">
-                            <input name="username" value="<?=$username?>" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Số điện thoại</label>
+                            <input name="address" value="<?=$address?>" type="text" class="form-control" id="Address" placeholder="name@example.com">
+                            <label for="Address">Địa chỉ</label>
                         </div>
                         <div class="form-floating p-0 mb-3">
-                            <input name="password" value="<?=$password?>" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Mật khẩu</label>
+                            <input name="username" value="<?=$username?>" type="text" class="form-control" id="Phone" placeholder="name@example.com">
+                            <label for="Phone">Số điện thoại</label>
                         </div>
                         <div class="form-floating p-0 mb-3">
-                            <input name="password_confirm" value="<?=$password_confirm?>" type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Xác nhận mật khẩu</label>
+                            <input name="password" value="<?=$password?>" type="password" class="form-control" id="Pass" placeholder="Password">
+                            <label for="Pass">Mật khẩu</label>
+                        </div>
+                        <div class="form-floating p-0 mb-3">
+                            <input name="password_confirm" value="<?=$password_confirm?>" type="password" class="form-control" id="PassVerify" placeholder="Password">
+                            <label for="PassVerify">Xác nhận mật khẩu</label>
                         </div>
                         <div class="text-center p-0">
                             <button class="btn btn-outline-success w-100" name="register" type="submit">Tiếp tục</button>
