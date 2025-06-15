@@ -3,6 +3,10 @@
 # [MODEL]
 model('admin','feedback');
 
+# [VARIABLE]
+$point = $content = '';
+$error_valid = [];
+
 # [HANDER]
 if(get_action_uri(1)) {
     $id_feedback = get_action_uri(1);
@@ -19,12 +23,45 @@ if(get_action_uri(1)) {
         GROUP BY f.id_feedback'
         ,auth('username'),$id_feedback
     );
+    
+
+    // Tạo đánh giá mới
+    if(isset($_POST['create']) && isset($_POST['point']) && isset($_POST['content'])) {
+        // input
+        $point = $_POST['point'];
+        $content = $_POST['content'];
+
+        // validate
+        if(!$point) $error_valid[] = 'Vui lòng chọn điểm sao';
+        if(!$content) $error_valid[] = 'Vui lòng nhập nội dung đánh giá';
+
+        // save db
+        if(empty($error_valid)) {
+            pdo_execute_new(
+                'UPDATE feedback SET point_feedback = ?, content_feedback = ?, updated_at = current_timestamp() WHERE id_feedback = ?'
+                ,$point,$content,$id_feedback
+            );
+
+            // toast
+            toast_create('success','Đánh giá hoá đơn thành công');
+
+            // route
+            route('danh-gia/'.$id_feedback);
+
+
+        }else toast_create('danger',$error_valid[0]);
+
+    }
+
+    
 
     // validate
     if($get_feedback) {
         // data
         $data = [
-            'get_feedback' => $get_feedback
+            'get_feedback' => $get_feedback,
+            'content' => $content,
+            'point' => $point,
         ];
 
         // render
