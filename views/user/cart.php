@@ -31,8 +31,8 @@
             </div>
         </div>
         <div class="col-12 col-md-12 col-lg-4 p-0 ps-lg-3">
-            <div class="bg-light px-4 py-2 rounded-3">
-                <div class="my-4">
+            <div class="bg-light p-4 rounded-3">
+                <!-- <div class="my-4">
                     <form action="#" method="get">
                         <label class="small" for="voucher">Mã giảm giá</label>
                         <div class="input-group mt-1">
@@ -41,7 +41,7 @@
                             <button type="submit" class="btn btn-success">Áp dụng</button>
                         </div>
                     </form>
-                </div>
+                </div> -->
                 <!-- Show List Voucher -->
                 <div id="listVoucher"></div>
                 <hr class="w-100 border border-success border-1 my-1">
