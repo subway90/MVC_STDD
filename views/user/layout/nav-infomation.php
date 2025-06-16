@@ -15,6 +15,11 @@
             </div>
         </div>
         <div class="d-flex flex-column mt-3">
+            <?php if(auth('name_role') === 'admin') : ?>
+            <a href="/admin" class="nav-link-infomation text-danger">
+                <i class="bi bi-house-gear me-1"></i> Trang quản trị
+            </a>
+            <?php endif ?>
             <a href="/lich-su-mua-hang" class="nav-link-infomation <?= ($page !== 'invoice-history') ?: 'active' ?>">
                 <i class="bi bi-receipt me-1"></i> Đơn hàng của tôi
             </a>
@@ -27,6 +32,11 @@
             <a href="/doi-mat-khau" class="nav-link-infomation <?= ($page !== 'change-password') ?: 'active' ?>">
                 <i class="bi bi-key me-1"></i> Đổi mật khẩu
             </a>
+            <form action="/dang-xuat" method="post">
+            <button name="logout" type="submit" class="nav-link-infomation text-danger <?= ($page !== 'change-password') ?: 'active' ?>">
+                <i class="bi bi-box-arrow-right me-1"></i> Đăng xuất
+            </button>
+            </form>
         </div>
     </div>
 </div>

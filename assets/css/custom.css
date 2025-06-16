@@ -351,6 +351,10 @@
 }
 
 .nav-link-infomation {
+    text-align: start;
+    width: 100%;
+    border : none;
+    background-color: transparent;
     padding: 12px 6px;
     font-weight: 500;
     font-size: 16px;
@@ -358,7 +362,6 @@
     color: var(--dark-color);
     transition: calc(0.3s);
 }
-
 .nav-link-infomation:hover {
     color: var(--light-color);
     background: linear-gradient(to right, #22865460, #22865409);
