@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-floating p-0 mb-3">
                             <input name="address" value="<?=$address?>" type="text" class="form-control" id="Address" placeholder="name@example.com">
-                            <label for="Address">Địa chỉ</label>
+                            <label for="Address">Địa chỉ nhận hàng</label>
                         </div>
                         <div class="form-floating p-0 mb-3">
                             <input name="username" value="<?=$username?>" type="text" class="form-control" id="Phone" placeholder="name@example.com">
@@ -50,8 +50,11 @@
                         <div class="text-center p-0">
                             <button class="btn btn-outline-success w-100" name="register" type="submit">Tiếp tục</button>
                         </div>
+                    <div class="col-12 d-flex justify-content-center small mt-3">
+                        Quay về<a class="nav-link text-success ms-1 fw-semibold" href="<?= URL ?>dang-nhap">Trang Đăng nhập</a>
+                        <!-- <a class="nav-link text-danger" href="<?= URL ?>quen-mat-khau"><i class="fas fa-question-circle"></i> Quên mật khẩu</a> -->
+                    </div>
                 </form>
-                <a class="text-center mt-5 nav-link link-success small text-decoration-underline" href="<?=URL?>dang-nhap">Quay lại trang Đăng nhập</a>
         </div>
         </div>
 
