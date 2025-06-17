@@ -103,8 +103,8 @@
                     </form>
                     <form action="/thong-bao" method="post">
                     <li class="nav-item mx-lg-1">
-                        <button type="button" class="btn btn-outline-light py-1 rounded-5 d-none d-lg-flex align-items-center text-nowrap position-relative">
-                            <i class="bi bi-bell fs-4"></i>
+                        <button type="button" class="btn btn-outline-light rounded-5 d-none d-lg-flex align-items-center text-nowrap position-relative">
+                            <i class="bi bi-bell fs-5"></i>
                             <?php $count_notify = count(get_all_notify()) ?>
                             <?php if($count_notify > 0) : ?>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
