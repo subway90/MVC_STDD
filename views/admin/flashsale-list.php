@@ -107,7 +107,7 @@
                             <form action="" method="post">
                                 <div class="d-flex justify-content-end gap-3">
                                     <?php if($status_page): ?>
-                                    <a href="<?=URL_ADMIN?>sua-flashsale/<?=$id_flashsale?>" class="btn btn-sm btn-warning shadow small d-flex align-items-center gap-3">
+                                    <a href="<?=URL_ADMIN?>chi-tiet-flashsale/<?=$id_flashsale?>" class="btn btn-sm btn-warning shadow small d-flex align-items-center gap-3">
                                         <i class="fa fas fa-edit"></i>
                                     </a>
                                     <button name="delete" value="<?=$id_flashsale?>" type="submit" class="btn btn-sm btn-danger shadow small d-flex align-items-center gap-3">

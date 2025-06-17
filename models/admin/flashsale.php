@@ -184,7 +184,7 @@ function render_show_flashsale($type) {
 }
 
 /**
- * Lấy tất cả thương hiệu
+ * Lấy danh sách chương trình flashsale
  * @param $state Trạng thái cần lấy, TRUE : lấy danh sách hoạt động, FALSE : lấy danh sách xoá
  * @return array
  */
@@ -207,4 +207,32 @@ function get_all_flashsale($state) {
         GROUP BY f.id_flashsale
         ORDER BY '.$order.' DESC'
     );
+}
+
+
+/**
+ * Lấy chi tiết flashsale
+ * @param $id ID Flashsale
+ * @return array
+ */
+function get_detail_flashsale($id) {
+    $result['detail'] = pdo_query_one_new(
+        'SELECT *
+        FROM flashsale
+        WHERE id_flashsale = ?
+        AND deleted_at IS NULL'
+        ,$id
+    );
+
+    $result['list_product'] = pdo_query_new(
+        'SELECT fp.*,p.name_product, p.slug_product, p.price_product, pi.path_product_image
+        FROM flashsale_product fp
+        LEFT JOIN product p ON p.id_product = fp.id_product
+        LEFT JOIN product_image pi ON pi.id_product = p.id_product
+        WHERE id_flashsale = ?
+        GROUP BY p.id_product'
+        ,$id
+    );
+
+    return $result;
 }
