@@ -194,9 +194,9 @@ function render_list_invoice_history($data) {
                         </tfoot>
                     </table>
                     <div class="d-flex justify-content-lg-end gap-1">
-                        <a href="gio-hang/{$row['id_invoice']}" class="col-6 col-lg-2 btn btn-sm rounded-pill btn-outline-success px-3">
+                        <!-- <a href="gio-hang/{$row['id_invoice']}" class="col-6 col-lg-2 btn btn-sm rounded-pill btn-outline-success px-3">
                             <i class="bi bi-bag-check-fill me-1"></i> Mua lại
-                        </a>
+                        </a> -->
                         <a href="lich-su-mua-hang/{$row['id_invoice']}" class="col-6 col-lg-2 btn btn-sm rounded-pill btn-success px-3">
                             <i class="bi bi-eye me-1"></i> Xem chi tiết
                         </a>
