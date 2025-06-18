@@ -230,9 +230,23 @@ function get_detail_flashsale($id) {
         LEFT JOIN product p ON p.id_product = fp.id_product
         LEFT JOIN product_image pi ON pi.id_product = p.id_product
         WHERE id_flashsale = ?
+        AND fp.deleted_at IS NULL
         GROUP BY p.id_product'
         ,$id
     );
 
     return $result;
+}
+
+function get_one_product_for_add_flashsale($id) {
+    // lấy thông tin sản phẩm
+    return pdo_query_one_new(
+        'SELECT p.id_product, p.name_product, p.quantity_product, p.price_product, pi.path_product_image
+        FROM product p
+        LEFT JOIN product_image pi ON pi.id_product = p.id_product
+        WHERE p.id_product = ?
+        AND p.deleted_at IS NULL
+        GROUP BY p.id_product',
+        $id
+    );
 }

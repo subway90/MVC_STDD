@@ -95,16 +95,18 @@
                                             </tr>
                                         </thead>
                                         <tbody class="small">
-                                            <?php if (empty($get_flashsale['list_product'])) : ?>
+                                            <?php if (empty($list_product)) : ?>
                                                 <tr class="align middle">
                                                     <td colspan="4" class="text-muted text-center small fst-italic">
                                                         Chưa có sản phẩm nào
                                                     </td>
                                                 </tr>
                                             <?php else : ?>
-                                                <?php foreach ($get_flashsale['list_product'] as $product) : extract($product) ?>
+                                                <?php foreach ($list_product as $product) : extract($product) ?>
                                                 <tr class="align middle">
                                                     <td class="d-flex align-items-center gap-3">
+                                                        ID <?= $id_product ?>
+                                                        <span>-</span>
                                                         <img width="40" src="<?= URL_STORAGE.$path_product_image ?>" alt="Ảnh sản phẩm">
                                                         <a target="_blank" href="<?= URL_ADMIN ?>sua-san-pham/<?= $id_product ?>" class=" link-dark" title="Xem chi tiết sản phẩm <?= $name_product ?>">
                                                             <?= $name_product ?>
@@ -145,23 +147,72 @@
             </div>
         </div>
     </div>
-</form>
 
-<!-- Modal Add Product -->
-<div class="modal fade" id="modalAddProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Thểm sản phẩm mới vào sự kiện</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                <button type="button" class="btn btn-primary">Lưu</button>
+    <!-- Modal Add Product -->
+    <div class="modal fade" id="modalAddProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thểm sản phẩm mới vào sự kiện</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-12 mb-2">
+                        <?= show_error($list_error_modal) ?>
+                    </div>
+                    <?php if($detail_product_add) : ?>
+                    <div class="col-8 my-4 bg-dark bg-opacity-10 p-5 rounded rounded-4">
+                        <div class="d-flex flex-column gap-3">
+                            <div class="small d-flex gap-5">
+                                <div class="fw-bold w-25">ID Sản phẩm</div>
+                                <div class="fw-light w-75">
+                                    : <?= $detail_product_add['id_product'] ?>
+                                </div>
+                            </div>
+                            <div class="small d-flex gap-5">
+                                <div class="fw-bold w-25">Tên sản phẩm</div>
+                                <div class="fw-light w-75">
+                                    : <?= $detail_product_add['name_product'] ?>
+                                </div>
+                            </div>
+                            <div class="small d-flex gap-5">
+                                <div class="fw-bold w-25">Số lượng kho</div>
+                                <div class="fw-light w-75">
+                                    : <?= $detail_product_add['quantity_product'] ?>
+                                </div>
+                            </div>
+                            <div class="small d-flex gap-5">
+                                <div class="fw-bold w-25">Giá gốc</div>
+                                <div class="fw-light w-75">
+                                    : <?= format_currency($detail_product_add['price_product']) ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 my-4  d-flex align-items-center justify-content-center">
+                        <img class="w-75" src="<?= URL_STORAGE.$detail_product_add['path_product_image'] ?>" alt="Ảnh sản phẩm">
+                    </div>
+                    <?php endif ?>
+                    <div class="col-12 col-lg-4 mb-2">
+                        <label for="id_product" class="form-label">ID Sản phẩm</label>
+                        <input type="text" name="id_product" value="<?= $id_product_add ?>" id="id_product" class="form-control">
+                    </div>
+                    <div class="col-12 col-lg-4 mb-2">
+                        <label for="id_product" class="form-label">Giá cần bán</label>
+                        <input type="text" name="price_flashsale" value="<?= $price_flashsale_add ?>" id="id_product" class="form-control">
+                    </div>
+                    <div class="col-12 col-lg-4 mb-2">
+                        <label for="id_product" class="form-label">Số lượng cần bán</label>
+                        <input type="text" name="quantity_flashsale" value="<?= $quantity_flashsale_add ?>" id="id_product" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                    <button type="submit" name="add_product" class="btn btn-primary">Lưu</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+</form>
+
