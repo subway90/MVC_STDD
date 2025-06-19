@@ -193,6 +193,17 @@ function get_all_notify() {
         'SELECT * 
         FROM notify 
         WHERE username = ? 
+        AND deleted_at IS NULL
+        ORDER BY created_at DESC'
+        ,auth('username')
+    );
+}
+
+function get_all_notify_send() {
+    return pdo_query_value_new(
+        'SELECT COUNT(*)
+        FROM notify 
+        WHERE username = ? 
         AND state_view_notify IS NULL 
         AND deleted_at IS NULL
         ORDER BY created_at DESC'

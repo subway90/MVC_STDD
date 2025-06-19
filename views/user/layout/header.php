@@ -108,14 +108,14 @@
                             <?php $count_notify = count(get_all_notify()) ?>
                             <?php if($count_notify > 0) : ?>
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                <?= $count_notify ?>
+                                <?= get_all_notify_send() ?>
                             </span>
                             <?php endif ?>
                         </button>
                         <div class="dropdown-menu p-2">
                         <?php if($count_notify > 0) : ?>
                             <div class="p-1 small">
-                                <span class="text-muted small">Có <span class="text-danger fw-semibold"><?= $count_notify ?></span> thông báo chưa đọc </strong></span>
+                                <span class="text-muted small">Có <span class="text-danger fw-semibold"><?= get_all_notify_send() ?></span> thông báo chưa đọc </strong></span>
                             </div>
                         <?php foreach (get_all_notify() as $notify) : extract($notify) ?>
                             <div class="dropdown-item notify bg-opacity-25 position-relative p-0 px-1 rounded-2">
