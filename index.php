@@ -5,31 +5,30 @@ require_once 'autoload.php';
 # [AUTO LOGIN]
 auto_login();
 
+# [UPGRADE PAGE]
+if(BOOL_UPGRADE) view_error(700);
+
 # [ACTION]
-if(isset($_GET['act']) && $_GET['act']) {
-    // hàm explode : tạo mảng bởi dấu phân cách
-    $_arrayURL = explode('/',$_GET['act']);
-    // lấy action
-    $_action=$_arrayURL[0];
-    // kiểm tra có phải action của admin
-    if($_action === 'admin') {
+$_case = get_action_uri(0);
+// Nếu có case cụ thể
+if($_case) {
+    // Nếu vào system admin
+    if(get_action_uri(0) === 'admin') {
         // Kiểm tra có phải là admin hay không
         author('admin');
-        // Cắt phần tử đầu tiên, tức xoá phần tử chứa 'admin'
-        $_arrayURL = array_slice($_arrayURL, 1);
-        // Kiểm tra request có rỗng không, để lấy action
-        if(!$_arrayURL || !$_arrayURL[0]) return route('admin/thong-ke');
-        else $_action = $_arrayURL[0];
-        // Hiển thị file cho action
-        if(file_exists('controllers/admin/'.$_action.'.php')) require_once 'controllers/admin/'.$_action.'.php';
-        // Trả về trang 404 nếu không tìm thấy action
-        else return view_error(404);
+        // Nếu có case cụ thể
+        $_admin_case = get_action_uri(1);
+        if($_admin_case) {
+            if(file_exists('controllers/admin/'.$_admin_case.'.php')) require_once 'controllers/admin/'.$_admin_case.'.php'; // Vào case
+            else return view_error(404); // Nếu không tìm thấy action
+        }
+        else require_once 'controllers/admin/'.DEFAULT_ADMIN_CASE.'.php'; // Chuyển đến case mặc định
     }
     // Trả về action bên user
     else{
-        if(file_exists('controllers/user/'.$_action.'.php')) require_once 'controllers/user/'.$_action.'.php';
+        if(file_exists('controllers/user/'.$_case.'.php')) require_once 'controllers/user/'.$_case.'.php';
         else return view_error(404);
     }
 }
 // Trường hợp không có action
-else require_once 'controllers/user/trang-chu.php';
+else require_once 'controllers/user/'.DEFAULT_USER_CASE.'.php';
