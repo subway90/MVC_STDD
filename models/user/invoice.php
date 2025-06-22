@@ -89,7 +89,7 @@ function get_one_invoice($id_invoice) {
         // Lấy voucher nếu có
         $result['voucher'] = pdo_query_new(
             'SELECT * 
-            FROM voucher_invoice vi
+            FROM invoice_voucher vi
             LEFT JOIN voucher v
             ON vi.code_voucher = v.code_voucher
             WHERE id_invoice = ?',

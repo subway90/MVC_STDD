@@ -123,7 +123,7 @@ if($bool_checkout) {
         // lưu db hoá đơn chi tiết
         foreach ($_SESSION['voucher'] as $code) {
             pdo_execute_new(
-                'INSERT INTO voucher_invoice (code_voucher,id_invoice)
+                'INSERT INTO invoice_voucher (code_voucher,id_invoice)
                 VALUES (?,?)'
                 ,$code,$id_invoice
             );
