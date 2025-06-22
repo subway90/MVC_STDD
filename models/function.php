@@ -546,4 +546,31 @@ function get_action_uri($order){
  */
 function format_currency($input) {
     return number_format($input,0,',','.').' vnđ';
+}   
+
+/**
+ * Hàm dùng để format lại thời gian hiển thị quá khứ
+ * @param string $time Thời gian cần format theo dạng của Datetime của SQL
+ * @return string thời gian đã được format
+ */
+function format_timeline($time) {
+    $value_duration_second = (strtotime(Date('Y-m-d H:i:s')) - strtotime($time));
+    // return $value_duration_second;
+    // test_array(
+    //     [
+    //         strtotime(Date('Y-m-d H:i:s')),
+    //         strtotime($time),
+    //         Date('Y-m-d H:i:s'),
+    //         $time
+    //     ]
+    // );
+
+    if($value_duration_second < 60) return $value_duration_second.' giây trước ';
+    elseif($value_duration_second < 60*60) return ceil($value_duration_second/(60)).' phút trước ';
+    elseif($value_duration_second < 60*60*24) return ceil($value_duration_second/(60*60)).' giờ trước ';
+    elseif($value_duration_second < 60*60*24*7) {
+        $day = floor($value_duration_second/(60*60*24));
+        return $day.' ngày trước ';
+    }
+    else return format_time($time,'ngày DD tháng MM lúc hh:mm');
 }

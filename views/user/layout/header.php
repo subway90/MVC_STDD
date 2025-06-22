@@ -112,15 +112,21 @@
                             </span>
                             <?php endif ?>
                         </button>
-                        <div class="dropdown-menu p-2">
+                        <div class="dropdown-menu menu-notify p-2">
                         <?php if($count_notify > 0) : ?>
                             <div class="p-1 small">
                                 <span class="text-muted small">Có <span class="text-danger fw-semibold"><?= get_all_notify_send() ?></span> thông báo chưa đọc </strong></span>
                             </div>
                         <?php foreach (get_all_notify() as $notify) : extract($notify) ?>
-                            <div class="dropdown-item notify bg-opacity-25 position-relative p-0 px-1 rounded-2">
+                            <div class="dropdown-item <?= ($state_view_notify) ? 'notify-send': 'notify' ?> bg-opacity-25 position-relative p-0 px-1 mb-1">
                                 <button type="submit" name="get_notify" value="<?= $id_notify ?>" class="nav-link small text-start" href="<?= $link_action_notify ?>">
                                     <div class="d-flex flex-column">
+                                        <div class="small">
+                                            <div class="small d-flex align-items-center gap-1">
+                                                <i class="bi bi-clock-history small"></i>
+                                                <span class="small"><?= format_timeline($created_at) ?></span>
+                                            </div>
+                                        </div>
                                         <div class="fw-bold small">
                                             <?= $title_notify ?>
                                         </div>

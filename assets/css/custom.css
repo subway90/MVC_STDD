@@ -168,6 +168,7 @@
 
 .nav-item:hover .dropdown-menu {
     display: block;
+    overflow-y: auto;
     /* Hiện dropdown khi hover */
 }
 
@@ -189,8 +190,23 @@
     color: var(--light-color);
 }
 
-.dropdown-item:hover.notify {
+.dropdown-item.notify-send {
+    background-color: #cccccc00;
+}
+
+.dropdown-item.notify {
+    background-color : #c5414110;
+    border-left: 2px solid #c5414180;
+   
+}
+
+.dropdown-item.notify-send:hover, .dropdown-item.notify:hover {
     background-color: #cccccc60;
+    border-radius: 6px;
+}
+
+.dropdown-menu.menu-notify {
+    height: 420px;
 }
 
 .dropdown-item:hover .submenu {

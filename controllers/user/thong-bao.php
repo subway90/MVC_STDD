@@ -9,7 +9,7 @@ if(isset($_POST['get_notify']) && $_POST['get_notify']) {
     $id_notify = $_POST['get_notify'];
     // get
     $get_notify = pdo_query_one_new(
-        'SELECT * FROM notify WHERE id_notify = ? AND deleted_at IS NULL AND state_view_notify IS NULL',$id_notify
+        'SELECT * FROM notify WHERE id_notify = ? AND deleted_at IS NULL',$id_notify
     );
     if(!$get_notify) view_error(404);
     // update state view
