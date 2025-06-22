@@ -190,6 +190,10 @@
     color: var(--light-color);
 }
 
+.dropdown-item.notify-null {
+    background-color: #cccccc00;
+}
+
 .dropdown-item.notify-send {
     background-color: #cccccc00;
 }
@@ -206,7 +210,7 @@
 }
 
 .dropdown-menu.menu-notify {
-    height: 420px;
+    max-height: 420px;
 }
 
 .dropdown-item:hover .submenu {

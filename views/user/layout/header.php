@@ -119,7 +119,7 @@
                             </div>
                         <?php foreach (get_all_notify() as $notify) : extract($notify) ?>
                             <div class="dropdown-item <?= ($state_view_notify) ? 'notify-send': 'notify' ?> bg-opacity-25 position-relative p-0 px-1 mb-1">
-                                <button type="submit" name="get_notify" value="<?= $id_notify ?>" class="nav-link small text-start" href="<?= $link_action_notify ?>">
+                                <button type="submit" name="get_notify" value="<?= $id_notify ?>" class="nav-link small text-start">
                                     <div class="d-flex flex-column">
                                         <div class="small">
                                             <div class="small d-flex align-items-center gap-1">
@@ -138,11 +138,9 @@
                             </div>
                         <?php endforeach ?>
                         <?php else : ?>
-                            <div class="dropdown-item notify bg-opacity-25 position-relative p-0 px-1 rounded-2">
-                                <button type="submit" name="get_notify" value="<?= $id_notify ?>" class="nav-link small text-start" href="<?= $link_action_notify ?>">
-                                    <div class="d-flex flex-column">
-                                        <small>Chưa có thông báo nào</small>
-                                    </div>
+                            <div class="dropdown-item notify-null bg-opacity-25 position-relative p-0 px-1 rounded-2">
+                                <div class="nav-link small text-start">
+                                    <small>Hiện tại chưa có thông báo nào.</small>
                                 </button>
                             </div>
                         <?php endif ?>
