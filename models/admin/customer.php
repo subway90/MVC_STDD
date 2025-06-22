@@ -30,11 +30,24 @@ function get_all_customer($state) {
  * @return array
  */
 function get_one_customer($username) {
-    return pdo_query_one_new(
+    $result['info'] = pdo_query_one_new(
         'SELECT u.*, r.name_role
         FROM user u
         LEFT JOIN role r ON r.id_role = u.id_role
         WHERE u.username = ?'
         ,$username
     );
+
+    // lấy danh sách hoá đơn
+    if($result['info']) {
+        $result['list_invoice'] = pdo_query_new(
+            'SELECT *
+            FROM invoice i 
+            LEFT JOIN invoice_detail id ON id.id_invoice = i.id_invoice
+            WHERE i.username = ?',
+            $username
+        );
+    }
+
+    return $result;
 }

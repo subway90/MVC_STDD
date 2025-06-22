@@ -6,16 +6,21 @@
                     <div class="col">
                         <nav class="mb-2" aria-label="breadcrumb">
                             <ol class="breadcrumb breadcrumb-sa-simple">
-                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="app-customers-list.html">Customers</a>
+                                <li class="breadcrumb-item">
+                                    <a href="<?= URL_ADMIN ?>danh-sach-tai-khoan">Danh sách tài khoản</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Jessica Moore</li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <?= $get_customer['username'] ?>
+                                </li>
                             </ol>
                         </nav>
-                        <h1 class="h3 m-0">Jessica Moore</h1>
+                        <h1 class="h3 m-0">
+                            <?= $get_customer['full_name'] ?>
+                        </h1>
                     </div>
-                    <div class="col-auto d-flex"><a href="#" class="btn btn-secondary me-3">Delete</a><a
-                            href="#" class="btn btn-primary">Edit</a></div>
+                    <div class="col-auto d-flex">
+                        <a href="<?= URL_ADMIN ?>danh-sach-tai-khoan" class="btn btn-secondary">Quay lại</a>
+                    </div>
                 </div>
             </div>
             <div class="sa-entity-layout"
@@ -25,15 +30,18 @@
                         <div class="card">
                             <div class="card-body d-flex flex-column align-items-center">
                                 <div class="pt-3">
-                                    <div class="sa-symbol sa-symbol--shape--circle"
-                                        style="--sa-symbol--size:6rem"><img
-                                            src="images/customers/customer-1-96x96.jpg" width="96"
-                                            height="96" alt="" /></div>
+                                    <img class="rounded-circle" width="96" height="96" src="<?= DEFAULT_AVATAR ?>" alt=""/>
                                 </div>
                                 <div class="text-center mt-4">
-                                    <div class="fs-exact-16 fw-medium">Jessica Moore</div>
+                                    <div class="fs-exact-16 fw-medium">
+                                        <?= $get_customer['full_name'] ?>
+                                    </div>
                                     <div class="fs-exact-13 text-muted">
-                                        <div class="mt-1"><a href="#">jessica-moore@example.com</a></div>
+                                        <div class="mt-1">
+                                            <a href="<?= URL_ADMIN ?>gui-email?u=<?= $get_customer['username'] ?>" title="Nhấn vào để gửi email đến người này">
+                                                <?= $get_customer['email'] ?>
+                                            </a>
+                                        </div>
                                         <div class="mt-1">+38 (094) 730-24-25</div>
                                     </div>
                                 </div>

