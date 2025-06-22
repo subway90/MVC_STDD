@@ -456,7 +456,6 @@ function show_error($array){
  * @return void
  */
 function auto_login(){   
-    if(!PATH_FILE_AVATAR) route();
     // Nếu chưa đăng nhập
     if(!is_login()) {
         // nếu có cookie token_remember

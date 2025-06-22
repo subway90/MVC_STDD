@@ -88,7 +88,10 @@ function check_invoice_exist($bool_trash,$id_invoice) {
  */
 function update_state_invoice ($id_invoice,$state_to) {
     pdo_execute_new(
-        'UPDATE invoice SET status_invoice = ?, updated_at = current_timestamp WHERE id_invoice = ?',
+        'UPDATE invoice SET 
+        status_invoice = ?,
+        updated_at = current_timestamp
+        WHERE id_invoice = ?',
         $state_to,$id_invoice
     );
 }
@@ -100,7 +103,13 @@ function update_state_invoice ($id_invoice,$state_to) {
  * @return void
  */
 function add_reason_close_invoice ($id_invoice,$reason) {
-    pdo_execute('UPDATE invoice SET reason_close_invoice = "'.$reason.'", updated_at = current_timestamp WHERE id_invoice = "'.$id_invoice.'"');
+    pdo_execute_new(
+        'UPDATE invoice SET 
+        reason_close_invoice = ?,
+        updated_at = current_timestamp
+        WHERE id_invoice = ?',
+        $_SESSION['user']['username'],$id_invoice
+        );
 }
 
 /**
@@ -109,5 +118,11 @@ function add_reason_close_invoice ($id_invoice,$reason) {
  * @return void
  */
 function delete_reason_close_invoice ($id_invoice) {
-    pdo_execute('UPDATE invoice SET reason_close_invoice = NULL, updated_at = current_timestamp WHERE id_invoice = "'.$id_invoice.'"');
+    pdo_execute_new(
+        'UPDATE invoice SET
+        reason_close_invoice = NULL,
+        updated_at = current_timestamp
+        WHERE id_invoice = ?',
+        $id_invoice
+    );
 }

@@ -198,7 +198,7 @@ function get_all_flashsale($state) {
         $order = 'f.deleted_at';
     }
 
-    return pdo_query(
+    return pdo_query_new(
         'SELECT f.*, COUNT(p.id_product) count_product
         FROM flashsale f
         LEFT JOIN flashsale_product fp ON f.id_flashsale = fp.id_flashsale

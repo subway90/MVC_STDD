@@ -13,7 +13,7 @@ function get_all_slide($state) {
         $query = 'IS NOT NULL';
     }
 
-    return pdo_query(
+    return pdo_query_new(
         'SELECT *
         FROM slide
         WHERE deleted_at '.$query.'

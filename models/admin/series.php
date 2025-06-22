@@ -10,7 +10,7 @@ function get_all_series($state) {
     if($state) $query = 'IS NULL ORDER BY created_at DESC';
     else $query = 'IS NOT NULL ORDER BY deleted_at DESC';
 
-    return pdo_query(
+    return pdo_query_new(
         'SELECT *
         FROM series
         WHERE deleted_at '.$query
@@ -23,7 +23,7 @@ function get_all_series($state) {
  * @return array
  */
 function get_all_series_for_choose() {
-    return pdo_query(
+    return pdo_query_new(
         'SELECT *
         FROM series s
         LEFT JOIN model m

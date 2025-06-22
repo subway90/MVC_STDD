@@ -12,26 +12,27 @@ function get_list_invoice($state) {
     else $query = ' = "'.str_replace('-',' ',$state).'"';
 
     // Lấy danh sách hoá đơn
-    $list_invoice =  pdo_query(
+    $list_invoice =  pdo_query_new(
         'SELECT *
         FROM invoice
-        WHERE username = "'.auth('username').'"
-        AND status_invoice '.$query
+        WHERE username = ?
+        AND status_invoice '.$query,
+        auth('username')
     );
 
     //Nếu có hoá đơn -> lấy thông tin chi tiết của hoá đơn đó
     if(!empty($list_invoice)) {
         foreach ($list_invoice as $i => $invoice) {
-            $list_invoice[$i]['detail'] = pdo_query(
+            $list_invoice[$i]['detail'] = pdo_query_new(
                 'SELECT id.*, p.name_product, p.slug_product, pi.path_product_image
                 FROM invoice_detail id
                 LEFT JOIN product p
                 ON id.id_product = p.id_product
                 LEFT JOIN product_image pi
                 ON p.id_product = pi.id_product
-                WHERE id.id_invoice = "'.$invoice['id_invoice'].'"
-                GROUP BY p.id_product
-                '
+                WHERE id.id_invoice = ?
+                GROUP BY p.id_product',
+                $invoice['id_invoice']
             );
 
             // Tính tổng
@@ -49,34 +50,36 @@ function get_list_invoice($state) {
 function get_one_invoice($id_invoice) {
 
     // Lấy danh sách hoá đơn
-    $result =  pdo_query_one(
+    $result =  pdo_query_one_new(
         'SELECT *
         FROM invoice
-        WHERE id_invoice = "'.$id_invoice.'"
-        AND username = "'.auth('username').'"'
-    );
+        WHERE id_invoice = ?
+        AND username = ?',
+            $id_invoice,auth('username')
+        );
 
     // Nếu có hoá đơn -> lấy thông tin chi tiết của hoá đơn đó
     if(!empty($result)) {
 
         // Địa chỉ giao hàng
-        $result['shipping_address'] = pdo_query_value(
+        $result['shipping_address'] = pdo_query_value_new(
             'SELECT name_shipping_address
             FROM shipping_address
-            WHERE id_shipping_address = '.$result['id_shipping_address']
+            WHERE id_shipping_address = ?',
+            $result['id_shipping_address']
         );
 
         // Truy vấn
-        $result['detail'] = pdo_query(
+        $result['detail'] = pdo_query_new(
             'SELECT id.*, p.name_product, p.slug_product, pi.path_product_image
             FROM invoice_detail id
             LEFT JOIN product p
             ON id.id_product = p.id_product
             LEFT JOIN product_image pi
             ON p.id_product = pi.id_product
-            WHERE id.id_invoice = "'.$result['id_invoice'].'"
-            GROUP BY p.id_product
-            '
+            WHERE id.id_invoice = ?
+            GROUP BY p.id_product',
+            $result['id_invoice']
         );
 
         // Tính tổng
@@ -84,12 +87,13 @@ function get_one_invoice($id_invoice) {
         foreach ($result['detail'] as $detail) $result['total'] += $detail['quantity_invoice'] * $detail['price_invoice'];
 
         // Lấy voucher nếu có
-        $result['voucher'] = pdo_query(
+        $result['voucher'] = pdo_query_new(
             'SELECT * 
             FROM voucher_invoice vi
             LEFT JOIN voucher v
             ON vi.code_voucher = v.code_voucher
-            WHERE id_invoice = "'.$result['id_invoice'].'"'
+            WHERE id_invoice = ?',
+            $result['id_invoice']
         );
 
         // Return

@@ -65,8 +65,9 @@ function update_quantity($type,$id) {
  * @return int
  */
 function get_quantity_product($id_product) {
-    return pdo_query_value(
-        'SELECT quantity_product FROM product WHERE id_product ='.$id_product
+    return pdo_query_value_new(
+        'SELECT quantity_product FROM product WHERE id_product = ?',
+        $id_product
     );
 }
 

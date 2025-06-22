@@ -15,7 +15,7 @@ function get_all_brand($state) {
         $order = 'deleted_at';
     }
 
-    return pdo_query(
+    return pdo_query_new(
         'SELECT b.*, COUNT(p.id_product) count_product
         FROM brand b
         LEFT JOIN product p ON p.id_brand = b.id_brand

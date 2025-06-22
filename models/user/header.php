@@ -57,7 +57,7 @@ function get_cart($get_type) {
     // Truy vấn từ data ở session cart
     if(!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $cart) {
-            $product = pdo_query_one(
+            $product = pdo_query_one_new(
                 'SELECT p.*, m.*, c.name_color, c.code_color, pc.id_category_v2, b.*, pi.path_product_image
                 FROM product p
                 LEFT JOIN brand b ON p.id_brand = b.id_brand
@@ -66,7 +66,8 @@ function get_cart($get_type) {
                 LEFT JOIN product_category pc ON pc.id_product = p.id_product
                 LEFT JOIN product_image pi ON pi.id_product = p.id_product
                 WHERE p.deleted_at IS NULL
-                AND p.id_product = '.$cart['id_product']
+                AND p.id_product = ?',
+                $cart['id_product']
             );
             
             // Nếu sản phẩm tồn tại
@@ -166,15 +167,16 @@ function list_category_for_menu() {
     // mảng return
     $result = [];
     // lấy danh sách v1
-    $list_v1 = pdo_query(
+    $list_v1 = pdo_query_new(
         'SELECT id_category_v1,name_category_v1, slug_category_v1, logo_category_v1 FROM category_v1 WHERE deleted_at IS NULL'
     );
     // nếu danh sách v1 rỗng
     if(!$list_v1) return $result;
     foreach ($list_v1 as $item => $v1) {
         // lấy danh sáhch v2
-        $list_v2 = pdo_query(
-            'SELECT name_category_v2 name, slug_category_v2 slug, logo_category_v2 logo, description_category_v2 description FROM category_v2 WHERE deleted_at IS NULL AND id_category_v1 ='.$v1['id_category_v1']
+        $list_v2 = pdo_query_new(
+            'SELECT name_category_v2 name, slug_category_v2 slug, logo_category_v2 logo, description_category_v2 description FROM category_v2 WHERE deleted_at IS NULL AND id_category_v1 = ?',
+            $v1['id_category_v1']
         );
         $result[$item] = [
             'category_v1' => [

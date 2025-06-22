@@ -19,12 +19,13 @@ if(isset($_POST['name_series'])) {
     }
 
     if($name_series !== 'none'){
-        $data = pdo_query(
+        $data = pdo_query_new(
         'SELECT *
             FROM model m
             LEFT JOIN series s
             ON s.id_series = m.id_series
-            WHERE s.name_series = "'.$name_series.'"'
+            WHERE s.name_series = ?',
+            $name_series
         );
 
         if(!empty($data)) {
@@ -34,12 +35,13 @@ if(isset($_POST['name_series'])) {
         }else $data_return = '<option disabled selected>--- Danh sách trống ---</option>';
     }else {
         if($value_name_series) {
-            $data = pdo_query(
+            $data = pdo_query_new(
         'SELECT *
                 FROM model m
                 LEFT JOIN series s
                 ON s.id_series = m.id_series
-                WHERE s.name_series = "'.$value_name_series.'"'
+                WHERE s.name_series = ?',
+                $value_name_series
             );
 
             if(!empty($data)) {

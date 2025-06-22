@@ -86,7 +86,7 @@ function revenue($type) {
     // );
 
     // trả về
-    return pdo_query_value(
+    return pdo_query_value_new(
         'SELECT SUM(id.quantity_invoice * id.price_invoice) total
         FROM invoice i
         JOIN invoice_detail id
@@ -100,7 +100,7 @@ function revenue($type) {
  * Thống kê doanh thu từng tháng của năm hiện tại
  */
 function revenue_chart($type) {
-    if($type === 'nam') return pdo_query(
+    if($type === 'nam') return pdo_query_new(
         'SELECT MONTH(i.created_at) AS month,SUM(id.quantity_invoice * id.price_invoice) AS total
         FROM invoice i
         JOIN invoice_detail id
@@ -109,7 +109,7 @@ function revenue_chart($type) {
         GROUP BY MONTH(i.created_at)
         ORDER BY month'
     );
-    elseif($type === 'thang') return pdo_query(
+    elseif($type === 'thang') return pdo_query_new(
             'SELECT WEEK(i.created_at, 1) AS week,
             SUM(id.quantity_invoice * id.price_invoice) AS total
             FROM invoice i
@@ -119,7 +119,7 @@ function revenue_chart($type) {
             GROUP BY YEARWEEK(i.created_at, 1)
             ORDER BY week'
     );
-    elseif($type === 'tuan') return pdo_query(
+    elseif($type === 'tuan') return pdo_query_new(
         'SELECT WEEKDAY(i.created_at) AS date, SUM(id.quantity_invoice * id.price_invoice) AS total
         FROM invoice i
         JOIN invoice_detail id ON i.id_invoice = id.id_invoice
@@ -217,7 +217,7 @@ function data_chart($start,$end,$type) {
         $query = 'DATE(i.created_at) BETWEEN "'.$start.'" AND "'.$end.'"';
     }
     
-    return pdo_query(
+    return pdo_query_new(
         'SELECT '.$select.' AS date, SUM(id.quantity_invoice * id.price_invoice) AS total
         FROM invoice i
         LEFT JOIN invoice_detail id ON i.id_invoice = id.id_invoice

@@ -59,13 +59,14 @@ function create_user($token_remember,$full_name,$gender,$email,$username,$passwo
  * @return array
  */
 function get_one_user_by_username($username) {
-    return pdo_query_one(
+    return pdo_query_one_new(
         'SELECT u.*, r.name_role
         FROM user u
         JOIN role r
         ON u.id_role = r.id_role
         WHERE u.deleted_at IS NULL
-        AND u.username = "'.$username.'"'
+        AND u.username = ?'
+        ,$username
     );
 }
 
@@ -88,8 +89,9 @@ function login($username,$password) {
             // Tạo token remember
             $token_remember = create_uuid();
             // Lưu token remember vào database
-            pdo_execute(
-                'UPDATE user SET token_remember ="'.$token_remember.'" WHERE username ="'.$_SESSION['user']['username'].'"'
+            pdo_execute_new(
+                'UPDATE user SET token_remember = ? WHERE username = ?',
+                $token_remember,$_SESSION['user']['username']
             );
             // Lưu token remember vào cookie (thời hạn là 1 tháng)
             setcookie('token_remember',$token_remember, [

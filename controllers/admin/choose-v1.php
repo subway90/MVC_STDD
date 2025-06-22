@@ -13,12 +13,13 @@ if(isset($_POST['id_category_v1'])) {
     else $value_temp = $_SESSION['selected_product_category'];
 
     if($id_category_v1 !== 'none'){
-        $data = pdo_query(
+        $data = pdo_query_new(
         'SELECT v2.*
             FROM category_v2 v2
             LEFT JOIN category_v1 v1
             ON v2.id_category_v1 = v1.id_category_v1
-            WHERE v1.id_category_v1 = '.$id_category_v1
+            WHERE v1.id_category_v1 = ?',
+            $id_category_v1
         );
 
         if(!empty($data)) {
@@ -28,12 +29,13 @@ if(isset($_POST['id_category_v1'])) {
         }
     }else {
         if(!empty($value_temp['v1'])) {
-            $data = pdo_query(
+            $data = pdo_query_new(
             'SELECT v2.*
                 FROM category_v2 v2
                 LEFT JOIN category_v1 v1
                 ON v2.id_category_v1 = v1.id_category_v1
-                WHERE v1.id_category_v1 = '. $value_temp['v1']
+                WHERE v1.id_category_v1 = ?',
+                $value_temp['v1']
             );
 
             if(!empty($data)) {

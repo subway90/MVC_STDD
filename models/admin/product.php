@@ -4,7 +4,7 @@ function get_all_product($state_product) {
     if($state_product) $query_state = 'IS NULL';
     else $query_state = 'IS NOT NULL';
 
-    return pdo_query(
+    return pdo_query_new(
         'SELECT p.*, b.name_brand, b.slug_brand, b.logo_brand, pi.*, c1.name_category_v1
         FROM product p
         LEFT JOIN brand b ON  p.id_brand = b.id_brand
