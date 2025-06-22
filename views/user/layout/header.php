@@ -127,7 +127,7 @@
                                                 <span class="small"><?= format_timeline($created_at) ?></span>
                                             </div>
                                         </div>
-                                        <div class="fw-bold small">
+                                        <div class="<?= ($state_view_notify) ? 'fw-semibold': 'fw-bold' ?> small">
                                             <?= $title_notify ?>
                                         </div>
                                         <div class="small text-wrap">
