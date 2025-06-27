@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?= WEB_FAVICON ?>" type="image/x-icon">
-    <title><?= WEB_NAME ?> | Service Upgrade</title>
+    <title><?= WEB_NAME ?> | 503 Service Unavailable</title>
     <style>
         body {
             background-color :rgba(0, 0, 0, 0.95);
@@ -53,7 +53,7 @@
 </head>
 <body>
     <div class="box">
-        <div class="error">Service Upgrade</div>
+        <div class="error">503 Service Unavailable</div>
         <div class="">
             <p>Trang website đang được bảo trì, vui lòng thử lại sau ít phút.</p>
         </div>

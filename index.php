@@ -6,7 +6,7 @@ require_once 'autoload.php';
 auto_login();
 
 # [UPGRADE PAGE]
-if(BOOL_UPGRADE) view_error(700);
+if(BOOL_UPGRADE) view_error(503);
 
 # [ACTION]
 $_case = get_action_uri(0);
