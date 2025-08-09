@@ -3,7 +3,7 @@
 function render_show_flashsale($type) {
 
     // validate type
-    if($type === 'today') $time_section_start = date('Y-m-d');
+    if($type === 'today') $time_section_start = date('Y-m-d H:i:s');
     else {
 
     }
@@ -13,9 +13,9 @@ function render_show_flashsale($type) {
 
     // get section flashsale
     $get_flashsale = pdo_query_one_new(
-        'SELECT * FROM flashsale WHERE time_start_flashsale >= ? ORDER BY time_start_flashsale ASC'
-        ,$time_section_start
+        'SELECT * FROM flashsale WHERE time_end_flashsale >= "'.$time_section_start.'" ORDER BY time_start_flashsale DESC'
     );
+
 
     $get_product_flashsale = pdo_query_new(
         'SELECT fp.*, p.name_product, p.slug_product, p.price_product, pi.path_product_image, b.name_brand, b.logo_brand
