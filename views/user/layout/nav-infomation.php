@@ -33,7 +33,7 @@
                 <i class="bi bi-key me-1"></i> Đổi mật khẩu
             </a>
             <form action="/dang-xuat" method="post">
-            <button name="logout" type="submit" class="nav-link-infomation text-danger <?= ($page !== 'change-password') ?: 'active' ?>">
+            <button name="logout" type="submit" class="nav-link-infomation text-danger">
                 <i class="bi bi-box-arrow-right me-1"></i> Đăng xuất
             </button>
             </form>
