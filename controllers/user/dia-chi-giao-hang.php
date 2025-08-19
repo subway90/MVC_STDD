@@ -1,7 +1,7 @@
 <?php
 
 # [AUTHOR]
-author(['admin','user']);
+if(!is_login()) view_error(404);
 
 # [MODEL]
 model('user','infomation');
