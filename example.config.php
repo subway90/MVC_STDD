@@ -24,8 +24,9 @@ const DB_USER = 'root';
 const DB_PASS = '';
 const DB_NAME = '';
 
-const BOOL_SPINNER = false;
-const BOOL_UPGRADE = false;
+const BOOL_SPINNER = false; // hiệu ứng spin khi load trang
+const BOOL_UPGRADE = false; // trang cập nhật
+const BOOL_OTP = false;     // tính năng gửi otp khi đăng kí
 
 const VNPAY_TMNCODE = '';
 const VNPAY_HASHKEY = '';

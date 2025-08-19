@@ -7,6 +7,7 @@ model('user','stringee');
 $full_name = $gender = $username = $email = $password = $address = $password_confirm = ''; //biến khai báo cho form đăng kí
 $error = []; // nội dung mảng lỗi
 $return_checkout_page = false; // trạng thái quay lại trang thanh toán
+$bool_create_user = false; // trạng thái tạo user hợp lệ khi không cần OTP
 
 # [HANDLE]
 // Kiểm tra xem có quay lại trang thanh toán không
@@ -62,10 +63,17 @@ if(isset($_POST['register'])) {
             'otp' => random_int(100000,999999),
             'expried' => time() + TIME_RELOAD_VOICE_PHONE,
         ];
+
         // gọi voice gửi otp
-        stringee_send_otp($_SESSION['verify_user']['username'],$_SESSION['verify_user']['otp']);
-        // Chuyển route (để xoá các input cũ)
-        route('dang-ky');
+        if(BOOL_OTP) {
+            stringee_send_otp($_SESSION['verify_user']['username'],$_SESSION['verify_user']['otp']);
+            // Chuyển route (để xoá các input cũ)
+            route('dang-ky');
+        }
+        // bật trạng thái tạo user
+        else {
+            $bool_create_user = true;
+        }
     }
 }
 
@@ -80,15 +88,21 @@ if(isset($_POST['resend_otp'])) {
     stringee_send_otp($_SESSION['verify_user']['username'],$_SESSION['verify_user']['otp']);
 }
 
-// Nếu bấm submit gửi otp để xác thực
-if(isset($_POST['verify_user'])) {
-    // lấy input mã otp, vì $_POST['input_otp'] gửi dạng mảng -> dùng implode để biến mảng thành chuỗi
-    $input_otp = implode($_POST['input_otp']);
-    // xử lí validate
-    if(!$input_otp) toast_create('danger','Vui lòng nhập mã OTP');
-    // kiểm tra mã otp có hợp lê
-    else if($input_otp != $_SESSION['verify_user']['otp']) toast_create('danger','Mã OTP không chính xác');
-    else {
+// Nếu bấm submit gửi otp để xác thực hoặc trạng thái tạo user là true
+if(isset($_POST['verify_user']) || $bool_create_user) {
+    // Kiểm tra OTP
+    if(!$bool_create_user) {
+        // lấy input mã otp, vì $_POST['input_otp'] gửi dạng mảng -> dùng implode để biến mảng thành chuỗi
+        $input_otp = implode($_POST['input_otp']);
+        // xử lí validate
+        if(!$input_otp) toast_create('danger','Vui lòng nhập mã OTP');
+        // kiểm tra mã otp có hợp lê
+        else if($input_otp != $_SESSION['verify_user']['otp']) toast_create('danger','Mã OTP không chính xác');
+        // bật trạng thái tạo user
+        else $bool_create_user = true;
+    }
+    // nếu trạng thái tạo user true
+    if($bool_create_user) {
         extract($_SESSION['verify_user']);
         // tạo cookie token remember
         $token_remember = create_uuid();
