@@ -64,7 +64,7 @@ if(isset($_POST['add']) && isset($_FILES['file'])) {
             // lưu path tạm mới
             $_SESSION['temp_logo_category_edit'] = $check['message'];
             // lưu lại ở db
-            pdo_execute_new(
+            pdo_execute(
                 'UPDATE category_v1 SET logo_category_v1 = ? WHERE id_category_v1 = ?',
                 $_SESSION['temp_logo_category_edit'], $_POST['id_category']
             );

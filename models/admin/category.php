@@ -15,7 +15,7 @@ function get_all_category_v1($state) {
         $order = 'deleted_at DESC';
     }
 
-    return pdo_query_new(
+    return pdo_query(
         'SELECT *
         FROM category_v1
         WHERE deleted_at '.$query.'
@@ -38,7 +38,7 @@ function get_all_category($state) {
         $order = 'deleted_at DESC';
     }
 
-    $data = pdo_query_new(
+    $data = pdo_query(
         'SELECT *
         FROM category_v1
         WHERE deleted_at '.$query.'
@@ -48,7 +48,7 @@ function get_all_category($state) {
     // lấy danh sách v2
     if(!empty($data)) {
         foreach ($data as $i => $v1) {
-            $data[$i]['list_v2'] = pdo_query_new(
+            $data[$i]['list_v2'] = pdo_query(
                 'SELECT v2.*, COUNT(pc.id_category_v2) count_product
                 FROM category_v2 v2
                 LEFT JOIN product_category pc ON v2.id_category_v2 = pc.id_category_v2
@@ -69,7 +69,7 @@ function get_all_category($state) {
  * @return int|string
  */
 function check_name_category_v2_exist($name_category_v2,$id_category_v1) {
-    return pdo_query_value_new(
+    return pdo_query_value(
         'SELECT id_category_v2
         FROM category_v2
         WHERE name_category_v2 = ?
@@ -254,7 +254,7 @@ function render_category($status_page,$id_v1_open) {
  * @return int|string
  */
 function check_cate_v2_for_delete($id_v2) {
-    return pdo_query_value_new(
+    return pdo_query_value(
         'SELECT COUNT(id_category_v2) count
         FROM product_category
         WHERE id_category_v2 = ?'

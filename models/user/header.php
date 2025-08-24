@@ -57,7 +57,7 @@ function get_cart($get_type) {
     // Truy vấn từ data ở session cart
     if(!empty($_SESSION['cart'])) {
         foreach ($_SESSION['cart'] as $cart) {
-            $product = pdo_query_one_new(
+            $product = pdo_query_one(
                 'SELECT p.*, m.*, c.name_color, c.code_color, pc.id_category_v2, b.*, pi.path_product_image
                 FROM product p
                 LEFT JOIN brand b ON p.id_brand = b.id_brand
@@ -167,14 +167,14 @@ function list_category_for_menu() {
     // mảng return
     $result = [];
     // lấy danh sách v1
-    $list_v1 = pdo_query_new(
+    $list_v1 = pdo_query(
         'SELECT id_category_v1,name_category_v1, slug_category_v1, logo_category_v1 FROM category_v1 WHERE deleted_at IS NULL'
     );
     // nếu danh sách v1 rỗng
     if(!$list_v1) return $result;
     foreach ($list_v1 as $item => $v1) {
         // lấy danh sáhch v2
-        $list_v2 = pdo_query_new(
+        $list_v2 = pdo_query(
             'SELECT name_category_v2 name, slug_category_v2 slug, logo_category_v2 logo, description_category_v2 description FROM category_v2 WHERE deleted_at IS NULL AND id_category_v1 = ?',
             $v1['id_category_v1']
         );
@@ -191,7 +191,7 @@ function list_category_for_menu() {
 }
 
 function get_all_notify() {
-    return pdo_query_new(
+    return pdo_query(
         'SELECT * 
         FROM notify 
         WHERE username = ? 
@@ -202,7 +202,7 @@ function get_all_notify() {
 }
 
 function get_all_notify_send() {
-    return pdo_query_value_new(
+    return pdo_query_value(
         'SELECT COUNT(*)
         FROM notify 
         WHERE username = ? 

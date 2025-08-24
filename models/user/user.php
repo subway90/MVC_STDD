@@ -7,7 +7,7 @@
  * @return boolean TRUE nếu tồn tại, ngược lại FALSE khi không tồn tại
  */
 function check_one_exist_in_user_with_field($field,$value) {
-    $result = pdo_query_value_new(
+    $result = pdo_query_value(
         'SELECT username FROM user WHERE '.$field.' = ? AND deleted_at IS NULL'
         ,$value
     );
@@ -39,11 +39,11 @@ function check_valid_username($input) {
  */
 function create_user($token_remember,$full_name,$gender,$email,$username,$password,$id_role,$address) {
     try{
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO user (token_remember,full_name,gender,email,username,password,id_role) VALUES (?,?,?,?,?,?,?)'
             ,$token_remember,$full_name,$gender,$email,$username,md5($password),$id_role
         );
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO shipping_address (username,name_shipping_address) VALUES(?,?)'
             ,$username,$address
         );
@@ -59,7 +59,7 @@ function create_user($token_remember,$full_name,$gender,$email,$username,$passwo
  * @return array
  */
 function get_one_user_by_username($username) {
-    return pdo_query_one_new(
+    return pdo_query_one(
         'SELECT u.*, r.name_role
         FROM user u
         JOIN role r
@@ -89,7 +89,7 @@ function login($username,$password) {
             // Tạo token remember
             $token_remember = create_uuid();
             // Lưu token remember vào database
-            pdo_execute_new(
+            pdo_execute(
                 'UPDATE user SET token_remember = ? WHERE username = ?',
                 $token_remember,$_SESSION['user']['username']
             );

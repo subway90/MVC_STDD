@@ -5,7 +5,7 @@
  * @return array
  */
 function get_all_invoice($condition_deleted) {
-    return pdo_query_new(
+    return pdo_query(
         'SELECT i.*, COUNT(d.id_invoice_detail) AS total_product, SUM(d.price_invoice * d.quantity_invoice) AS total_price, u.full_name, u.email, u.username, s.name_shipping_address
         FROM invoice i
         LEFT JOIN invoice_detail d ON i.id_invoice = d.id_invoice
@@ -25,7 +25,7 @@ function get_all_invoice($condition_deleted) {
 function get_one_invoice($id_invoice) {
     $array = [];
     // lấy thông tin đơn hàng
-    $invoice = pdo_query_one_new(
+    $invoice = pdo_query_one(
         'SELECT i.*, u.full_name, u.email, u.username, s.name_shipping_address
         FROM invoice i
         LEFT JOIN user u ON i.username = u.username
@@ -35,7 +35,7 @@ function get_one_invoice($id_invoice) {
     );
 
     // lấy thông tin đơn hàng chi tiết
-    $invoice_detail = pdo_query_new(
+    $invoice_detail = pdo_query(
         'SELECT d.quantity_invoice, d.price_invoice, p.name_product, pi.path_product_image, p.description_product, p.id_product
         FROM invoice_detail d
         LEFT JOIN invoice i ON d.id_invoice = i.id_invoice
@@ -69,7 +69,7 @@ function check_invoice_exist($bool_trash,$id_invoice) {
     if($bool_trash) $condition = '';
     else $condition = 'IS NULL';
     // query
-    if(pdo_query_value_new(
+    if(pdo_query_value(
         'SELECT id_invoice FROM invoice WHERE id_invoice = ? AND deleted_at '.$condition
         ,$id_invoice
         )
@@ -87,7 +87,7 @@ function check_invoice_exist($bool_trash,$id_invoice) {
  * @return void
  */
 function update_state_invoice ($id_invoice,$state_to) {
-    pdo_execute_new(
+    pdo_execute(
         'UPDATE invoice SET 
         status_invoice = ?,
         updated_at = current_timestamp
@@ -103,7 +103,7 @@ function update_state_invoice ($id_invoice,$state_to) {
  * @return void
  */
 function add_reason_close_invoice ($id_invoice,$reason) {
-    pdo_execute_new(
+    pdo_execute(
         'UPDATE invoice SET 
         reason_close_invoice = ?,
         updated_at = current_timestamp
@@ -118,7 +118,7 @@ function add_reason_close_invoice ($id_invoice,$reason) {
  * @return void
  */
 function delete_reason_close_invoice ($id_invoice) {
-    pdo_execute_new(
+    pdo_execute(
         'UPDATE invoice SET
         reason_close_invoice = NULL,
         updated_at = current_timestamp

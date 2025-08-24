@@ -19,7 +19,7 @@ if(isset($_POST['add'])) {
     // lưu
     if(empty($list_error)) {
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO brand (name_brand,slug_brand,logo_brand) VALUES (?,?,?)',
             $name_brand,create_slug($name_brand),$_SESSION['temp_logo_brand']
         );

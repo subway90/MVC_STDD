@@ -13,7 +13,7 @@ if(!get_action_uri(2)) view_error(404);
 // lấy id
 $id_category = get_action_uri(2);
 // query
-$get_category = pdo_query_one_new(
+$get_category = pdo_query_one(
     'SELECT * FROM category_v1
     WHERE id_category_v1 = ?
     AND deleted_at IS NULL',
@@ -38,7 +38,7 @@ if(isset($_POST['edit'])) {
     // lưu
     if(empty($list_error)) {
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'UPDATE category_v1
             SET name_category_v1 = ?, slug_category_v1 = ?
             WHERE id_category_v1 = ?',

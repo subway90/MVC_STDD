@@ -13,7 +13,7 @@ if(!get_action_uri(2)) view_error(404);
 // lấy id
 $id_slide = get_action_uri(2);
 // query
-$get_slide = pdo_query_one_new(
+$get_slide = pdo_query_one(
     'SELECT * FROM slide
     WHERE id_slide = ?
     AND deleted_at IS NULL',
@@ -36,7 +36,7 @@ if(isset($_POST['edit'])) {
     // lưu
     if(empty($list_error)) {
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'UPDATE slide
             SET link_slide = ?
             WHERE id_slide = ?',

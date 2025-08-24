@@ -8,7 +8,7 @@
 function get_one_invoice_by_id($id_invoice) {
     $array = [];
     // lấy thông tin đơn hàng
-    $invoice = pdo_query_one_new(
+    $invoice = pdo_query_one(
         'SELECT u.full_name, u.email, i.*, s.name_shipping_address
         FROM invoice i
         LEFT JOIN user u
@@ -20,7 +20,7 @@ function get_one_invoice_by_id($id_invoice) {
     );
 
     // lấy thông tin đơn hàng chi tiết
-    $invoice_detail = pdo_query_new(
+    $invoice_detail = pdo_query(
         'SELECT d.quantity_invoice, d.price_invoice, p.name_product, p.image_product
         FROM invoice_detail d
         JOIN invoice i
@@ -44,7 +44,7 @@ function get_one_invoice_by_id($id_invoice) {
  * @return string
  */
 function check_invoice_exist($id_invoice) {
-    return pdo_query_one_new(
+    return pdo_query_one(
         'SELECT id_invoice
         FROM invoice
         WHERE deleted_at IS NULL
@@ -62,7 +62,7 @@ function check_invoice_exist($id_invoice) {
 function get_all_invoice_by_username($username) {
     $result = [];
     // lấy danh sách hoá đơn
-    $list_invoice = pdo_query_new(
+    $list_invoice = pdo_query(
         'SELECT *
         FROM invoice
         WHERE deleted_at IS NULL
@@ -74,7 +74,7 @@ function get_all_invoice_by_username($username) {
     // lặp từng hoá đơn để tính tổng
     foreach($list_invoice as $invoice) {
         // lấy danh sách hoá đơn chi tiết
-        $invoice_detail = pdo_query_new(
+        $invoice_detail = pdo_query(
             'SELECT d.quantity_invoice, d.price_invoice
             FROM invoice_detail d
             JOIN invoice i

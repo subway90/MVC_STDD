@@ -9,7 +9,7 @@
 function get_product_detail($slug) {
     
     // lấy thông tin chung
-    $result = pdo_query_one_new(
+    $result = pdo_query_one(
         'SELECT p.*, m.id_series, m.id_model, pc.id_category_v2, b.*
         FROM product p
         LEFT JOIN brand b ON p.id_brand = b.id_brand
@@ -21,7 +21,7 @@ function get_product_detail($slug) {
     );
 
     // lấy thông tin sản phẩm liên quan
-    $result['list_recommend'] = pdo_query_new(
+    $result['list_recommend'] = pdo_query(
         'SELECT p.id_product, p.name_product, p.price_product, p.sale_price_product, p.slug_product, b.logo_brand, b.name_brand, pi.path_product_image
         FROM product p
         LEFT JOIN product_image pi ON pi.id_product = p.id_product
@@ -37,7 +37,7 @@ function get_product_detail($slug) {
     );
 
     // lấy mảng ảnh
-    $result['array_image'] = pdo_query_new(
+    $result['array_image'] = pdo_query(
         'SELECT pi.path_product_image
         FROM product_image pi
         WHERE id_product = ?',
@@ -45,7 +45,7 @@ function get_product_detail($slug) {
     );
 
     // lấy mảng thuộc tính
-    $result['array_attribute'] = pdo_query_new(
+    $result['array_attribute'] = pdo_query(
         'SELECT pa.icon_attribute, pa.name_attribute, pa.value_attribute
         FROM product_attribute pa
         WHERE id_product = ?',
@@ -54,7 +54,7 @@ function get_product_detail($slug) {
 
     // lấy danh sách model nếu có series
     if($result['id_series']) {
-        $result['array_model'] = pdo_query_new(
+        $result['array_model'] = pdo_query(
             'SELECT m.id_model, m.name_model, p.slug_product
             FROM model m
             LEFT JOIN product p ON m.id_model = p.id_model
@@ -68,7 +68,7 @@ function get_product_detail($slug) {
 
     // lấy danh sách màu theo model hiện tại
     if($result['id_model']) {
-        $result['array_color'] = pdo_query_new(
+        $result['array_color'] = pdo_query(
             'SELECT c.id_color, c.name_color, c.code_color, p.slug_product
             FROM product p
             LEFT JOIN color c ON p.id_color = c.id_color

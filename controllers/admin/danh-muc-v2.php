@@ -23,7 +23,7 @@ if(isset($_POST['add']) && isset($_POST['id_category_v1']) && isset($_POST['name
     // save
     if(empty($list_error)) {
         // query save
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO category_v2 (id_category_v1,name_category_v2,slug_category_v2) VALUES (?,?,?)'
             ,$id_category_v1,$name_category_v2,create_slug($name_category_v2)
         );

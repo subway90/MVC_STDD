@@ -13,7 +13,7 @@ if(!get_action_uri(2)) view_error(404);
 // lấy id
 $id_color = get_action_uri(2);
 // query
-$get_color = pdo_query_one_new(
+$get_color = pdo_query_one(
     'SELECT * FROM color
     WHERE id_color = ?
     AND deleted_at IS NULL',
@@ -38,7 +38,7 @@ if(isset($_POST['edit'])) {
     // lưu
     if(empty($list_error)) {
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'UPDATE color SET name_color = ?, slug_color = ?, code_color = ?, updated_at = current_timestamp() WHERE id_color = ?',
             $name_color,create_slug($name_color),$code_color,$id_color
         );

@@ -32,7 +32,7 @@ function update_quantity($type,$id) {
                 // Nếu tăng số lượng
                 if($type === 'plus') {
                     // Lấy tổng số lượng của sản phẩm đó
-                    $max_quantity = pdo_query_value_new('SELECT quantity_product FROM product WHERE id_product ='.$id);
+                    $max_quantity = pdo_query_value('SELECT quantity_product FROM product WHERE id_product ='.$id);
                     // Kiểm tra nếu chưa đạt giới hạn
                     if($_SESSION['cart'][$i]['quantity_product'] < $max_quantity ) {
                         $_SESSION['cart'][$i]['quantity_product']++; // Thêm số lượng
@@ -65,7 +65,7 @@ function update_quantity($type,$id) {
  * @return int
  */
 function get_quantity_product($id_product) {
-    return pdo_query_value_new(
+    return pdo_query_value(
         'SELECT quantity_product FROM product WHERE id_product = ?',
         $id_product
     );

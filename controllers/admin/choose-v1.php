@@ -13,7 +13,7 @@ if(isset($_POST['id_category_v1'])) {
     else $value_temp = $_SESSION['selected_product_category'];
 
     if($id_category_v1 !== 'none'){
-        $data = pdo_query_new(
+        $data = pdo_query(
         'SELECT v2.*
             FROM category_v2 v2
             LEFT JOIN category_v1 v1
@@ -29,7 +29,7 @@ if(isset($_POST['id_category_v1'])) {
         }
     }else {
         if(!empty($value_temp['v1'])) {
-            $data = pdo_query_new(
+            $data = pdo_query(
             'SELECT v2.*
                 FROM category_v2 v2
                 LEFT JOIN category_v1 v1

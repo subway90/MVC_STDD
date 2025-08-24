@@ -54,7 +54,7 @@ if(isset($_POST['add_shipping_address'])) {
     // thực hiện lưu
     if(empty($error_valid)) {
         // lưu database
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO shipping_address (name_shipping_address,username) VALUES (?,?)',
             $input_shipping_address,$_SESSION['user']['username']
         );
@@ -96,7 +96,7 @@ if(isset($_POST['change_password'])) {
     // cập nhật
     else {
         // lưu database
-        pdo_execute_new(
+        pdo_execute(
             'UPDATE user SET 
             password = ? WHERE username = ?',
             md5($input_new_password),$_SESSION['user']['username']

@@ -28,7 +28,7 @@ if(isset($_POST['change_password'])) {
     // cập nhật
     else {
         // lưu database
-        pdo_execute_new(
+        pdo_execute(
             'UPDATE user SET password = ? WHERE username = ?'
             ,md5($input_new_password),auth('username')
         );

@@ -465,7 +465,7 @@ function auto_login(){
         else $token_remember = ''; // nếu có value
         if($token_remember) {
             // lấy thông tin user bằng token
-            $get_user = pdo_query_one_new(
+            $get_user = pdo_query_one(
                 'SELECT u.*, r.name_role
                 FROM user u
                 JOIN role r

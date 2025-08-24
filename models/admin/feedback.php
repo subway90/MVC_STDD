@@ -1,7 +1,7 @@
 <?php 
 
 function create_feedback($id_invoice) {
-    $list_invoice_detail = pdo_query_new(
+    $list_invoice_detail = pdo_query(
         'SELECT *
         FROM invoice_detail id
         LEFT JOIN invoice i ON i.id_invoice = id.id_invoice
@@ -15,7 +15,7 @@ function create_feedback($id_invoice) {
 
     foreach ($list_invoice_detail as $invoice_detail) {
         // tạo feedback
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO feedback (id_feedback,id_invoice,id_product)
             VALUES(?,?,?)'
             ,$id_feedback,$id_invoice,$invoice_detail['id_product']
@@ -32,7 +32,7 @@ function create_feedback($id_invoice) {
 }
 
 function create_notify_with_update_state($id_invoice,$title,$content) {
-    $get_username = pdo_query_value_new(
+    $get_username = pdo_query_value(
         'SELECT username FROM invoice
         WHERE id_invoice = ?'
         ,$id_invoice
@@ -48,7 +48,7 @@ function create_notify_with_update_state($id_invoice,$title,$content) {
 }
 
 function create_notify($username,$title,$content,$link_action) {
-     pdo_execute_new(
+     pdo_execute(
         'INSERT INTO notify (username,title_notify,content_notify,link_action_notify)
         VALUES (?,?,?,?)'
         ,$username

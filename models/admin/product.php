@@ -4,7 +4,7 @@ function get_all_product($state_product) {
     if($state_product) $query_state = 'IS NULL';
     else $query_state = 'IS NOT NULL';
 
-    return pdo_query_new(
+    return pdo_query(
         'SELECT p.*, b.name_brand, b.slug_brand, b.logo_brand, pi.*, c1.name_category_v1
         FROM product p
         LEFT JOIN brand b ON  p.id_brand = b.id_brand
@@ -27,7 +27,7 @@ function get_all_product($state_product) {
  */
 function get_one_product_by_id($id) {
     // lấy thông tin sản phẩm
-    $get_product = pdo_query_one_new(
+    $get_product = pdo_query_one(
         'SELECT p.*, s.name_series
         FROM product p
         LEFT JOIN model m ON m.id_model = p.id_model
@@ -39,7 +39,7 @@ function get_one_product_by_id($id) {
     if(!$get_product) return 0;
 
     // lấy danh sách ảnh
-    $get_product['image'] = pdo_query_new(
+    $get_product['image'] = pdo_query(
         'SELECT pi.* 
         FROM product_image pi
         LEFT JOIN product p ON p.id_product = pi.id_product
@@ -48,7 +48,7 @@ function get_one_product_by_id($id) {
     );
 
     // lấy danh sách danh mục v2 & v1
-    $get_product['category'] = pdo_query_new(
+    $get_product['category'] = pdo_query(
         'SELECT v2.id_category_v2, v1.id_category_v1
         FROM product_category pc
         LEFT JOIN product p ON p.id_product = pc.id_product

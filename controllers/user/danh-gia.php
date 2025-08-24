@@ -11,7 +11,7 @@ $error_valid = [];
 if(get_action_uri(1)) {
     $id_feedback = get_action_uri(1);
     // get
-    $get_feedback = pdo_query_one_new(
+    $get_feedback = pdo_query_one(
         'SELECT f.*, p.name_product, pi.path_product_image
         FROM feedback f
         LEFT JOIN invoice i ON i.id_invoice = f.id_invoice
@@ -37,7 +37,7 @@ if(get_action_uri(1)) {
 
         // save db
         if(empty($error_valid)) {
-            pdo_execute_new(
+            pdo_execute(
                 'UPDATE feedback SET point_feedback = ?, content_feedback = ?, updated_at = current_timestamp() WHERE id_feedback = ?'
                 ,$point,$content,$id_feedback
             );

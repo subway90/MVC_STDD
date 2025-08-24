@@ -16,7 +16,7 @@ function get_all_color($state) {
         $order = 'c.deleted_at DESC';
     }
 
-    return pdo_query_new(
+    return pdo_query(
         'SELECT c.*, COUNT(p.id_product) count_product
         FROM color c
         LEFT JOIN product p ON p.id_color = c.id_color

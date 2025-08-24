@@ -19,7 +19,7 @@ if(isset($_POST['add'])) {
     // lưu
     if(empty($list_error)) {
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO category_v1 (name_category_v1,slug_category_v1,logo_category_v1) VALUES (?,?,?)',
             $name_category,create_slug($name_category),$_SESSION['temp_logo_category']
         );

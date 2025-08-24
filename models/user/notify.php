@@ -6,7 +6,7 @@
  * @return array
  */
 function get_all_notify() {
-    return pdo_query_new(
+    return pdo_query(
         'SELECT * 
         FROM notify
         WHERE username = '.auth('username')

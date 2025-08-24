@@ -100,7 +100,7 @@ if($bool_checkout) {
     extract($_SESSION['checkout']);
     
     // lưu db hoá đơn
-    pdo_execute_new('INSERT INTO invoice (id_invoice,username,id_shipping_address,note_invoice,method_payment)
+    pdo_execute('INSERT INTO invoice (id_invoice,username,id_shipping_address,note_invoice,method_payment)
     VALUES (?,?,?,?,?)'
     ,$id_invoice,auth('username'),$id_shipping_address,$note_invoice,$method_payment
     );
@@ -111,7 +111,7 @@ if($bool_checkout) {
         if($cart['sale_price_product']) $price_product = $cart['sale_price_product'];
         else $price_product = $cart['price_product'];
         
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO invoice_detail (id_invoice,id_product,quantity_invoice,price_invoice)
             VALUES (?,?,?,?)'
             ,$id_invoice,$cart['id_product'],$cart['quantity_product_in_cart'],$price_product
@@ -122,7 +122,7 @@ if($bool_checkout) {
     if(!empty($_SESSION['voucher'])) {
         // lưu db hoá đơn chi tiết
         foreach ($_SESSION['voucher'] as $code) {
-            pdo_execute_new(
+            pdo_execute(
                 'INSERT INTO invoice_voucher (code_voucher,id_invoice)
                 VALUES (?,?)'
                 ,$code,$id_invoice

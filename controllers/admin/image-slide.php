@@ -64,7 +64,7 @@ if(isset($_POST['add']) && isset($_FILES['file'])) {
             // lưu path tạm mới
             $_SESSION['temp_path_slide_edit'] = $check['message'];
             // lưu lại ở db
-            pdo_execute_new(
+            pdo_execute(
                 'UPDATE slide SET path_slide = ? WHERE id_slide = ?',
                 $_SESSION['temp_path_slide_edit'], $_POST['id_slide']
             );

@@ -95,20 +95,20 @@ if(isset($_POST['btn_edit_product'])) {
 		if(!$_SESSION['id_model']) $_SESSION['id_model'] = null;
 
 		// lưu product
-		pdo_execute_new(
+		pdo_execute(
 		'UPDATE product SET id_brand = ? , id_color = ?, id_model = ?, name_product = ?, slug_product = ?, description_product = ?, price_product = ?, sale_price_product = ?, quantity_product = ? WHERE id_product = ?',
 			$id_brand, $id_color, $_SESSION['id_model'], $name_product, create_slug($name_product), $description_product, $price_product, $sale_price_product, $quantity_product, $id_product
 		);
 
 		// lấy id
-		$id_product = pdo_query_value_new(
+		$id_product = pdo_query_value(
 			'SELECT id_product FROM product WHERE name_product = ?'
 			,$name_product
 		);
 
 		// lưu category_product
 		// foreach($_SESSION['selected_product_category_edit']['v2'] as $id_product_v2) {
-		// 	pdo_execute_new(
+		// 	pdo_execute(
 		// 		'UPDATE product_category SET id_category_v2 = ?',
 		// 			$id_product,$id_product_v2
 		// 	);
@@ -116,7 +116,7 @@ if(isset($_POST['btn_edit_product'])) {
 
 		// lưu ảnh
 		// foreach ($_SESSION['temp_image_product'] as $path) {
-		// 	pdo_execute_new(
+		// 	pdo_execute(
 		// 		'INSERT INTO product_image (id_product, path_product_image)
 		// 			VALUES (?, ?)',
 		// 			$id_product,$path
@@ -125,7 +125,7 @@ if(isset($_POST['btn_edit_product'])) {
 
 		// lưu attribute_product
 		// foreach($_SESSION['temp_attribute_product_edit'] as $attribute) {
-		// 	pdo_execute_new(
+		// 	pdo_execute(
 		// 		'INSERT INTO product_attribute (id_product, name_attribute, value_attribute)
 		// 			VALUES (?, ?, ?)',
 		// 			$id_product,$attribute['name'],$attribute['value']

@@ -79,7 +79,7 @@ if(isset($_POST['add']) && isset($_FILES['file'])) {
 if(isset($_POST['load'])) {
 
     if(isset($_POST['edit'])) {
-        $query = pdo_query_new(
+        $query = pdo_query(
             'SELECT path_product_image
             FROM product_image
             WHERE id_product = ?',

@@ -12,7 +12,7 @@ function get_list_invoice($state) {
     else $query = ' = "'.str_replace('-',' ',$state).'"';
 
     // Lấy danh sách hoá đơn
-    $list_invoice =  pdo_query_new(
+    $list_invoice =  pdo_query(
         'SELECT *
         FROM invoice
         WHERE username = ?
@@ -23,7 +23,7 @@ function get_list_invoice($state) {
     //Nếu có hoá đơn -> lấy thông tin chi tiết của hoá đơn đó
     if(!empty($list_invoice)) {
         foreach ($list_invoice as $i => $invoice) {
-            $list_invoice[$i]['detail'] = pdo_query_new(
+            $list_invoice[$i]['detail'] = pdo_query(
                 'SELECT id.*, p.name_product, p.slug_product, pi.path_product_image
                 FROM invoice_detail id
                 LEFT JOIN product p
@@ -50,7 +50,7 @@ function get_list_invoice($state) {
 function get_one_invoice($id_invoice) {
 
     // Lấy danh sách hoá đơn
-    $result =  pdo_query_one_new(
+    $result =  pdo_query_one(
         'SELECT *
         FROM invoice
         WHERE id_invoice = ?
@@ -62,7 +62,7 @@ function get_one_invoice($id_invoice) {
     if(!empty($result)) {
 
         // Địa chỉ giao hàng
-        $result['shipping_address'] = pdo_query_value_new(
+        $result['shipping_address'] = pdo_query_value(
             'SELECT name_shipping_address
             FROM shipping_address
             WHERE id_shipping_address = ?',
@@ -70,7 +70,7 @@ function get_one_invoice($id_invoice) {
         );
 
         // Truy vấn
-        $result['detail'] = pdo_query_new(
+        $result['detail'] = pdo_query(
             'SELECT id.*, p.name_product, p.slug_product, pi.path_product_image
             FROM invoice_detail id
             LEFT JOIN product p
@@ -87,7 +87,7 @@ function get_one_invoice($id_invoice) {
         foreach ($result['detail'] as $detail) $result['total'] += $detail['quantity_invoice'] * $detail['price_invoice'];
 
         // Lấy voucher nếu có
-        $result['voucher'] = pdo_query_new(
+        $result['voucher'] = pdo_query(
             'SELECT * 
             FROM invoice_voucher vi
             LEFT JOIN voucher v

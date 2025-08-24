@@ -15,7 +15,7 @@ function get_all_customer($state) {
         $order = 'u.deleted_at DESC';
     }
 
-    return pdo_query_new(
+    return pdo_query(
         'SELECT u.*, r.name_role
         FROM user u
         LEFT JOIN role r ON r.id_role = u.id_role
@@ -30,7 +30,7 @@ function get_all_customer($state) {
  * @return array
  */
 function get_one_customer($username) {
-    $result['info'] = pdo_query_one_new(
+    $result['info'] = pdo_query_one(
         'SELECT u.*, r.name_role
         FROM user u
         LEFT JOIN role r ON r.id_role = u.id_role
@@ -40,7 +40,7 @@ function get_one_customer($username) {
 
     // lấy danh sách hoá đơn
     if($result['info']) {
-        $result['list_invoice'] = pdo_query_new(
+        $result['list_invoice'] = pdo_query(
             'SELECT *
             FROM invoice i 
             LEFT JOIN invoice_detail id ON id.id_invoice = i.id_invoice

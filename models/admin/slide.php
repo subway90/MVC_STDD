@@ -13,7 +13,7 @@ function get_all_slide($state) {
         $query = 'IS NOT NULL';
     }
 
-    return pdo_query_new(
+    return pdo_query(
         'SELECT *
         FROM slide
         WHERE deleted_at '.$query.'
@@ -28,7 +28,7 @@ function get_all_slide($state) {
  * @return int
  */
 function get_order_by_id($id_slide) {
-    return pdo_query_value_new(
+    return pdo_query_value(
             'SELECT order_slide
             FROM slide
             WHERE id_slide = ?',
@@ -70,7 +70,7 @@ function swap_order($type,$id_slide) {
     // down
     elseif($type === 'down') {
         // validate order
-        if($order_now === pdo_query_value_new('SELECT MAX(order_slide) FROM slide')) return [
+        if($order_now === pdo_query_value('SELECT MAX(order_slide) FROM slide')) return [
             'code' => 0,
             'message' => 'Hiện tại là vị trí cuối cùng, không thể thay đổi nữa'
         ];
@@ -80,14 +80,14 @@ function swap_order($type,$id_slide) {
     }
     
     // thay đổi trước sang hiện tại
-    pdo_execute_new(
+    pdo_execute(
         'UPDATE slide SET
         order_slide = ?
         WHERE order_slide = ?'
         ,$order_now,$order_swap
     );
     // thay đổi hiện tại sang trước
-    pdo_execute_new(
+    pdo_execute(
         'UPDATE slide SET
         order_slide = ?
         WHERE id_slide = ?'

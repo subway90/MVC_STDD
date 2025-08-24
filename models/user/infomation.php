@@ -5,7 +5,7 @@
  * @return array
  */
 function get_all_shipping_address() {
-    return pdo_query_new(
+    return pdo_query(
         'SELECT * 
         FROM shipping_address 
         WHERE username = ?
@@ -21,7 +21,7 @@ function get_all_shipping_address() {
  * @return string
  */
 function get_name_shipping_address_by_id($id) {
-    return pdo_query_value_new(
+    return pdo_query_value(
         'SELECT name_shipping_address
         FROM shipping_address
         WHERE id_shipping_address = ?
@@ -38,7 +38,7 @@ function get_name_shipping_address_by_id($id) {
  * @return bool Trả về TRUE nếu đã đạt giới hạn, ngược lại là FALSE
  */
 function check_limit_shipping_address($limit) {
-    $count = pdo_query_value_new(
+    $count = pdo_query_value(
         'SELECT COUNT(*) FROM shipping_address WHERE username = ? AND deleted_at IS NULL',
         $_SESSION['user']['username']
     );
@@ -52,7 +52,7 @@ function check_limit_shipping_address($limit) {
  * @return bool trả về TRUE nếu tồn tại, ngược lại trả về FALSE
  */
 function check_exist_shipping_address_by_user($id) {
-    if (pdo_query_value_new(
+    if (pdo_query_value(
         'SELECT id_shipping_address FROM shipping_address WHERE id_shipping_address = ? AND username = ?',
         $id,$_SESSION['user']['username']
     ))return true;
@@ -67,7 +67,7 @@ function check_exist_shipping_address_by_user($id) {
  * @return void
  */
 function update_infomation($full_name,$gender) {
-    pdo_execute_new(
+    pdo_execute(
         'UPDATE user SET
         full_name = ?,
         gender = ?

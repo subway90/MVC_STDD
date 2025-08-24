@@ -13,7 +13,7 @@ if(!get_action_uri(2)) view_error(404);
 // lấy id
 $id_brand = get_action_uri(2);
 // query
-$get_brand = pdo_query_one_new(
+$get_brand = pdo_query_one(
     'SELECT * FROM brand
     WHERE id_brand = ?
     AND deleted_at IS NULL',
@@ -38,7 +38,7 @@ if(isset($_POST['edit'])) {
     // lưu
     if(empty($list_error)) {
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'UPDATE brand 
             SET name_brand = ?, slug_brand = ?
             WHERE id_brand = ?',

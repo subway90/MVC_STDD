@@ -17,11 +17,11 @@ if(isset($_POST['add'])) {
     // lưu
     if(empty($list_error)) {
         //get max order slide
-        $value_max_order = pdo_query_value_new(
+        $value_max_order = pdo_query_value(
             'SELECT MAX(order_slide) FROM slide'
         );
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO slide (path_slide,link_slide,order_slide) VALUES (?,?,?)',
             $_SESSION['temp_path_slide'],$link_slide,$value_max_order+1
         );

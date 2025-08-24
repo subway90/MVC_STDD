@@ -12,12 +12,12 @@ function render_show_flashsale($type) {
     $render = '';
 
     // get section flashsale
-    $get_flashsale = pdo_query_one_new(
+    $get_flashsale = pdo_query_one(
         'SELECT * FROM flashsale WHERE time_end_flashsale >= "'.$time_section_start.'" ORDER BY time_start_flashsale DESC'
     );
 
 
-    $get_product_flashsale = pdo_query_new(
+    $get_product_flashsale = pdo_query(
         'SELECT fp.*, p.name_product, p.slug_product, p.price_product, pi.path_product_image, b.name_brand, b.logo_brand
         FROM flashsale_product fp
         LEFT JOIN product p ON p.id_product = fp.id_product
@@ -198,7 +198,7 @@ function get_all_flashsale($state) {
         $order = 'f.deleted_at';
     }
 
-    return pdo_query_new(
+    return pdo_query(
         'SELECT f.*, COUNT(p.id_product) count_product
         FROM flashsale f
         LEFT JOIN flashsale_product fp ON f.id_flashsale = fp.id_flashsale
@@ -216,7 +216,7 @@ function get_all_flashsale($state) {
  * @return array
  */
 function get_detail_flashsale($id) {
-    $result['detail'] = pdo_query_one_new(
+    $result['detail'] = pdo_query_one(
         'SELECT *
         FROM flashsale
         WHERE id_flashsale = ?
@@ -224,7 +224,7 @@ function get_detail_flashsale($id) {
         ,$id
     );
 
-    $result['list_product'] = pdo_query_new(
+    $result['list_product'] = pdo_query(
         'SELECT fp.*,p.name_product, p.slug_product, p.price_product, pi.path_product_image
         FROM flashsale_product fp
         LEFT JOIN product p ON p.id_product = fp.id_product
@@ -240,7 +240,7 @@ function get_detail_flashsale($id) {
 
 function get_one_product_for_add_flashsale($id) {
     // lấy thông tin sản phẩm
-    return pdo_query_one_new(
+    return pdo_query_one(
         'SELECT p.id_product, p.name_product, p.quantity_product, p.price_product, pi.path_product_image
         FROM product p
         LEFT JOIN product_image pi ON pi.id_product = p.id_product

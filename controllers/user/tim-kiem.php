@@ -17,7 +17,7 @@ if(isset($_GET['keyword']) && $_GET['keyword']) {
     $keyword_query = '%'.trim($keyword).'%';
 
     // truy vấn
-    $query = pdo_query_new(
+    $query = pdo_query(
         'SELECT p.*, b.name_brand, b.slug_brand, b.logo_brand, pi.*
         FROM product p
         LEFT JOIN brand b ON  p.id_brand = b.id_brand

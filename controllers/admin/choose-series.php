@@ -19,7 +19,7 @@ if(isset($_POST['name_series'])) {
     }
 
     if($name_series !== 'none'){
-        $data = pdo_query_new(
+        $data = pdo_query(
         'SELECT *
             FROM model m
             LEFT JOIN series s
@@ -35,7 +35,7 @@ if(isset($_POST['name_series'])) {
         }else $data_return = '<option disabled selected>--- Danh sách trống ---</option>';
     }else {
         if($value_name_series) {
-            $data = pdo_query_new(
+            $data = pdo_query(
         'SELECT *
                 FROM model m
                 LEFT JOIN series s

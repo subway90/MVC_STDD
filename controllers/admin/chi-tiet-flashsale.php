@@ -37,7 +37,7 @@ if(isset($_POST['update'])) {
     // save
     if(empty($list_error)) {
         // format time
-        pdo_execute_new(
+        pdo_execute(
             'UPDATE flashsale SET name_flashsale = ?, time_start_flashsale = ?, time_end_flashsale = ? WHERE id_flashsale = ?'
             ,$name_flashsale,$time_start,$time_end,$id_flashsale
         );
@@ -66,7 +66,7 @@ if(isset($_POST['add_product'])) {
     // handle
     if(empty($list_error_modal)) {
         // save db
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO flashsale_product (id_flashsale, id_product,quantity_flashsale, price_flashsale) VALUES (?,?,?,?)',
             $id_flashsale,$id_product_add,$quantity_flashsale_add,$price_flashsale_add
         );
@@ -89,7 +89,7 @@ if(isset($_POST['delete_product']) && $_POST['delete_product']) {
     // input
     $id_product_deleted = $_POST['delete_product'];
     // save db
-    pdo_execute_new(
+    pdo_execute(
         'UPDATE flashsale_product SET deleted_at = current_timestamp() WHERE id_flashsale = ? AND id_product = ?',
         $id_flashsale,$id_product_deleted
     );

@@ -1,7 +1,7 @@
 <?php
 
 function render_product_for_card_by_id($id_product) {
-    return pdo_query_one_new(
+    return pdo_query_one(
         'SELECT p.*, b.name_brand, b.slug_brand, b.logo_brand, pi.*
         FROM product p
         LEFT JOIN brand b ON  p.id_brand = b.id_brand

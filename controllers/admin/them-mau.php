@@ -19,7 +19,7 @@ if(isset($_POST['add'])) {
     // lưu
     if(empty($list_error)) {
         // query sql
-        pdo_execute_new(
+        pdo_execute(
             'INSERT INTO color (name_color,slug_color,code_color) VALUES (?,?,?)',
             $name_color,create_slug($name_color),$code_color
         );

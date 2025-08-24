@@ -64,7 +64,7 @@ if(isset($_POST['add']) && isset($_FILES['file'])) {
             // lưu path tạm mới
             $_SESSION['temp_logo_brand_edit'] = $check['message'];
             // lưu lại ở db
-            pdo_execute_new(
+            pdo_execute(
                 'UPDATE brand SET logo_brand = ? WHERE id_brand = ?',
                 $_SESSION['temp_logo_brand_edit'], $_POST['id_brand']
             );

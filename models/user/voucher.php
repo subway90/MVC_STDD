@@ -9,7 +9,7 @@
  */
 function get_list_voucher($type) {
     // query
-    $result = pdo_query_new(
+    $result = pdo_query(
         'SELECT *
         FROM voucher
         WHERE (username = ? OR username IS NULL)
@@ -37,7 +37,7 @@ function get_list_voucher($type) {
  * @return array
  */
 function get_one_voucher($code_voucher) {
-    return pdo_query_one_new(
+    return pdo_query_one(
         'SELECT * FROM voucher WHERE code_voucher = ?',
         $code_voucher
     );
