@@ -271,33 +271,57 @@ function toast_show(){
         $time = TOAST_TIME/1000;
         echo 
         <<<HTML
-            <style>
+        <style>
             .line-bar {
                 height: 2px;
                 animation: lmao {$time}s linear forwards;
             }
             @keyframes lmao {
                 from {
-                width: 100%;
+                    width: 100%;
                 }
                 to {
-                width: 0;
+                    width: 0;
                 }
-            }      
-            </style>
-            <div style="z-index: 9999;" class="position-fixed end-0 me-1 mt-5 pt-5">
-                <div class="w-100 alert alert-{$type} border-0 alert-dismissible fade show m-0 rounded-0" role="alert">
-                    <span class="ps-2 pe-5 py-2">{$message}</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                <div class="bg-{$type} line-bar"></div>
+            }
+            .toast {
+                z-index: 9999;
+                position: fixed;
+                top: 20px; /* Đặt toast ở đầu */
+                right: 20px; /* Đặt toast ở bên phải */
+                min-width: 300px; /* Kích thước tối thiểu */
+                opacity: 0; /* Bắt đầu với độ mờ 0 */
+                transform: translateX(100%); /* Bắt đầu từ bên phải */
+                transition: opacity 0.5s, transform 0.5s; /* Thay đổi khi xuất hiện */
+            }
+            .toast.show {
+                opacity: 1; /* Độ mờ 1 khi hiển thị */
+                transform: translateX(0); /* Vị trí trở về ban đầu */
+            }
+        </style>
+        <!-- Content toast -->
+        <div class="toast show animate__animated animate__fadeInRight" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header justify-content-center gap-1 small">
+                <i class="bi bi-bell-fill"></i>
+                <strong class="me-auto">Hệ thống</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <script>
-                function closeAlert() {
-                    document .querySelector(".btn-close").click();
+            <div class="toast-body">
+                <span>{$message}</span>
+            </div>
+            <div class="bg-{$type} line-bar"></div>
+        </div>
+        <script>
+            function closeToast() {
+                const toast = document.querySelector(".toast");
+                if (toast) {
+                    // Thêm hiệu ứng biến mất với animate.css
+                    toast.classList.add("animate__fadeOutRight");
+                    // toast.classList.remove("show");
                 }
-                setTimeout(closeAlert,{$duration})
-            </script>
+            }
+            setTimeout(closeToast, {$duration});
+        </script>
         HTML;
     }
     unset($_SESSION['toast']);
@@ -519,34 +543,58 @@ function verify_token() {
 function toast($type, $message)
 {
     $duration = TOAST_TIME;
-    $second = TOAST_TIME/1000;
+    $time = TOAST_TIME/1000;
     return <<<HTML
         <style>
-        .line-bar {
-            height: 2px;
-            animation: lmao {$second}s linear forwards;
-        }
-        @keyframes lmao {
-            from {
-              width: 100%;
+            .line-bar {
+                height: 2px;
+                animation: lmao {$time}s linear forwards;
             }
-            to {
-              width: 0;
+            @keyframes lmao {
+                from {
+                    width: 100%;
+                }
+                to {
+                    width: 0;
+                }
             }
-          }      
+            .toast {
+                z-index: 9999;
+                position: fixed;
+                top: 20px; /* Đặt toast ở đầu */
+                right: 20px; /* Đặt toast ở bên phải */
+                min-width: 300px; /* Kích thước tối thiểu */
+                opacity: 0; /* Bắt đầu với độ mờ 0 */
+                transform: translateX(100%); /* Bắt đầu từ bên phải */
+                transition: opacity 0.5s, transform 0.5s; /* Thay đổi khi xuất hiện */
+            }
+            .toast.show {
+                opacity: 1; /* Độ mờ 1 khi hiển thị */
+                transform: translateX(0); /* Vị trí trở về ban đầu */
+            }
         </style>
-        <div style="z-index: 9999;" class="position-fixed end-0 me-1 mt-5 pt-5">
-            <div class="w-100 alert alert-{$type} border-0 alert-dismissible fade show m-0 rounded-0" role="alert">
-                <span class="ps-2 pe-5 py-2">{$message}</span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <!-- Content toast -->
+        <div class="toast show animate__animated animate__fadeInRight" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header justify-content-center gap-1 small">
+                <i class="bi bi-bell-fill"></i>
+                <strong class="me-auto">Hệ thống</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <span>{$message}</span>
             </div>
             <div class="bg-{$type} line-bar"></div>
         </div>
         <script>
-            function closeAlert() {
-                document.querySelector(".btn-close").click();
+            function closeToast() {
+                const toast = document.querySelector(".toast");
+                if (toast) {
+                    // Thêm hiệu ứng biến mất với animate.css
+                    toast.classList.add("animate__fadeOutRight");
+                    // toast.classList.remove("show");
+                }
             }
-            setTimeout(closeAlert,{$duration})
+            setTimeout(closeToast, {$duration});
         </script>
     HTML;
 }

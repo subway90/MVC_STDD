@@ -25,6 +25,8 @@
     <script src="<?= URL ?>assets/js/ajax_product.js"></script>
     <!-- JS Ajax Cart -->
     <script src="<?= URL ?>assets/js/ajax_cart.js"></script>
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= WEB_FAVICON ?>" type="image/x-icon">
     <!-- Title -->
