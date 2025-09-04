@@ -168,8 +168,10 @@
 
 .nav-item:hover .dropdown-menu {
     display: block;
+}
+
+.nav-item:hover .dropdown-menu.menu-notify {
     overflow-y: auto;
-    /* Hiện dropdown khi hover */
 }
 
 .submenu {
@@ -357,6 +359,7 @@
 /* custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
+    background-color: #ffffff;
     /* background: rgb(90, 3, 3); */
 }
 
