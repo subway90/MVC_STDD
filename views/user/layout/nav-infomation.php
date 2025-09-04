@@ -21,7 +21,7 @@
             </a>
             <?php endif ?>
             <a href="/lich-su-mua-hang" class="nav-link-infomation <?= ($page !== 'invoice-history') ?: 'active' ?>">
-                <i class="bi bi-receipt me-1"></i> Đơn hàng của tôi
+                <i class="bi bi-receipt me-1"></i> Lịch sử mua hàng
             </a>
             <a href="/thong-tin-ca-nhan" class="nav-link-infomation <?= ($page !== 'infomation') ?: 'active' ?>">
                 <i class="bi bi-person-vcard me-1"></i> Thông tin cá nhân

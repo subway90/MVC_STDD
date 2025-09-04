@@ -220,6 +220,10 @@
     /* Hiện submenu khi hover vào item danh mục lv1 */
 }
 
+.dropdown-item.item-small {
+    white-space: inherit;
+}
+
 .search-input {
     height: 44px;
     box-shadow: none !important;

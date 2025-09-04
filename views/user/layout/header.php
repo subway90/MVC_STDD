@@ -197,7 +197,7 @@
                     <?php }else{
                         foreach ($category_v2 as $item) { extract($item);
                     ?>
-                    <a class="dropdown-item d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
+                    <a class="dropdown-item item-small small d-flex align-items-center" href="<?= URL.'danh-muc/'.$category_v1['slug'].'/'.$slug ?>">
                         <img width="32" class="me-2" src="<?= DEFAULT_IMAGE ?>" alt="<?= $logo ?>">
                         <?= $name ?>
                     </a>
