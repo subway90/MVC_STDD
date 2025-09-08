@@ -1,8 +1,10 @@
 <?php
 
 
-function resizeImage($filePath, $newWidth, $newHeight) {
+function resizeImage($filePath, $newWidth) {
     list($width, $height, $type) = getimagesize($filePath);
+    // Tính toán chiều cao mới dựa trên tỷ lệ
+    $newHeight = intval(($newWidth / $width) * $height);
     $newImage = imagecreatetruecolor($newWidth, $newHeight);
 
     // Đặt màu nền trong suốt cho PNG và WEBP
@@ -13,6 +15,7 @@ function resizeImage($filePath, $newWidth, $newHeight) {
         imagefilledrectangle($newImage, 0, 0, $newWidth, $newHeight, $transparent);
     }
 
+    // Tạo nguồn ảnh từ file
     switch ($type) {
         case IMAGETYPE_JPEG:
             $source = imagecreatefromjpeg($filePath);
