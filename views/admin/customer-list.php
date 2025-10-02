@@ -34,12 +34,7 @@
                         <tr>
                             <th class="min-w-10x">Thông tin khách hàng</th>
                             <th class="min-w-3x">Phân quyền</th>
-                            <th class="min-w-5x">Ngày tạo</th>
-                            <?php if($status_page) {?>
-                                <th class="min-w-5x">Ngày cập nhật</th>
-                            <?php }else{ ?>
-                                <th class="min-w-5x">Ngày xoá</th>
-                            <?php }?>
+                            <th class="min-w-3x">Trạng thái hoạt động</th>
                             <th class="min-w-5x text-end" data-orderable="false">Hành động</th>
                         </tr>
                     </thead>
@@ -77,19 +72,22 @@
                                     <?= $name_role ?>
                                 </div>
                             </td>
-                            <td class="small">
-                                <?= format_time($created_at,'DD/MM/YYYY lúc hh:mm:ss') ?>
-                            </td>
-                            <td class="small">
-                            <?php if($status_page) {?>
-                                <?= $updated_at ? format_time($updated_at,'DD/MM/YYYY lúc hh:mm:ss') : '<span class="text-muted small">Chưa cập nhật</span>'?>
-                            <?php }else{ ?>
-                                <?= format_time($deleted_at,'DD/MM/YYYY lúc hh:mm:ss') ?>
-                            <?php }?>
+                            <td class="">
+                                <?php if(time() - strtotime($last_online) < TIME_UPDATE_ONLINE ) : ?>
+                                    <div class="d-flex align-items-center small text-muted">
+                                        <i class="bi bi-dot fs-3 text-success"></i>
+                                        Đang hoạt động
+                                    </div>
+                                <?php else : ?>
+                                    <div class="d-flex align-items-center small text-muted">
+                                        <i class="bi bi-dot fs-3 opacity-25"></i>
+                                        <?= format_timeline($last_online) ?>
+                                    </div>
+                                <?php endif ?>
                             </td>
                             <td class="text-end">
                                 <a href="<?= URL_ADMIN.'chi-tiet-tai-khoan/'.$username ?>" class="mt-3 btn btn-sm btn-secondary">
-                                    <i class="fa fas fa-eye me-2"></i> Xem
+                                    <i class="fa fas fa-eye me-2"></i> Chi tiết
                                 </a>
                             </td>
                         </tr>
