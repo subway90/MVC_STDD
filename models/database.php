@@ -8,9 +8,13 @@ function pdo_get_connection()
     $username = DB_USER;
     $password = DB_PASS;
 
-    $conn = new PDO($dburl, $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    return $conn;
+    try {
+        $conn = new PDO($dburl, $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch (\Throwable $th) {
+        die(_s_me_error.'<b>Kết nối database thất bại. Chi tiết :</b><br> '.$th._e_me_error);
+    }
 }
 
 
