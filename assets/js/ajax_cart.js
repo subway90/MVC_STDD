@@ -33,15 +33,18 @@ $(document).ready(function() {
                 code_voucher: codeVoucher
             },
             success: function(response) {
-                $("#messageCart").html(response.message);
+                // Gọi hàm showToast với thông điệp từ phản hồi
+                showToast(response.message);
                 loadCountCart();
                 loadListCart();
             },
             error: function(xhr, status, error) {
                 console.log('Lỗi sử dụng voucher : ' + error);
+                showToast('Có lỗi xảy ra khi sử dụng voucher.'); // Hiển thị thông báo lỗi
             }
         });
     });
+
 
     // Tăng số lượng
     $(document).on('click', '#plusCartBtn', function() {
@@ -165,3 +168,49 @@ $(document).ready(function() {
         loadListCart();
     }
 });
+
+function showToast(message) {
+        const toastContainer = document.querySelector("#messageCart");
+
+        // Tạo phần tử toast mới
+        const newToast = document.createElement("div");
+        newToast.classList.add("toast", "show", "animate__animated", "animate__fadeInRight");
+        newToast.setAttribute("role", "alert");
+        newToast.setAttribute("aria-live", "assertive");
+        newToast.setAttribute("aria-atomic", "true");
+
+        newToast.innerHTML = `
+            <div class="toast-header justify-content-center gap-1 small">
+                <i class="bi bi-bell-fill"></i>
+                <strong class="me-auto">Hệ thống</strong>
+                <button type="button" class="btn-close" aria-label="Close" onclick="closeToast(this)"></button>
+            </div>
+            <div class="toast-body">
+                <span>${message}</span>
+            </div>
+            <div class="bg-danger line-bar"></div>
+        `;
+
+        // Thêm toast vào container
+        toastContainer.appendChild(newToast);
+
+        // Hiển thị toast và thiết lập thời gian tự động đóng
+        setTimeout(() => {
+            newToast.classList.add("animate__fadeOutRight");
+
+            // Xóa toast sau khi hiệu ứng biến mất
+            newToast.addEventListener("animationend", () => {
+                newToast.remove();
+            });
+        }, 2000); // Thay đổi thời gian ở đây nếu cần
+    }
+
+    function closeToast(button) {
+        const toast = button.closest('.toast');
+        toast.classList.add("animate__fadeOutRight");
+
+        // Xóa toast sau khi hiệu ứng biến mất
+        toast.addEventListener("animationend", () => {
+            toast.remove();
+        });
+    }
