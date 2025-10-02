@@ -644,5 +644,13 @@ function format_timeline($time) {
         $day = floor($value_duration_second/(60*60*24));
         return $day.' ngày trước ';
     }
+    elseif($value_duration_second < 60*60*24*7*4) {
+        $day = floor($value_duration_second/(60*60*24*7));
+        return $day.' tuần trước ';
+    }
+    elseif($value_duration_second < 60*60*24*7*4*12) {
+        $day = floor($value_duration_second/(60*60*24*7*4));
+        return $day.' tháng trước ';
+    }
     else return format_time($time,'ngày DD tháng MM lúc hh:mm');
 }
