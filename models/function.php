@@ -454,10 +454,38 @@ function create_uuid(){
  * @param array $data
  * @return void
  */
-function view_json($status, $data){
-    header('Content-Type: application/json');
-    $data = array_merge(['status' => $status], $data);
-    echo json_encode($data);
+function view_json($code_status, $data){
+
+    // dãy mã trạng thái hợp lệ
+    $list_code_status = [
+        200 => "OK",
+        201 => "Created",
+        202 => "Accepted",
+        204 => "No Content",
+        400 => "Bad Request",
+        401 => "Unauthorized",
+        403 => "Forbidden",
+        404 => "Not Found",
+        405 => "Method Not Allowed",
+        409 => "Conflict",
+        415 => "Unsupported Media Type",
+        429 => "Too Many Requests",
+        500 => "Internal Server Error",
+        502 => "Bad Gateway",
+        503 => "Service Unavailable",
+        504 => "Gateway Timeout"
+    ];
+
+    // Kiểm tra $code_status có khớp với bất kỳ khóa nào trong $list_code_status => nếu hợp lệ thì trả về json
+    if (array_key_exists($code_status, $list_code_status)) {
+        header('Content-Type: application/json');
+        http_response_code($code_status);
+        $data = array_merge(['status' => $code_status.' - '.$list_code_status[$code_status]], $data);
+        echo json_encode($data);
+    }
+    // báo lỗi 
+    else die(_s_me_error."Mã trạng thái không hợp lệ khi dùng view_json()"._e_me_error);
+
     exit;
 }
 
