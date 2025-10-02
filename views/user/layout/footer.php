@@ -115,4 +115,7 @@
     </div>
 </footer>
 
+<!-- JS Icon Loader Button -->
+<script src="<?= URL ?>assets/js/animate_loading_btn.js"></script>
+
 </html>

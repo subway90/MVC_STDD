@@ -81,10 +81,10 @@
             </div>
         </div>
         <div class="col-12 col-md-12 col-lg-5 p-0 ps-lg-3">
-            <form method="post">
+            <form method="post" action="/dat-hang">
             <!-- Form Info -->
             <div class="bg-light p-4 rounded-3">
-                 <h5 class="text-success mb-3">
+                 <h5 class="text-success small mb-3">
                     Thông tin người nhận hàng
                  </h5>
                  <div class="input-group input-group mb-3">
@@ -126,7 +126,7 @@
             <!-- Form Payment -->
             <div class="bg-light p-4 rounded-3 mt-3">
                 <!-- Form Info -->
-                 <h5 class="text-success mb-3">
+                 <h5 class="text-success small mb-3">
                     Chọn hình thức thanh toán
                  </h5>
                  <div class="form-check p-0 mb-2">
@@ -159,8 +159,14 @@
                 <?= show_error($error_valid) ?>
             </div>
 
-            <button type="submit" name="create_invoice" class="btn btn-lg btn-success mt-3 fs-6 fw-semibold">
-                Xác nhận đặt hàng
+            <button type="submit" id="button-loader" name="create_invoice" class="btn btn-sm btn-success mt-3 small">
+                <span id="text-loader">
+                    Xác nhận đặt hàng
+                </span>
+                <div id="key-loader" class="d-none d-flex align-items-center gap-2 small">
+                    <div class="loader-btn"></div>
+                    <span class="text-light">Đang tiến hành đặt hàng</span>
+                </div>
             </button>
 
             </form>
