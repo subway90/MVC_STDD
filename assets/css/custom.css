@@ -456,3 +456,50 @@
   90%,
   100%{background-position: 100% 100%,0 100%,0    0   ,100% 0}
 }
+
+.fs-small {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+#search-list-history {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.row-search-trend {
+    text-decoration: none;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 4px;
+    border-radius: 8px;
+}
+
+.row-search-trend:hover {
+    background-color: #f1f1f1;
+}
+
+.row-search-trend i {
+    color: var(--orange-color);
+    font-size: 15px;
+}
+
+.row-search-trend span {
+    text-decoration: none;
+    color: var(--muted-color);
+    font-size: 13px;
+}
+
+#search-input~#search-box {
+    opacity: 0;
+    transition: calc(0.2s);
+    transform: scaleY(1.1);
+}
+
+#search-input:focus~#search-box, #serch-box:hover{
+    opacity: 1;
+    transition: calc(0.2s);
+    transform: scaleY(1);
+}

@@ -96,12 +96,84 @@
                         </div>
                     </li>
                     <form action="/tim-kiem" method="get">
-                    <li class="nav-item input-group">
-                        <input type="text" name="keyword" value="<?= isset($keyword_old) ? $keyword_old : '' ?>" class="form-control rounded-end-0 rounded-5 search-input ps-3" placeholder="Bạn muốn tìm gì ?">
-                        <button type="submit" class="btn btn-small btn-light rounded-start-0 rounded-5 pe-3 text-success search-btn">
-                            <i class="bi fs-5 bi-search"></i>
-                        </button>
-                    </li>
+                    <div class="d-flex flex-column">
+                        <li class="nav-item input-group position-relative">
+                            <input id="search-input" autocomplete="off" type="text" name="keyword" value="<?= isset($keyword_old) ? $keyword_old : '' ?>" class="form-control rounded-end-0 rounded-5 search-input ps-3" placeholder="Bạn muốn tìm gì ?">
+                            <button type="submit" class="btn btn-small btn-light rounded-start-0 rounded-5 pe-3 text-success search-btn">
+                                <i class="bi fs-5 bi-search"></i>
+                            </button>
+                            <div id="search-box" class="position-absolute top-100 mt-1 box-result-search rounded-4 bg-light shadow p-3 w-100">
+                                <div id="search-list-trend">
+                                    <div class="fs-small text-muted text-uppercase mb-1">
+                                        xu huớng tìm kiếm
+                                    </div>
+                                    <div class="d-flex flex-column gap-1">
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-fire"></i>
+                                            <span class="text-muted">
+                                                iphone 17 series
+                                            </span>
+                                        </a>
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-fire"></i>
+                                            <span class="text-muted">
+                                                laptop msi think omas
+                                            </span>
+                                        </a>
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-fire"></i>
+                                            <span class="text-muted">
+                                                samsung s26 ultra
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div id="search-list-history" class="mt-3">
+                                    <div class="fs-small text-muted text-uppercase mb-1">
+                                        lịch sử tìm kiếm gần nhất
+                                    </div>
+                                    <div class="d-flex flex-column gap-1">
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-clock-history text-success"></i>
+                                            <span class="text-muted">
+                                                iphone
+                                            </span>
+                                        </a>
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-clock-history text-success"></i>
+                                            <span class="text-muted">
+                                                samsung
+                                            </span>
+                                        </a>
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-clock-history text-success"></i>
+                                            <span class="text-muted">
+                                                tai nghe không dây
+                                            </span>
+                                        </a>
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-clock-history text-success"></i>
+                                            <span class="text-muted">
+                                                laptop lenovo slim 5
+                                            </span>
+                                        </a>
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-clock-history text-success"></i>
+                                            <span class="text-muted">
+                                                cáp sạc lightning - type c
+                                            </span>
+                                        </a>
+                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                            <i class="bi bi-clock-history text-success"></i>
+                                            <span class="text-muted">
+                                                adapter sạc laptop hp
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
                     </form>
                     <form action="/thong-bao" method="post">
                     <li class="nav-item mx-lg-1">
