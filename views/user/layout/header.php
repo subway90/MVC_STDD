@@ -102,7 +102,7 @@
                             <button type="submit" class="btn btn-small btn-light rounded-start-0 rounded-5 pe-3 text-success search-btn">
                                 <i class="bi fs-5 bi-search"></i>
                             </button>
-                            <div class="position-absolute top-100 mt-1 box-result-search rounded-4 bg-light shadow p-3 w-100">
+                            <div id="search-box" class="position-absolute top-100 mt-1 box-result-search rounded-4 bg-light shadow p-3 w-100">
                                 <div id="search-list-result"></div>
                                 <div id="search-list-trend">
                                     <div class="fs-small text-muted text-uppercase mb-1">
@@ -115,13 +115,13 @@
                                                 iphone 17 series
                                             </span>
                                         </a>
-                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                        <a href="/tim-kiem?keyword=laptop" class="row-search-trend">
                                             <i class="bi bi-fire"></i>
                                             <span class="text-muted">
                                                 laptop msi think omas
                                             </span>
                                         </a>
-                                        <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
+                                        <a href="/tim-kiem?keyword=samsung" class="row-search-trend">
                                             <i class="bi bi-fire"></i>
                                             <span class="text-muted">
                                                 samsung s26 ultra

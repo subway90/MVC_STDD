@@ -508,7 +508,7 @@
     font-size: 13px;
 }
 
-/* #search-input~#search-box {
+#search-input~#search-box {
     opacity: 0;
     transition: calc(0.2s);
     transform: scaleY(1.1);
@@ -518,7 +518,7 @@
     opacity: 1;
     transition: calc(0.2s);
     transform: scaleY(1);
-} */
+}
 
 .fs-small-price {
     font-size: 12px;
