@@ -457,6 +457,22 @@
   100%{background-position: 100% 100%,0 100%,0    0   ,100% 0}
 }
 
+.loader-btn-success {
+  width: 23px;
+  aspect-ratio: 1;
+  --_g: no-repeat radial-gradient(farthest-side,var(--primary-color) 90%,var(--primary-color));
+  background: var(--_g), var(--_g), var(--_g), var(--_g);
+  background-size: 40% 40%;
+  animation: l46 1s infinite;
+}
+@keyframes l46 {
+  0%  {background-position: 0 0      ,100% 0,100% 100%,0 100%}
+  40%,
+  50% {background-position: 100% 100%,100% 0,0    0   ,0 100%}
+  90%,
+  100%{background-position: 100% 100%,0 100%,0    0   ,100% 0}
+}
+
 .fs-small {
     font-size: 10px;
     font-weight: 500;
@@ -492,7 +508,7 @@
     font-size: 13px;
 }
 
-#search-input~#search-box {
+/* #search-input~#search-box {
     opacity: 0;
     transition: calc(0.2s);
     transform: scaleY(1.1);
@@ -502,4 +518,26 @@
     opacity: 1;
     transition: calc(0.2s);
     transform: scaleY(1);
+} */
+
+.fs-small-price {
+    font-size: 12px;
+}
+
+.row-search-product {
+    text-decoration: none;
+    width: 100%;
+    display: inline-flex;
+    gap: 8px;
+    padding: 6px 6px;
+    border-radius: 8px;
+}
+
+.row-search-product:hover {
+    background-color: #f1f1f1;
+}
+
+#search-list-result {
+    max-height: 400px;
+    overflow-y: scroll;
 }
