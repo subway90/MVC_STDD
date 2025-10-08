@@ -541,3 +541,14 @@
     max-height: 400px;
     overflow-y: scroll;
 }
+
+#search-input::placeholder {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+#search-input.placeholder-visible::placeholder {
+    opacity: 1;
+    transform: translateY(0);
+}

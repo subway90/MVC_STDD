@@ -98,7 +98,7 @@
                     <form action="/tim-kiem" method="get">
                     <div class="d-flex flex-column">
                         <li class="nav-item input-group position-relative">
-                            <input id="search-input" autocomplete="off" type="text" name="keyword" value="<?= isset($keyword_old) ? $keyword_old : '' ?>" class="form-control rounded-end-0 rounded-5 search-input ps-3" placeholder="Bạn muốn tìm gì ?">
+                            <input id="search-input" autocomplete="off" type="text" name="keyword" value="<?= isset($keyword_old) ? $keyword_old : '' ?>" class="form-control rounded-end-0 rounded-5 search-input ps-3" placeholder="Bạn muốn tìm gì ?" data-placeholder="Bạn muốn tìm gì ?,iphone 17 series,laptop msi think omas,samsung s26 ultra">
                             <button type="submit" class="btn btn-small btn-light rounded-start-0 rounded-5 pe-3 text-success search-btn">
                                 <i class="bi fs-5 bi-search"></i>
                             </button>
