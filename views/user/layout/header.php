@@ -105,8 +105,11 @@
                             <div id="search-box" class="position-absolute top-100 mt-1 box-result-search rounded-4 bg-light shadow p-3 w-100">
                                 <div id="search-list-result"></div>
                                 <div id="search-list-trend">
-                                    <div class="fs-small text-muted text-uppercase mb-1">
-                                        xu huớng tìm kiếm
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="fs-small text-muted text-uppercase mb-1">
+                                            xu huớng tìm kiếm
+                                        </div>
+                                        <i class="bi bi-x text-danger fs-5"></i>
                                     </div>
                                     <div class="d-flex flex-column gap-1">
                                         <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
@@ -133,7 +136,7 @@
                                     <div class="fs-small text-muted text-uppercase mb-1">
                                         lịch sử tìm kiếm gần nhất
                                     </div>
-                                    <div class="d-flex flex-column gap-1">
+                                    <div id="body-search-list-history" class="d-flex flex-column gap-1">
                                         <a href="/tim-kiem?keyword=iphone" class="row-search-trend">
                                             <i class="bi bi-clock-history text-success"></i>
                                             <span class="text-muted">
