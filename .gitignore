@@ -14,3 +14,4 @@
 
 config.php
 rule.txt
+controllers/user/deploy-src.php
