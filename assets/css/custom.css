@@ -508,15 +508,18 @@
     font-size: 13px;
 }
 
-#search-input~#search-box {
+#search-box {
     opacity: 0;
-    transition: calc(0.2s);
+    pointer-events: none;
+    transition: opacity 0.2s, transform 0.2s;
     transform: scaleY(1.1);
+    z-index: 1; /* Đảm bảo box ở trên cùng */
 }
 
-#search-input:focus~#search-box, #serch-box:hover{
+#search-input:focus ~ #search-box,
+#search-box:hover {
     opacity: 1;
-    transition: calc(0.2s);
+    pointer-events: auto; /* Cho phép tương tác với box */
     transform: scaleY(1);
 }
 
