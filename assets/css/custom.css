@@ -537,7 +537,7 @@
     background-color: #f1f1f1;
 }
 
-#search-list-result {
+#search-list-result-body {
     max-height: 400px;
     overflow-y: scroll;
 }

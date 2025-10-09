@@ -21,7 +21,7 @@ if(isset($_GET['key']) && $_GET['key']) {
             <i class="bi bi-dot"></i>
             <div>{$count_product} sản phẩm</div>
         </div>
-        <div class="d-flex flex-column gap-1">
+        <div id="search-list-result-body" class="d-flex flex-column gap-1">
     HTML;
     // has data
     if(!empty($list_result)) {
@@ -55,8 +55,8 @@ if(isset($_GET['key']) && $_GET['key']) {
             }
             $render_html .= 
             <<<HTML
-                <a href="/chi-tiet/{$slug_product}" class="row-search-product">
-                    <img width="52" class="rounded-2" src="{$url_storage}{$path_product_image}" alt="">
+                <a href="/chi-tiet/{$slug_product}" class="row-search-product d-flex align-items-center">
+                    <img width="52" height="100%" class="rounded-2" src="{$url_storage}{$path_product_image}" alt="">
                     <div class="d-flex flex-column">
                         <div class="text-muted fw-semi small">
                             {$name_product}

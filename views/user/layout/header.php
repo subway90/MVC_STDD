@@ -54,14 +54,13 @@
 
     <div id="messageCart"></div>
 
-    <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-3">
+    <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-lg-3">
         <div class="container p-lg-0">
             <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu"><i class="bi bi-list fs-5"></i></button>
             <a class="navbar-brand text-light fw-bold fst-italic text-decoration-underline" href="<?= URL ?>">
                 <?= WEB_NAME ?>
             </a>
-            <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasSearch" aria-controls="offCanvasSearch"><i class="bi bi-search fs-5"></i></button>
-
+            <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"><i class="bi bi-search fs-5"></i></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                     <li class="nav-item mx-lg-3">
@@ -95,7 +94,7 @@
                         <?php endforeach ?>
                         </div>
                     </li>
-                    <form action="/tim-kiem" method="get">
+                    <form class="w-100 mt-2 mt-lg-0" action="/tim-kiem" method="get">
                     <div class="d-flex flex-column">
                         <li class="nav-item input-group position-relative">
                             <input id="search-input" autocomplete="off" type="text" name="keyword" value="<?= isset($keyword_old) ? $keyword_old : '' ?>" class="form-control rounded-end-0 rounded-5 search-input ps-3" placeholder="Bạn muốn tìm gì ?" data-placeholder="Bạn muốn tìm gì ?,iphone 17 series,laptop msi think omas,samsung s26 ultra">
@@ -226,31 +225,33 @@
                     </li>
                     </form>
                 </ul>
-                <a href="<?= URL ?>gio-hang" class="btn btn-outline-light position-relative rounded-circle me-2">
+                <a href="<?= URL ?>gio-hang" class="d-none d-lg-block btn btn-outline-light position-relative rounded-circle me-2">
                     <i class="bi bi-cart fs-5"></i>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         <span id="countCart"></span>
                     </span>
                 </a>
-                <?= layout('user','acccount-dropdown') ?>
+                <div class="d-none d-lg-block">
+                    <?= layout('user','acccount-dropdown') ?>
+                </div>
             </div>
         </div>
     </nav>
 
-<div class="offcanvas offcanvas-top" tabindex="-1" id="offCanvasSearch" aria-labelledby="offCanvasSearchLabel">
+<!-- <div class="offcanvas offcanvas-top" tabindex="-1" id="offCanvasSearch" aria-labelledby="offCanvasSearchLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offCanvasSearchLabel">Tìm kiếm sản phẩm</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <div class="input-group border border-success">
-            <input type="text" name="search_product" id="" class="form-control search-input ps-3" placeholder="Bạn muốn tìm gì ?">
+            <input autocomplete="off" type="text" name="search_product" id="search-input-mobile" class="form-control search-input ps-3" placeholder="Bạn muốn tìm gì ?">
             <button class="btn btn-small btn-light pe-3 text-success search-btn">
                 <i class="bi fs-5 bi-search"></i>
             </button>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offCanvasMenu" aria-labelledby="offCanvasMenuLabel">
     <div class="offcanvas-header bg-success">
