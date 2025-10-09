@@ -21,29 +21,7 @@
 </div>
 
 <div class="container p-0">
-    <!-- Box Small Start -->
-    <div class="row mt-2">
-        <div class="col-6 col-md-3 col-lg-3 py-2">
-            <div class="card border-0">
-                <img src="<?= URL_STORAGE ?>box-index/8c5m4pa.png" alt="">
-            </div>
-        </div>
-        <div class="col-6 col-md-3 col-lg-3 py-2">
-            <div class="card border-0">
-                <img src="<?= URL_STORAGE ?>box-index/s23-ultra-63.png" alt="">
-            </div>
-        </div>
-        <div class="col-6 col-md-3 col-lg-3 py-2">
-            <div class="card border-0">
-                <img src="<?= URL_STORAGE ?>box-index/thu-cu_638466130644683857.png" alt="">
-            </div>
-        </div>
-        <div class="col-6 col-md-3 col-lg-3 py-2">
-            <div class="card border-0">
-                <img src="<?= URL_STORAGE ?>box-index/xiaomi-watch-2.png" alt="">
-            </div>
-        </div>
-    </div>
+    
     <!-- Flash Sale Start -->
     <div class="container bg-light rounded-4 p-2 mb-5">
         <div id="dataFlashSale"></div>
