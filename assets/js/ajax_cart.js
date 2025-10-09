@@ -137,6 +137,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (response) {
                 $("#countCart").html(response.count);
+                $("#countCartMobile").html(response.count);
             },
         });
     }
