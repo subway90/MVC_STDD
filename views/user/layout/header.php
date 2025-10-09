@@ -54,7 +54,7 @@
 
     <div id="messageCart"></div>
 
-    <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success py-lg-3">
+    <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-success pt-3">
         <div class="container p-lg-0">
             <button class="d-lg-none btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offCanvasMenu" aria-controls="offCanvasMenu"><i class="bi bi-list fs-5"></i></button>
             <a class="navbar-brand text-light fw-bold fst-italic text-decoration-underline" href="<?= URL ?>">
