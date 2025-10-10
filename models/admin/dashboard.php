@@ -42,35 +42,35 @@ function revenue($type) {
 
     // truy vấn hôm nay
     if($type === 'today') {
-        $query_date = 'date(i.created_at) = CURDATE()';
+        $query_date = 'date(i.updated_at) = CURDATE()';
     }
     // truy vấn ngày hôm qua
     elseif($type === 'yesterday') {
-        $query_date = 'date(i.created_at) = CURDATE() - INTERVAL 1 DAY';
+        $query_date = 'date(i.updated_at) = CURDATE() - INTERVAL 1 DAY';
     }
     
     // truy vấn tuần này => từ thứ 2 tuần này -> chủ nhật tuần này
     else if($type === 'this week') {
-        $query_date = 'date(i.created_at) >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
-    AND i.created_at < DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 7 DAY)';
+        $query_date = 'date(i.updated_at) >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
+    AND i.updated_at < DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 7 DAY)';
     }
 
     // truy vấn tuần trước => từ thứ 2 tuần trước -> chủ nhật tuần trước
     else if($type === 'last week') {
-        $query_date = 'date(i.created_at) >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 7 DAY)
-    AND i.created_at < DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)';
+        $query_date = 'date(i.updated_at) >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) + 7 DAY)
+    AND i.updated_at < DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)';
     }
 
     // truy vấn tháng này
     else  if($type === 'this month') {
-        $query_date = 'MONTH(i.created_at) = MONTH(CURDATE())
-    AND YEAR(i.created_at) = YEAR(CURDATE())';
+        $query_date = 'MONTH(i.updated_at) = MONTH(CURDATE())
+    AND YEAR(i.updated_at) = YEAR(CURDATE())';
     }
 
     // truy vấn tháng trước
     else  if($type === 'last month') {
-        $query_date = 'MONTH(i.created_at) = MONTH(CURDATE() - INTERVAL 1 MONTH)
-    AND YEAR(i.created_at) = YEAR(CURDATE() - INTERVAL 1 MONTH)';
+        $query_date = 'MONTH(i.updated_at) = MONTH(CURDATE() - INTERVAL 1 MONTH)
+    AND YEAR(i.updated_at) = YEAR(CURDATE() - INTERVAL 1 MONTH)';
     }
 
     // test return
@@ -82,7 +82,7 @@ function revenue($type) {
     //     WHERE status_invoice = 3
     //     AND '.$query_date.' 
     //     GROUP BY i.id_invoice
-    //     ORDER BY i.created_at ASC'
+    //     ORDER BY i.updated_at ASC'
     // );
 
     // trả về
@@ -101,31 +101,31 @@ function revenue($type) {
  */
 function revenue_chart($type) {
     if($type === 'nam') return pdo_query(
-        'SELECT MONTH(i.created_at) AS month,SUM(id.quantity_invoice * id.price_invoice) AS total
+        'SELECT MONTH(i.updated_at) AS month,SUM(id.quantity_invoice * id.price_invoice) AS total
         FROM invoice i
         JOIN invoice_detail id
         ON i.id_invoice = id.id_invoice
-        WHERE YEAR(i.created_at) = YEAR(CURDATE())
-        GROUP BY MONTH(i.created_at)
+        WHERE YEAR(i.updated_at) = YEAR(CURDATE())
+        GROUP BY MONTH(i.updated_at)
         ORDER BY month'
     );
     elseif($type === 'thang') return pdo_query(
-            'SELECT WEEK(i.created_at, 1) AS week,
+            'SELECT WEEK(i.updated_at, 1) AS week,
             SUM(id.quantity_invoice * id.price_invoice) AS total
             FROM invoice i
             JOIN invoice_detail id ON i.id_invoice = id.id_invoice
-            WHERE MONTH(i.created_at) = MONTH(CURDATE()) 
-            AND YEAR(i.created_at) = YEAR(CURDATE())
-            GROUP BY YEARWEEK(i.created_at, 1)
+            WHERE MONTH(i.updated_at) = MONTH(CURDATE()) 
+            AND YEAR(i.updated_at) = YEAR(CURDATE())
+            GROUP BY YEARWEEK(i.updated_at, 1)
             ORDER BY week'
     );
     elseif($type === 'tuan') return pdo_query(
-        'SELECT WEEKDAY(i.created_at) AS date, SUM(id.quantity_invoice * id.price_invoice) AS total
+        'SELECT WEEKDAY(i.updated_at) AS date, SUM(id.quantity_invoice * id.price_invoice) AS total
         FROM invoice i
         JOIN invoice_detail id ON i.id_invoice = id.id_invoice
-        WHERE i.created_at >= CURDATE() - INTERVAL WEEKDAY(CURDATE()) DAY -- Bắt đầu từ thứ Hai
-        AND i.created_at < CURDATE() + INTERVAL (7 - WEEKDAY(CURDATE())) DAY -- Kết thúc vào Chủ Nhật
-        GROUP BY DATE(i.created_at)
+        WHERE i.updated_at >= CURDATE() - INTERVAL WEEKDAY(CURDATE()) DAY -- Bắt đầu từ thứ Hai
+        AND i.updated_at < CURDATE() + INTERVAL (7 - WEEKDAY(CURDATE())) DAY -- Kết thúc vào Chủ Nhật
+        GROUP BY DATE(i.updated_at)
         ORDER BY date'
     );
 }
@@ -201,20 +201,20 @@ function data_chart($start,$end,$type) {
     if(!in_array($type,['ngay','tuan','thang','nam'])) view_error(404);
 
     if($type === 'ngay') {
-        $select = 'WEEKDAY(i.created_at) AS order_of_week, DATE(i.created_at)';
-        $query = 'DATE(i.created_at) BETWEEN "'.$start.'" AND "'.$end.'"';
+        $select = 'WEEKDAY(i.updated_at) AS order_of_week, DATE(i.updated_at)';
+        $query = 'DATE(i.updated_at) BETWEEN "'.$start.'" AND "'.$end.'"';
     }
     elseif($type === 'tuan') {
-        $select = 'MIN(i.created_at) start, MAX(i.created_at) end, WEEK(i.created_at, 1)';
-        $query = 'DATE(i.created_at) BETWEEN "'.$start.'" AND "'.$end.'"';
+        $select = 'MIN(i.updated_at) start, MAX(i.updated_at) end, WEEK(i.updated_at, 1)';
+        $query = 'DATE(i.updated_at) BETWEEN "'.$start.'" AND "'.$end.'"';
     }
     elseif($type === 'thang') {
-        $select = 'MIN(i.created_at) start, MAX(i.created_at) end, MONTH(i.created_at)';
-        $query = 'DATE(i.created_at) BETWEEN "'.$start.'" AND "'.$end.'"';
+        $select = 'MIN(i.updated_at) start, MAX(i.updated_at) end, MONTH(i.updated_at)';
+        $query = 'DATE(i.updated_at) BETWEEN "'.$start.'" AND "'.$end.'"';
     }
     elseif($type === 'nam') {
-        $select = 'MIN(i.created_at) start, MAX(i.created_at) end, YEAR(i.created_at)';
-        $query = 'DATE(i.created_at) BETWEEN "'.$start.'" AND "'.$end.'"';
+        $select = 'MIN(i.updated_at) start, MAX(i.updated_at) end, YEAR(i.updated_at)';
+        $query = 'DATE(i.updated_at) BETWEEN "'.$start.'" AND "'.$end.'"';
     }
     
     return pdo_query(
